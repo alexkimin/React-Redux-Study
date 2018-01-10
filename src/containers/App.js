@@ -1,4 +1,6 @@
 import React from 'react'
+import axios from 'axios'
+
 import {
   Route,
   Switch,
@@ -20,7 +22,9 @@ import { Todo } from 'containers'
 //
 // const testing = combineComponents([<div>1</div>, <div>2</div>, <div>3</div>])
 
+
 const App = props => {
+
   return (
     <AppTemplate>
       {/* meta tag configure */}

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "prop-types": "^15.6.0",
@@ -14,6 +15,9 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-pender": "^1.1.15",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.4.0"
   },
   "scripts": {
@@ -26,6 +30,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3001/",
   "main": "index.js",
   "license": "MIT"
 }
