@@ -11,6 +11,8 @@ import {
 import {
   FlexBox,
   Title,
+  Footer,
+  NavHeader,
 } from 'components'
 
 import {
@@ -29,17 +31,18 @@ const Space = props => (<FlexBox { ...props } />)
 const AppLayout = props => {
   return (
     <FlexBox>
+      {/*side-left space for responsive*/}
       <Space col={ 1 } />
+      {/*contents container*/}
       <Contents col={ 10 }>
         <Title>Today's Todo List</Title>
         <TodoAdd />
-        <ul>
-          <li><Link to="/">All</Link></li>
-          <li><Link to="/filter/completed">Completed</Link></li>
-          <li><Link to="/filter/actived">Actived</Link></li>
-        </ul>
+        <NavHeader />
+        {/*todo rendering*/}
         { props.children }
+        <Footer/>
       </Contents>
+      {/*side-right space for responsive*/}
       <Space col={ 1 } />
     </FlexBox>
   )
