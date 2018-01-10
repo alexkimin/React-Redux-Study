@@ -5,6 +5,7 @@ import {
   TodoTemplate,
   TodoItem,
   TodoList,
+  Spinner,
 } from 'components'
 
 import {
@@ -26,25 +27,26 @@ const fakeInfo = [{
 
 
 const Todo = ({ match }) => {
-  const filter = match.params.filter
-  const filterTodo = arr =>
-    arr.filter(e => filter ? e.status === filter : e)
-  const mapTodo = arr =>
-    arr.map((props) => <TodoItem
-                          key={ props.id }
-                          checkFn={() => console.log('completed')}
-                          {...props}
-                        />)
+
+  const filterTodo = arr => arr.filter(e =>
+    match.params.filter ? e.status === match.params.filter : e)
+  const mapTodo = arr => arr.map(props =>
+    (<TodoItem
+      key={ props.id }
+      checkFn={() => console.log('completed')}
+      {...props}
+    />))
 
   const rendering = pipe(
     filterTodo,
-    mapTodo,
+    mapTodo
   )
 
   return (
     <TodoTemplate>
       <TodoList>
         { rendering(fakeInfo) }
+        <Spinner />
       </TodoList>
     </TodoTemplate>
   )

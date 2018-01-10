@@ -9,7 +9,7 @@ const StyledFooter = styled.footer`
 const Footer = (props) => {
   return (
     <StyledFooter>
-      this is a footer
+      Footer
     </StyledFooter>
   )
 }

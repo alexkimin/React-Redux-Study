@@ -14,17 +14,7 @@ import {
 
 import { Todo } from 'containers'
 
-// const combineTwo = (a, b) => x => (<div>{a(x)} {b(x)}</div>)
-// const combineComponents = (...args) => {
-//   const [first, ...rest] = args
-//   return [...rest].reduce((acc, c) => combineTwo(acc, c), first)
-// }
-//
-// const testing = combineComponents([<div>1</div>, <div>2</div>, <div>3</div>])
-
-
 const App = props => {
-
   return (
     <AppTemplate>
       {/* meta tag configure */}

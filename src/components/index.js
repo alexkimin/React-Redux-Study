@@ -9,6 +9,7 @@ export { default as TodoList } from './base/TodoList'
 export { default as NavItem } from './base/NavItem'
 export { default as NavHeader } from './base/NavHeader'
 export { default as Footer } from './base/Footer'
+export { default as Spinner } from './base/Spinner'
 // From Template
 export { default as AppTemplate } from './templetes/AppTemplate'
 export { default as TodoTemplate } from './templetes/TodoTemplate'
