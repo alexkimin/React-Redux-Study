@@ -2,16 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const StyledDiv = styled.div`
+const StyledUl = styled.ul`
   boader: 1px solid green;
   padding: 5px;
   width: 100%;
   border: 1px solid red;
+  list-style:none;
 `
 
 const TodoList = (props) => {
   return (
-    <StyledDiv>{ props.children }</StyledDiv>
+    <StyledUl>{ props.children }</StyledUl>
   )
 }
 

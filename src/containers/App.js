@@ -32,7 +32,7 @@ const App = props => {
       />
       {/*routes*/}
       <Route exact path="/" component={ Todo }/>
-      <Route path="/:id" component={ Todo }/>
+      <Route exact path="/:id" component={ Todo }/>
       <Route path="/filter/:filter" component={ Todo }/>
     </AppTemplate>
   )

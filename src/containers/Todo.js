@@ -7,21 +7,44 @@ import {
   TodoList,
 } from 'components'
 
+import {
+  pipe
+} from 'libs'
+
 const fakeInfo = [{
-  name: 'this is todo1',
+  id: 1,
+  text: 'this is todo1',
+  status: 'actived',
 },
 {
-  name: 'this is todo2',
+  id: 2,
+  text: 'this is todo2',
+  status: 'completed',
 },
 ]
 
-const Todo = props => {
-  const renderTodo = fakeInfo.map((eProps) => <TodoItem {...eProps} />)
-  console.log(renderTodo)
+
+
+const Todo = ({ match }) => {
+  const filter = match.params.filter
+  const filterTodo = arr =>
+    arr.filter(e => filter ? e.status === filter : e)
+  const mapTodo = arr =>
+    arr.map((props) => <TodoItem
+                          key={ props.id }
+                          checkFn={() => console.log('completed')}
+                          {...props}
+                        />)
+
+  const rendering = pipe(
+    filterTodo,
+    mapTodo,
+  )
+
   return (
     <TodoTemplate>
       <TodoList>
-        { renderTodo }
+        { rendering(fakeInfo) }
       </TodoList>
     </TodoTemplate>
   )
