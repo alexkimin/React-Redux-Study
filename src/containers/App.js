@@ -9,15 +9,16 @@ import {
   SEO,
   AppTemplate,
 } from 'components'
+
 import { Todo } from 'containers'
 
-const combineTwo = (a, b) => x => (<div>{a(x)} {b(x)}</div>)
-const combineComponents = (...args) => {
-  const [first, ...rest] = args
-  return [...rest].reduce((acc, c) => combineTwo(acc, c), first)
-}
-
-const testing = combineComponents([<div>1</div>, <div>2</div>, <div>3</div>])
+// const combineTwo = (a, b) => x => (<div>{a(x)} {b(x)}</div>)
+// const combineComponents = (...args) => {
+//   const [first, ...rest] = args
+//   return [...rest].reduce((acc, c) => combineTwo(acc, c), first)
+// }
+//
+// const testing = combineComponents([<div>1</div>, <div>2</div>, <div>3</div>])
 
 const App = props => {
   return (
@@ -33,7 +34,6 @@ const App = props => {
       <Route exact path="/" component={ Todo }/>
       <Route path="/:id" component={ Todo }/>
       <Route path="/filter/:filter" component={ Todo }/>
-      {testing}
     </AppTemplate>
   )
 }

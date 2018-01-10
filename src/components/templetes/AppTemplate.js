@@ -5,28 +5,34 @@ import styled from 'styled-components'
 import {
   Route,
   Switch,
-  Link
+  Link,
 } from 'react-router-dom'
 
-import { FlexBox } from 'components'
+import {
+  FlexBox,
+  Title,
+} from 'components'
 
-const Contents = styled.div`
-  flex: 10;
-  margin-top: 100px;
-  border: 1px solid red;
-`
+import {
+  TodoAdd,
+} from 'containers'
 
-const FlexSpace = styled.div`
-  flex: 1;
-`
+const Contents = props => (<FlexBox
+                              column
+                              margin={ '100px 0 0 0' }
+                              { ...props }
+                             />)
 
-const AppLayout = (props) => {
+const Space = props => (<FlexBox { ...props } />)
+
+
+const AppLayout = props => {
   return (
     <FlexBox>
-      <FlexBox col={1} />
-      <Contents>
-        <div>Today's Todo List</div>
-        <div>Add todo input section</div>
+      <Space col={ 1 } />
+      <Contents col={ 10 }>
+        <Title>Today's Todo List</Title>
+        <TodoAdd />
         <ul>
           <li><Link to="/">All</Link></li>
           <li><Link to="/filter/completed">Completed</Link></li>
@@ -34,7 +40,7 @@ const AppLayout = (props) => {
         </ul>
         { props.children }
       </Contents>
-      <FlexBox col={1} />
+      <Space col={ 1 } />
     </FlexBox>
   )
 }

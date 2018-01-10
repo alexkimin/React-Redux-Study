@@ -5,10 +5,10 @@ import styled from 'styled-components'
 import { FlexBox } from 'components'
 
 const Wrapper = styled.div`
- border: 1px solid blue;
+
 `
 
-const TodoLayout = (props) => {
+const TodoLayout = props => {
   return (
     <Wrapper>
       <FlexBox column center>

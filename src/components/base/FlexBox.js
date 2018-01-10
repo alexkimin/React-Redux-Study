@@ -8,22 +8,23 @@ const FlexBox = ({
   column,
   center,
   col=0,
-  ... rest
+  margin
 }) => {
-  const Wrapper = styled.div`
+  const StyledDiv = styled.div`
     height: ${ height };
     display: flex;
     flex-direction: ${ column ? 'column' : 'row' };
-    ${(center) => center && (
+    flex: ${ col };
+    ${() => center && (
       `align-items: center;
-      justify-content: center;`
+       justify-content: center;`
     )}
-    flex: ${ col }
+    margin: ${ margin };
   `
   return (
-    <Wrapper>
+    <StyledDiv>
       { children }
-    </Wrapper>
+    </StyledDiv>
   )
 }
 

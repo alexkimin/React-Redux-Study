@@ -1,14 +1,28 @@
 import React from 'react'
 // import { Route } from 'react-router-dom'
 
-import { TodoTemplate } from 'components'
+import {
+  TodoTemplate,
+  TodoItem,
+  TodoList,
+} from 'components'
+
+const fakeInfo = [{
+  name: 'this is todo1',
+},
+{
+  name: 'this is todo2',
+},
+]
 
 const Todo = props => {
+  const renderTodo = fakeInfo.map((eProps) => <TodoItem {...eProps} />)
+  console.log(renderTodo)
   return (
     <TodoTemplate>
-      <div>todo1</div>
-      <div>todo2</div>
-      <div>todo3</div>
+      <TodoList>
+        { renderTodo }
+      </TodoList>
     </TodoTemplate>
   )
 }
