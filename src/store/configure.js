@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import penderMiddleware from 'redux-pender'
+// import { createLogger } from 'redux-logger'
+import thunk from 'redux-thunk'
 import modules from './modules'
 
 const isDev = process.env.NODE_ENV === 'development' || true;
@@ -8,10 +9,12 @@ const devtools = isDev && window.devToolsExtension
   ? window.devToolsExtension
   : () => fn => fn;
 
-const configureStore = (initialState) => {
+// const logger = createLogger()
+
+const configureStore = () => {
   const enhancers = [
     applyMiddleware(
-      penderMiddleware()
+      thunk
     ),
     devtools({
       actionsBlacklist: [null],
@@ -21,13 +24,14 @@ const configureStore = (initialState) => {
 
   const store = createStore(
     modules,
-    initialState,
     compose(...enhancers)
   )
 
-  store.subscribe(() => {
-    console.log(store.getState());
-  });
+  // store.subscribe(() => {
+  //
+  // })
+
+  // store.dispatch({type:'GET_TODO', payload:{name: 'hello'}})
 
   if(module.hot) {
     module.hot.accept('./modules', () => store.replaceReducer(modules));

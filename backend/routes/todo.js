@@ -6,6 +6,8 @@ const router = express.Router()
 const tempId1 = uuid()
 const tempId2 = uuid()
 
+let tempCounter = 0
+
 const tempTodo = {
   todos: {
     [tempId1]: {
@@ -22,6 +24,7 @@ const tempTodo = {
 }
 
 router.get('/', (req, res) => {
+  console.log('hit', tempCounter++)
   res.json(tempTodo)
 })
 

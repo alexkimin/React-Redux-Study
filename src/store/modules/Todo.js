@@ -1,51 +1,34 @@
 import { createAction, handleActions } from 'redux-actions'
+import { getAllTodo } from '../api/todoFetch'
 
-// actions
-export const GET_TODO = 'GET_TODO'
-export const ADD_TODO = 'ADD_TODO'
+// Action Types
+const TODO_GET = 'todo/TODO_GET'
+// export const TODO_GET_PENDING = 'todo/TODO_GET_PENDING'
+// export const TODO_GET_SUCCESS = 'todo/TODO_GET_SUCCESS'
+// export const TODO_GET_FAILURE = 'todo/TODO_GET_FAILURE'
 
-
-// Action Creator
-//createAction(type, payloadCreator)
-export const getTodo = createAction(GET_TODO)
-export const addTodo = createAction(ADD_TODO)
-
+// Actions Creater
+export const getTodo = createAction(TODO_GET, getAllTodo)
 
 // const initialState = getTodo()
+
+// immutable.js!
 const initialState = {
   todos: {
-
-  }
+    name: 'test'
+  },
+  isFetching: true
 }
 
 
+// object method
 
-export default handleActions({
-    [GET_TODO]: (state, action) => {
-      console.log(state, action)
-        return [...state, action.payload]
-    },
-
+const Todo = handleActions({
+    [TODO_GET]: (state, action) =>  ({
+      ...state,
+      ...action.payload,
+      isFetching: false,
+    }),
 }, initialState)
 
-
-
-
-/*
-import { createActions, handleActions, combineActions } from 'redux-actions'
-
-const defaultState = { counter: 10 };
-
-const { increment, decrement } = createActions({
-  INCREMENT: amount => ({ amount }),
-  DECREMENT: amount => ({ amount: -amount })
-});
-
-const reducer = handleActions({
-  [combineActions(increment, decrement)](state, { payload: { amount } }) {
-    return { ...state, counter: state.counter + amount };
-  }
-}, defaultState);
-
-export default reducer;
-*/
+export default Todo
