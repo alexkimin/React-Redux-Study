@@ -12,7 +12,7 @@ import {
   AppTemplate,
 } from 'components'
 
-import { Todo } from 'containers'
+import { TodoShow } from 'containers'
 
 const App = props => {
   return (
@@ -25,9 +25,9 @@ const App = props => {
           href: window.location.href }] }
       />
       {/*routes*/}
-      <Route exact path="/" component={ Todo }/>
-      <Route exact path="/:id" component={ Todo }/>
-      <Route path="/filter/:filter" component={ Todo }/>
+      <Route exact path="/" component={ TodoShow }/>
+      <Route path="/todo/:id" component={ TodoShow }/>
+      <Route path="/filter/:filter" component={ TodoShow }/>
     </AppTemplate>
   )
 }

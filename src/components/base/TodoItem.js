@@ -10,18 +10,19 @@ const StyledLi = styled.li`
 `
 const StyledSpan = styled.span`
   text-decoration: ${(props) =>
-    props.completed ? 'line-through' : 'none'};
+    props.isCompleted ? 'line-through' : 'none'};
 `
 
 const TodoItem = ({
   text,
   checkFn,
-  status
+  isCompleted
 }) => {
   return (
     <StyledLi>
-      <StyledSpan completed={status === 'completed'}>{ text }</StyledSpan>
       <span onClick={ checkFn }> V </span>
+      <StyledSpan isCompleted>{ text }</StyledSpan>
+      <span onClick={ checkFn }> Delete </span>
     </StyledLi>
   )
 }

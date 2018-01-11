@@ -9,12 +9,11 @@ import {
 
 const StyledForm = styled.form`
   width: 100%;
-  border: 1px solid orange;
   display: flex;
 `
 
 const TodoAdd = props => {
-  let inputValue // will hold input value
+  let inputValue // will hold input value - need to change this into redux
   return (
     <StyledForm
       onSubmit={(e) => {

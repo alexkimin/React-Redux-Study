@@ -25,6 +25,10 @@ const configureStore = (initialState) => {
     compose(...enhancers)
   )
 
+  store.subscribe(() => {
+    console.log(store.getState());
+  });
+
   if(module.hot) {
     module.hot.accept('./modules', () => store.replaceReducer(modules));
   }

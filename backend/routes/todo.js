@@ -11,12 +11,12 @@ const tempTodo = {
     [tempId1]: {
       id: tempId1,
       text: 'this is todo1',
-      status: 'actived'
+      isCompleted: false
     },
     [tempId2]: {
       id: tempId2,
       text: 'this is todo2',
-      status: 'completed'
+      isCompleted: true
     }
   }
 }

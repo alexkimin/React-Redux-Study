@@ -6,7 +6,6 @@ const StyledUl = styled.ul`
   boader: 1px solid green;
   padding: 5px;
   width: 100%;
-  border: 1px solid red;
   list-style:none;
 `
 

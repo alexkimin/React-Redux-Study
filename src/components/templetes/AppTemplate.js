@@ -35,7 +35,7 @@ const AppLayout = props => {
       <Space col={ 1 } />
       {/*contents container*/}
       <Contents col={ 10 }>
-        <Title>Today's Todo List</Title>
+        <Title>Todos</Title>
         <TodoAdd />
         <NavHeader />
         {/*todo rendering*/}

@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Route } from 'react-router-dom'
+import axios from 'axios'
 
 import {
   TodoTemplate,
@@ -12,41 +12,30 @@ import {
   pipe
 } from 'libs'
 
-const fakeInfo = [{
-  id: 1,
-  text: 'this is todo1',
-  status: 'actived',
-},
-{
-  id: 2,
-  text: 'this is todo2',
-  status: 'completed',
-},
-]
-
-
 
 const Todo = ({ match }) => {
-
-  const filterTodo = arr => arr.filter(e =>
-    match.params.filter ? e.status === match.params.filter : e)
+  // purpose for playing with react-router params, isCompleted is Boolean.
+  const filterType = match.params.filter === 'completed'
+  const filterTodo = isfiltering => arr => isfiltering
+    ? arr.filter(e => filterType === e.isCompleted)
+    : [...arr]
+  const curryFilterTodo = filterTodo(match.params.filter)
   const mapTodo = arr => arr.map(props =>
     (<TodoItem
       key={ props.id }
       checkFn={() => console.log('completed')}
       {...props}
     />))
-
   const rendering = pipe(
-    filterTodo,
+    curryFilterTodo,
     mapTodo
   )
 
   return (
     <TodoTemplate>
       <TodoList>
-        { rendering(fakeInfo) }
-        <Spinner />
+        <Spinner fetching={true}/>
+        { rendering([{id:1, text:'hey', isCompleted:true }]) }
       </TodoList>
     </TodoTemplate>
   )

@@ -9,7 +9,7 @@ const StyledFooter = styled.footer`
 const Footer = (props) => {
   return (
     <StyledFooter>
-      Footer
+      Footer - let's show how many left and clear completed
     </StyledFooter>
   )
 }
