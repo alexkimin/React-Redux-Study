@@ -9,19 +9,19 @@ const StyledLi = styled.li`
   border: 1px solid gray;
 `
 const StyledSpan = styled.span`
-  text-decoration: ${(props) =>
-    props.isCompleted ? 'line-through' : 'none'};
+  text-decoration: ${({ isCompleted }) =>
+    isCompleted ? 'line-through' : 'none'};
 `
 
 const TodoItem = ({
   text,
   checkFn,
-  isCompleted
+  ...rest
 }) => {
   return (
     <StyledLi>
       <span onClick={ checkFn }> V </span>
-      <StyledSpan isCompleted>{ text }</StyledSpan>
+      <StyledSpan { ...rest }>{ text }</StyledSpan>
       <span onClick={ checkFn }> Delete </span>
     </StyledLi>
   )

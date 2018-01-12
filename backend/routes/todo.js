@@ -13,19 +13,32 @@ const tempTodo = {
     [tempId1]: {
       id: tempId1,
       text: 'this is todo1',
-      isCompleted: false
+      isCompleted: false,
+      prioritized: false
     },
     [tempId2]: {
       id: tempId2,
       text: 'this is todo2',
-      isCompleted: true
+      isCompleted: true,
+      prioritized: false
     }
-  }
+  },
+  allTodo: [tempId1, tempId2]
 }
+
+const populate_fake = (ref, documents) => {
+  const data = ref.map(refId => documents[refId])
+  return new Promise(resolve => resolve(data))
+}
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 router.get('/', (req, res) => {
   console.log('hit', tempCounter++)
-  res.json(tempTodo)
+  // populating refs
+  delay(2000)
+    .then(() => populate_fake(tempTodo.allTodo, tempTodo.todos))
+    .then(data => res.json({ todos: data }))
 })
 
 router.post('/', (req, res) => {

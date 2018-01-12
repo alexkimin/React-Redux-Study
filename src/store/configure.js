@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-// import { createLogger } from 'redux-logger'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import modules from './modules'
+import Todo from './modules/Todo'
 
 const isDev = process.env.NODE_ENV === 'development' || true;
 
@@ -9,9 +9,10 @@ const devtools = isDev && window.devToolsExtension
   ? window.devToolsExtension
   : () => fn => fn;
 
+// import { createLogger } from 'redux-logger'
 // const logger = createLogger()
 
-const configureStore = () => {
+const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk
@@ -23,18 +24,15 @@ const configureStore = () => {
   ]
 
   const store = createStore(
-    modules,
+    combineReducers({
+      Todo
+    }),
+    preloadedState,
     compose(...enhancers)
   )
 
-  // store.subscribe(() => {
-  //
-  // })
-
-  // store.dispatch({type:'GET_TODO', payload:{name: 'hello'}})
-
   if(module.hot) {
-    module.hot.accept('./modules', () => store.replaceReducer(modules));
+    module.hot.accept('./modules', () => store.replaceReducer(modules))
   }
 
   return store

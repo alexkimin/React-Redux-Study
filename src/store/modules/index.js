@@ -5,6 +5,4 @@ const modules = combineReducers({
   Todo
 })
 
-console.log(modules)
-
 export default modules

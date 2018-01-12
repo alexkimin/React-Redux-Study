@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import axios from 'axios'
-import { pipe } from 'libs'
-import { getTodo } from 'store/modules/Todo'
+import {
+  pipe,
+  getFilteredTodo,
+ } from 'libs'
 import {
   TodoTemplate,
   TodoItem,
@@ -11,48 +14,37 @@ import {
   Spinner,
 } from 'components'
 
+const renderTodo = (arr) => arr.map(props =>
+  (<TodoItem
+    key={ props.id }
+    checkFn={() => console.log('completed')}
+    {...props}
+  />))
 
 const Todo = props => {
-  // purpose for playing with react-router params, isCompleted is Boolean.
-  const filterType = props.match.params.filter === 'completed'
-  const filterTodo = isfiltering => arr => isfiltering
-    ? arr.filter(e => filterType === e.isCompleted)
-    : [...arr]
-  // curry the filter function for case of no filtering - it will skip .filter() iteration.
-  const curryFilterTodo = filterTodo(props.match.params.filter)
-  // return mapped array with jsx.
-  const mapTodo = arr => arr.map(props =>
-    (<TodoItem
-      key={ props.id }
-      checkFn={() => console.log('completed')}
-      {...props}
-    />))
-  // compose
-  // can do with function chaining.
-  const rendering = pipe(
-    curryFilterTodo,
-    mapTodo
-  )
 
   return (
     <TodoTemplate>
       <TodoList>
-        <Spinner fetching={true}/>
-        { rendering(props.getAllTodo()) }
+        <Spinner fetching={props.isFetching}/>
+        { renderTodo(props.todos) }
       </TodoList>
     </TodoTemplate>
   )
 }
 
+// mapStateToProps = (state, props)
 // withRouter is for accessing router stuff in redux
+// selector pattern with reselector
+// mapStateToProps are selectors that calculated when store is changed
+// the problem is even the state is same, will be calculated again
+// with reselect package, we can memoize selectors to enhance performance.
 export default withRouter(connect(
-  (state, { match }) => {
-    const filter = match.params
-    return ({
-      todos: (state) => console.log(state)
-    })
-  },
+  (state, { match }) => ({
+      isFetching: state.Todo.isFetching,
+      todos: getFilteredTodo(state, match.params.filter)
+  }),
   (dispatch) => ({
-    getAllTodo: () => dispatch(getTodo)
+
   })
 )(Todo))
