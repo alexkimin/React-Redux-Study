@@ -2384,10 +2384,6 @@ eventemitter3@1.x.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
 
-eventemitter3@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
-
 events@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
@@ -4878,10 +4874,6 @@ path-to-regexp@^1.0.1, path-to-regexp@^1.7.0:
   dependencies:
     isarray "0.0.1"
 
-path-to-regexp@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.1.0.tgz#7e30f9f5b134bd6a28ffc2e3ef1e47075ac5259b"
-
 path-type@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -5384,7 +5376,7 @@ query-string@^4.1.0:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
-query-string@^5.0.0:
+query-string@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-5.0.1.tgz#6e2b86fe0e08aef682ecbe86e85834765402bd88"
   dependencies:
@@ -5701,13 +5693,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-pender@^1.1.15:
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/redux-pender/-/redux-pender-1.1.15.tgz#fd6950a0482bd5c4e7c95fe85da074b869967cdd"
-  dependencies:
-    eventemitter3 "^2.0.3"
-    path-to-regexp "^2.0.0"
-    query-string "^5.0.0"
+redux-promise-middleware@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/redux-promise-middleware/-/redux-promise-middleware-5.0.0.tgz#1656b24f9ac962bf11fbe55ea8360810e18d47a7"
 
 redux-thunk@^2.2.0:
   version "2.2.0"

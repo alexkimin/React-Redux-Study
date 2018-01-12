@@ -7,14 +7,16 @@ This toy project is for exploring interesting paradigms and modules - Functional
 * async action with redux-thunk
 * duck pattern with redux-actions
 * selector pattern with reselect
-* promise action handling with
+* promise action handling with redux-promise-middleware
 * styled-component, scss
 * normalizr
 * applying hot loader after eject
 * meta tag handling with react-helmet
+* Node with express, fake NoSQL database like data handling in controller.
 
 # Planning
 * immutable.js
-* redux-saga
-* Storybook
+* From Thunk to redux-saga
+* Testing practice with Jest, Enzyme
 * Typescript or flow
+* Storybook

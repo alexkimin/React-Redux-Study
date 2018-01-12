@@ -18,14 +18,11 @@ snippets of the Redux state for our React components.
 Using memoization, we can prevent unnecessary rerenders and
 recalculations of derived data which in turn will speed up our application.
 */
-const getTodos = (state, props) => {
-  console.log('todo input selector')
-  return state.Todo.todos
-}
+const getTodos = (state, props) => state.Todo.todos
 
 const getFilter = (state, props) => props.match.params.filter
 
 export const getFilteredTodo = createSelector(
-    [getTodos, getFilter],
-    filterTodo
-  )
+  [getTodos, getFilter],
+  filterTodo
+)
