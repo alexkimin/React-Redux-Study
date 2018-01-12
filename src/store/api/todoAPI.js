@@ -1,17 +1,15 @@
 import axios from 'axios'
 import { pipe } from 'libs'
-import {
-  TODO_FETCH,
-  TODO_FETCH_PENDING,
-  TODO_FETCH_SUCCESS,
-  TODO_FETCH_FAILURE
-} from '../modules/Todo'
+import { TODO_FETCH } from '../modules/Todo'
 
 const ROOT_API = '/todo'
 
 const api = str => ROOT_API.concat(str)
 
 export const fetchTodoAPI = body => axios.get(api(''))
+export const addTodoAPI = body => console.log('adding')
+
+
 
 // with redux-promise-middleware
 // export const fetchTodoAPI = (dispatch) =>

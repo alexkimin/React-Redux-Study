@@ -1,17 +1,20 @@
 import { createAction, handleActions } from 'redux-actions'
-import { fetchTodoAPI } from '../api/todoAPI'
+import {
+  fetchTodoAPI,
+  addTodoAPI,
+ } from '../api/todoAPI'
 import { pender } from 'redux-pender'
 
 
 // Action Types
 export const TODO_FETCH = 'todo/TODO_FETCH'
-// no more needed cuz redux-pender
-// export const TODO_FETCH_PENDING = 'todo/TODO_FETCH_PENDING'
-// export const TODO_FETCH_SUCCESS = 'todo/TODO_FETCH_SUCCESS'
-// export const TODO_FETCH_FAILURE = 'todo/TODO_FETCH_FAILURE'
+export const TODO_ADD = 'todo/TODO_ADD'
+
 
 // Actions Creater
 export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
+export const addTodo = createAction(TODO_ADD, addTodoAPI)
+// add new todo to server ->  update local todo
 
 // need immutable.js!
 const initialState = {
