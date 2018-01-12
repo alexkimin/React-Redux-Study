@@ -5,7 +5,7 @@ const _filterType = type => filter => filter === type
 const _typeChecker = _filterType('completed')
 
 const filterTodo = (todos, isfiltering) => {
-  console.log('todo filtering')
+  console.log('reselect is working!')
   return isfiltering
   ? todos.filter(e => _typeChecker('completed') === e.isCompleted)
   : todos

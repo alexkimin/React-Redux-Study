@@ -11,12 +11,16 @@ const ROOT_API = '/todo'
 
 const api = str => ROOT_API.concat(str)
 
-export const fetchTodoAPI = (dispatch) =>
-  dispatch({
-    type: TODO_FETCH,
-    payload: () => axios.get(api('')).then(res => res.data)
-  })
+export const fetchTodoAPI = body => axios.get(api(''))
 
+// with redux-promise-middleware
+// export const fetchTodoAPI = (dispatch) =>
+//   dispatch({
+//     type: TODO_FETCH,
+//     payload: () => axios.get(api('')).then(res => res.data)
+//   })
+
+// without any module
 // export const fetchTodoAPI = dispatch => {
 //   dispatch({ type: TODO_FETCH_PENDING })
 //   axios.get(api(''))
