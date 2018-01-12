@@ -23,3 +23,11 @@ This toy project is for exploring interesting paradigms and modules - Functional
 - Typescript or flow
 - normalizr
 - Storybook
+
+## Run
+add `NODE_PATH=src/` to `.env`
+```
+yarn install
+yarn start
+```
+the both command will be applied to frontend and backend automatically.
