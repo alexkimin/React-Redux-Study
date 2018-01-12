@@ -22,7 +22,6 @@ const renderTodo = (arr) => arr.map(props =>
   />))
 
 const Todo = props => {
-
   return (
     <TodoTemplate>
       <TodoList>
@@ -40,9 +39,9 @@ const Todo = props => {
 // the problem is even the state is same, will be calculated again
 // with reselect package, we can memoize selectors to enhance performance.
 export default withRouter(connect(
-  (state, { match }) => ({
+  (state, props) => ({
       isFetching: state.Todo.isFetching,
-      todos: getFilteredTodo(state, match.params.filter)
+      todos: getFilteredTodo(state, props)
   }),
   (dispatch) => ({
 
