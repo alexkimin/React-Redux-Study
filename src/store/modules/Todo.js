@@ -3,12 +3,13 @@ import { fetchTodoAPI } from '../api/todoAPI'
 
 
 // Action Types
-export const TODO_FETCH_PENDING = 'todo/TODO_GET_PENDING'
-export const TODO_FETCH_SUCCESS = 'todo/TODO_GET_SUCCESS'
-export const TODO_FETCH_FAILURE = 'todo/TODO_GET_FAILURE'
+export const TODO_FETCH = 'todo/TODO_FETCH'
+export const TODO_FETCH_PENDING = 'todo/TODO_FETCH_PENDING'
+export const TODO_FETCH_SUCCESS = 'todo/TODO_FETCH_SUCCESS'
+export const TODO_FETCH_FAILURE = 'todo/TODO_FETCH_FAILURE'
 
 // Actions Creater
-export const fetchTodo = createAction(TODO_FETCH_PENDING, fetchTodoAPI)
+export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
 
 // immutable.js!
 const initialState = {

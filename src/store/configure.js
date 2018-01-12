@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import penderMiddleware from 'redux-pender'
 import modules from './modules'
 import Todo from './modules/Todo'
 
@@ -9,13 +10,11 @@ const devtools = isDev && window.devToolsExtension
   ? window.devToolsExtension
   : () => fn => fn;
 
-// import { createLogger } from 'redux-logger'
-// const logger = createLogger()
-
 const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
-      thunk
+      thunk,
+      penderMiddleware()
     ),
     devtools({
       actionsBlacklist: [null],
