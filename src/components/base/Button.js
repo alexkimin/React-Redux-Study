@@ -6,7 +6,7 @@ const StyledButton = styled.button`
 
 `
 const Button = ({
-  type='button',
+  type,
   name,
   onClick,
 }) => {
@@ -18,6 +18,16 @@ const Button = ({
       { name }
     </StyledButton>
   )
+}
+
+Button.defaultProps = {
+  type: 'button',
+}
+
+Button.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 export default Button

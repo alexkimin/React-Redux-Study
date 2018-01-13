@@ -27,4 +27,9 @@ const TodoItem = ({
   )
 }
 
+TodoItem.propTypes = {
+  text: PropTypes.string,
+  checkFn: PropTypes.func,
+}
+
 export default TodoItem

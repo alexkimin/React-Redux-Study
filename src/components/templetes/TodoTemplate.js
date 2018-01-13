@@ -8,14 +8,18 @@ const Wrapper = styled.div`
 
 `
 
-const TodoLayout = props => {
+const TodoLayout = ({ children }) => {
   return (
     <Wrapper>
       <FlexBox column center>
-        {props.children}
+        { children }
       </FlexBox>
     </Wrapper>
   )
+}
+
+TodoLayout.propTypes = {
+  children: PropTypes.element,
 }
 
 export default TodoLayout

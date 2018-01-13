@@ -9,10 +9,14 @@ const StyledUl = styled.ul`
   list-style:none;
 `
 
-const TodoList = (props) => {
+const TodoList = ({ children }) => {
   return (
-    <StyledUl>{ props.children }</StyledUl>
+    <StyledUl>{ children }</StyledUl>
   )
+}
+
+TodoList.propTypes = {
+  children: PropTypes.element,
 }
 
 export default TodoList

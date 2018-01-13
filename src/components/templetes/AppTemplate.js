@@ -22,30 +22,32 @@ import {
 const Contents = props => (<FlexBox
                               column
                               margin={ '100px 0 0 0' }
-                              { ...props }
-                             />)
+                              { ...props } />)
 
-const Space = props => (<FlexBox { ...props } />)
+const SideSpace = props => (<FlexBox { ...props } />)
 
-
-const AppLayout = props => {
+const AppLayout = ({ children }) => {
   return (
     <FlexBox>
       {/*side-left space for responsive*/}
-      <Space col={ 1 } />
+      <SideSpace col={ 1 } />
       {/*contents container*/}
       <Contents col={ 10 }>
         <Title>Todos</Title>
         <TodoAdd />
         <NavHeader />
         {/*todo rendering*/}
-        { props.children }
+        { children }
         <Footer/>
       </Contents>
       {/*side-right space for responsive*/}
-      <Space col={ 1 } />
+      <SideSpace col={ 1 } />
     </FlexBox>
   )
+}
+
+AppLayout.propTypes = {
+  children: PropTypes.element,
 }
 
 export default AppLayout

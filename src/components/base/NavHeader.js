@@ -16,7 +16,7 @@ const StyledLi = styled.li`
   margin: 0 5px;
 `
 
-const Navheader = (props) => {
+const NavHeader = props => {
   return (
     <header>
       <StyledUl>
@@ -28,4 +28,12 @@ const Navheader = (props) => {
   )
 }
 
-export default Navheader
+NavHeader.defaultProps = {
+
+}
+
+NavHeader.propTypes = {
+
+}
+
+export default NavHeader

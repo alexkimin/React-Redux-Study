@@ -6,7 +6,7 @@ const StyledInput = styled.input`
   flex-grow: 1;
 `
 const Input = ({
-  type='text',
+  type,
   name,
   placeholder,
   onChange,
@@ -19,6 +19,17 @@ const Input = ({
       onChange={ onChange }
     />
   )
+}
+
+Input.defaultProps = {
+  type: 'text',
+}
+
+Input.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
 }
 
 export default Input

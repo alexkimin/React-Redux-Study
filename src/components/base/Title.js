@@ -5,6 +5,14 @@ import styled from 'styled-components'
 const StyledDiv = styled.div`
   font-size: 30px;
 `
-const Title = props => (<StyledDiv>{ props.children }</StyledDiv>)
+const Title = ({ children }) => (
+  <StyledDiv>
+    { children }
+  </StyledDiv>
+)
+
+Title.propTypes = {
+  children: PropTypes.element
+}
 
 export default Title

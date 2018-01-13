@@ -33,4 +33,8 @@ const TodoAdd = props => {
   )
 }
 
+TodoAdd.propTypes = {
+  
+}
+
 export default TodoAdd

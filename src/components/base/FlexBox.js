@@ -1,13 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { oneOfType } from 'prop-types'
 import styled from 'styled-components'
 
 const FlexBox = ({
   children,
-  height='inherit',
+  height,
   column,
   center,
-  col=0,
+  col,
   margin
 }) => {
   const StyledDiv = styled.div`
@@ -26,6 +26,23 @@ const FlexBox = ({
       { children }
     </StyledDiv>
   )
+}
+
+FlexBox.defaultProps = {
+  height: 'inherit',
+  col: 0,
+}
+
+FlexBox.propTypes = {
+  children: PropTypes.element,
+  height: PropTypes.string,
+  column: PropTypes.bool,
+  center: PropTypes.bool,
+  col: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  margin: PropTypes.string,
 }
 
 export default FlexBox

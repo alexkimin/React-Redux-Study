@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
@@ -21,15 +22,23 @@ const renderTodo = (arr) => arr.map(props =>
     {...props}
   />))
 
-const Todo = props => {
+const Todo = ({
+  todos,
+  isFetching,
+}) => {
   return (
     <TodoTemplate>
       <TodoList>
-        <Spinner fetching={props.isFetching}/>
-        { renderTodo(props.todos) }
+        <Spinner fetching={ isFetching }/>
+        { renderTodo(todos) }
       </TodoList>
     </TodoTemplate>
   )
+}
+
+Todo.propTypes = {
+  todos: PropTypes.array,
+  isFetching: PropTypes.bool,
 }
 
 // mapStateToProps = (state, props)

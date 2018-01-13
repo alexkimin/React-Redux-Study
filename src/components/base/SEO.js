@@ -6,7 +6,7 @@ const SEO = ({
   title,
   description,
   link,
-  contentType
+  contentType,
 }) => (
   <Helmet
     htmlAttributes={{
@@ -22,6 +22,6 @@ SEO.propTypes = {
   description: PropTypes.string,
   link: PropTypes.array,
   contentType: PropTypes.string,
-};
+}
 
 export default SEO

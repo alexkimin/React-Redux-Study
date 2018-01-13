@@ -4,7 +4,7 @@ import axios from 'axios'
 import {
   Route,
   Switch,
-  Link
+  Link,
 } from 'react-router-dom'
 
 import {
@@ -14,7 +14,7 @@ import {
 
 import {
   TodoShow,
-  NoMatch
+  NoMatch,
 } from 'containers'
 
 const App = props => {

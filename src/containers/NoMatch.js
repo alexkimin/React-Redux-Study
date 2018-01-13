@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   TodoTemplate,
   WrongEntry
@@ -11,6 +12,10 @@ const NoMatch = ({ location }) => {
         <WrongEntry path={ location.pathname } />
     </TodoTemplate>
   )
+}
+
+NoMatch.propTypes = {
+  location: PropTypes.object,
 }
 
 export default NoMatch

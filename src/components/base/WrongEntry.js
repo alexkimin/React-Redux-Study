@@ -21,4 +21,8 @@ const WrongEntry = ({ path }) => {
   )
 }
 
+WrongEntry.propTypes = {
+  path: PropTypes.string,
+}
+
 export default WrongEntry

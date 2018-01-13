@@ -88,4 +88,8 @@ const Spinner = ({ fetching }) => {
   )
 }
 
+Spinner.propTypes = {
+  fetching: PropTypes.bool,
+}
+
 export default Spinner
