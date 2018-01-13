@@ -2,17 +2,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const StyledDiv = styled.div`
-  font-size: 30px;
+// if I use this at the outside of Title, need to pass prop again
+const StyledDiv = styled.span`
+  font-size: ${({ size }) => `${size}px`};
+  ${({ compose }) => compose }
 `
-const Title = ({ children }) => (
-  <StyledDiv>
-    { children }
+const Title = ({
+  title,
+  composeStyle,
+  size,
+}) => (
+  <StyledDiv
+    compose={ composeStyle }
+    size={ size }
+  >
+    { title }
   </StyledDiv>
 )
 
 Title.propTypes = {
-  children: PropTypes.string
+  title: PropTypes.string,
+  size: PropTypes.number,
+  composeStyle: PropTypes.string,
 }
 
 export default Title

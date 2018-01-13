@@ -18,8 +18,9 @@ This toy project is for exploring interesting paradigms and modules - Functional
 - Selector pattern
   - [reselect](https://github.com/reactjs/reselect)
 - Promise action handling
-  - [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)
-  -> [redux-pender](https://github.com/velopert/redux-pender)
+  - [From] [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)
+  - [To] [redux-pender](https://github.com/velopert/redux-pender)
+  - Appending PENDING, SUCCESS, FAILURE to action type.
 - SCSS -> [styled-component](https://www.styled-components.com/)
 - Meta tag handling
   - [react-helmet](https://github.com/nfl/react-helmet)
@@ -38,6 +39,6 @@ This toy project is for exploring interesting paradigms and modules - Functional
 add `NODE_PATH=src/` to `.env`
 ```
 yarn install
-yarn start
+yarn start-all
 ```
 the both command will be applied to frontend and backend automatically.

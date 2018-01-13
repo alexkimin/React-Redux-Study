@@ -10,21 +10,22 @@ import {
 
 import {
   FlexBox,
-  Title,
+  TitleHeader,
+  NavFilterBar,
   Footer,
-  NavHeader,
 } from 'components'
 
 import {
   TodoAdd,
 } from 'containers'
 
-const Contents = props => (<FlexBox
+const CenterSpace = props => (<FlexBox
                               column
                               margin={ '100px 0 0 0' }
                               { ...props } />)
 
 const SideSpace = props => (<FlexBox { ...props } />)
+
 
 const AppLayout = ({ children }) => {
   return (
@@ -32,14 +33,14 @@ const AppLayout = ({ children }) => {
       {/*side-left space for responsive*/}
       <SideSpace col={ 1 } />
       {/*contents container*/}
-      <Contents col={ 10 }>
-        <Title>Todos</Title>
+      <CenterSpace col={ 10 }>
+        <TitleHeader />
         <TodoAdd />
-        <NavHeader />
+        <NavFilterBar />
         {/*todo rendering*/}
         { children }
         <Footer/>
-      </Contents>
+      </CenterSpace>
       {/*side-right space for responsive*/}
       <SideSpace col={ 1 } />
     </FlexBox>
