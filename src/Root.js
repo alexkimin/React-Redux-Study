@@ -7,7 +7,7 @@ const Root = ({ store }) => {
   return (
     <Provider store={ store }>
       <BrowserRouter>
-        <Route path="/" component={ App }/>
+        <App />
       </BrowserRouter>
     </Provider>
   )

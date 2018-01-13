@@ -10,6 +10,7 @@ export { default as NavItem } from './base/NavItem'
 export { default as NavHeader } from './base/NavHeader'
 export { default as Footer } from './base/Footer'
 export { default as Spinner } from './base/Spinner'
+export { default as WrongEntry } from './base/WrongEntry'
 // From Template
 export { default as AppTemplate } from './templetes/AppTemplate'
 export { default as TodoTemplate } from './templetes/TodoTemplate'

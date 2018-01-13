@@ -12,7 +12,10 @@ import {
   AppTemplate,
 } from 'components'
 
-import { TodoShow } from 'containers'
+import {
+  TodoShow,
+  NoMatch
+} from 'containers'
 
 const App = props => {
   return (
@@ -25,9 +28,12 @@ const App = props => {
           href: window.location.href }] }
       />
       {/*routes*/}
-      <Route exact path="/" component={ TodoShow }/>
-      <Route path="/todo/:id" component={ TodoShow }/>
-      <Route path="/filter/:filter" component={ TodoShow }/>
+      <Switch>
+        <Route path="/" component={ TodoShow }/>
+        <Route path="/todo/:id" component={ TodoShow }/>
+        <Route path="/filter/:filter" component={ TodoShow }/>
+        <Route path="*" component={ NoMatch }/>
+      </Switch>
     </AppTemplate>
   )
 }
