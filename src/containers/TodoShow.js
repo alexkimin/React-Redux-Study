@@ -62,6 +62,11 @@ export default connect(
 // higher-order component. withRouter will re-render
 // its component every time the route changes with the same props
 // as <Route> render props: { match, location, history }.
+/*
+The component is connected to redux via connect()(Comp).
+The component is not a “route component”, meaning it is not rendered like so:
+<Route component={SomeConnectedThing}/>
+*/
 
 // import { withRouter } from 'react-router'
 // export default withRouter(connect(
