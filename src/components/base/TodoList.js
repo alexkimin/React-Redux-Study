@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { oneOfType, arrayOf } from 'prop-types'
 import styled from 'styled-components'
 
 const StyledUl = styled.ul`
@@ -16,7 +16,11 @@ const TodoList = ({ children }) => {
 }
 
 TodoList.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.any
+  ]),
 }
 
 export default TodoList

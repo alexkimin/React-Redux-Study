@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { oneOfType } from 'prop-types'
+import PropTypes, { oneOfType, arrayOf } from 'prop-types'
 import styled from 'styled-components'
 
 const FlexBox = ({
@@ -34,7 +34,13 @@ FlexBox.defaultProps = {
 }
 
 FlexBox.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(oneOfType(
+      [PropTypes.element,
+       PropTypes.arrayOf(PropTypes.element)])
+    ),
+    PropTypes.object
+  ]),
   height: PropTypes.string,
   column: PropTypes.bool,
   center: PropTypes.bool,

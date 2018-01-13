@@ -29,10 +29,10 @@ const App = props => {
       />
       {/*routes*/}
       <Switch>
-        <Route path="/" component={ TodoShow }/>
+        <Route exact path="/" component={ TodoShow }/>
         <Route path="/todo/:id" component={ TodoShow }/>
         <Route path="/filter/:filter" component={ TodoShow }/>
-        <Route path="*" component={ NoMatch }/>
+        <Route path="" component={ NoMatch }/>
       </Switch>
     </AppTemplate>
   )

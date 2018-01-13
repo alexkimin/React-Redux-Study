@@ -7,7 +7,7 @@ const SpinnerWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 80px;
+  padding: 30px;
 `
 
 const loading = keyframes`

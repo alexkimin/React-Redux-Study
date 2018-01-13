@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { arrayOf } from 'prop-types'
 import styled from 'styled-components'
 
 import {
@@ -47,7 +47,7 @@ const AppLayout = ({ children }) => {
 }
 
 AppLayout.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.arrayOf(PropTypes.element),
 }
 
 export default AppLayout

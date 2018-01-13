@@ -3,9 +3,11 @@ This toy project is for exploring interesting paradigms and modules - Functional
 
 ## What I explored and used here
 - basics of functional approach
-  - custom composer, pipe, curry
+  - custom composer, pipe, curry, HOC
   - stateless components only.
-- [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start) (params, query with [query-string](https://github.com/sindresorhus/query-string))
+- [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
+  - params, parsing query with [query-string](https://github.com/sindresorhus/query-string)
+  - 
 - async action with [redux-thunk](https://github.com/gaearon/redux-thunk)
 - duck pattern with [redux-actions](https://github.com/reduxactions/redux-actions)
 - selector pattern with [reselect](https://github.com/reactjs/reselect)

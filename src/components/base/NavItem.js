@@ -21,9 +21,13 @@ const NavItem = ({
   )
 }
 
+NavItem.defaultProps = {
+  children: 'No NavName here',
+}
+
 NavItem.propTypes = {
   to: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.string,
 }
 
 export default NavItem
