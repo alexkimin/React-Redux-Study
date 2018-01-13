@@ -2,22 +2,27 @@
 This toy project is for exploring interesting paradigms and modules - Functional Programming React with Redux.
 
 ## What I explored and used here
-- basics of functional approach
+- Basics of Functional Programming approach
   - custom composer, pipe, curry, HOC
   - stateless components only.
-- [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
-  - params, parsing query with [query-string](https://github.com/sindresorhus/query-string)
-  - deep integration needed? [react-router-redux 5.x ](https://github.com/reacttraining/react-router/tree/master/packages/react-router-redux)
-    ```
-    hello
-    ```
-- async action with [redux-thunk](https://github.com/gaearon/redux-thunk)
-- duck pattern with [redux-actions](https://github.com/reduxactions/redux-actions)
-- selector pattern with [reselect](https://github.com/reactjs/reselect)
-- promise action handling with [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware) -> [redux-pender](https://github.com/velopert/redux-pender)
+- Routing
+  - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
+    - params, parsing query with [query-string](https://github.com/sindresorhus/query-string)
+    - deep integration needed? [react-router-redux 5.x ](https://github.com/reacttraining/react-router/tree/master/packages/react-router-redux)
+      - Rather than dispatching actions to navigate you can pass the history object provided to route components to your actions and navigate with it there.
+      - Routing data is already a prop of most of your components that care about it, whether it comes from the store or the router doesn’t change your component’s code.
+- Async action
+  - [redux-thunk](https://github.com/gaearon/redux-thunk) -> Saga?
+- Duck pattern (actions, reducers -> module)
+  - [redux-actions](https://github.com/reduxactions/redux-actions)
+- Selector pattern
+  - [reselect](https://github.com/reactjs/reselect)
+- Promise action handling
+  - [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)
+  -> [redux-pender](https://github.com/velopert/redux-pender)
 - SCSS -> [styled-component](https://www.styled-components.com/)
-- applying hot-loader after eject for dev server
-- meta tag handling with [react-helmet](https://github.com/nfl/react-helmet)
+- Meta tag handling
+  - [react-helmet](https://github.com/nfl/react-helmet)
 - Node with express, fake NoSQL DB like data handling in controller.
 
 ## Planning
