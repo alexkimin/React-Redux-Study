@@ -28,16 +28,27 @@ const todo2 = {
 DB.set(id1, todo1)
 DB.set(id2, todo2)
 
-
+/*
+  Mongoose like helpers
+*/
 const findAll = () => {
   // map.values() will return iterator
   const data = [...DB.values()]
   return new Promise(resolve => resolve(data))
 }
 
-const deleteById = id => {
+const deleteOneById = id => {
   return new Promise((resolve, reject) => {
     return DB.delete(id) ? resolve(id) : reject('not deleted')
+  })
+}
+
+const findByIdAndUpdate = id => {
+  return new Promise(resolve => {
+    const theTodo = DB.get(id)
+    theTodo.isCompleted = !theTodo.isCompleted
+    DB.set(id, theTodo)
+    return resolve(id)
   })
 }
 
@@ -71,15 +82,21 @@ router.post('/', (req, res) => {
   res.json({ newTodo })
 })
 
-router.put('/', (req, res) => {
-
+router.put('/:id', (req, res) => {
+  const todoId = req.params.id
+  // toggle updating
+  findByIdAndUpdate(todoId)
+    .then(id => res.json({ id }))
 })
 
 router.delete('/:id', (req, res) => {
   const todoId = req.params.id
   // delete
-  deleteById(todoId)
-    .then(id =>res.json({ id }) )
+  deleteOneById(todoId)
+    .then(id => res.json({ id }) )
+})
+router.delete('/clear', (req, res) => {
+  // clear completed
 })
 
 export default router

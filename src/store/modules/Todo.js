@@ -3,6 +3,7 @@ import {
   fetchTodoAPI,
   addTodoAPI,
   deleteTodoAPI,
+  toggleTodoAPI,
  } from '../api/todoAPI'
 import { pender } from 'redux-pender'
 
@@ -19,7 +20,7 @@ export const TODO_DELETE = 'todo/TODO_DELETE'
 export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
 export const newTodo = createAction(TODO_NEW)
 export const addTodo = createAction(TODO_ADD, addTodoAPI)
-export const toggleTodo = createAction(TODO_TOGGLE)
+export const toggleTodo = createAction(TODO_TOGGLE, toggleTodoAPI)
 export const deleteTodo = createAction(TODO_DELETE, deleteTodoAPI)
 
 
@@ -54,6 +55,19 @@ const Todo = handleActions({
     onSuccess: (state, action) => {
       const todos = [...state.todos]
         .filter(todo => todo.id !== action.payload.data.id)
+      return ({ ...state, todos })
+    },
+  }),
+  ...pender({
+    type: TODO_TOGGLE,
+    onSuccess: (state, action) => {
+      const todos = [...state.todos]
+        .map(todo => {
+          if (todo.id === action.payload.data.id ) {
+            todo.isCompleted = !todo.isCompleted
+          }
+          return todo
+        })
       return ({ ...state, todos })
     },
   }),

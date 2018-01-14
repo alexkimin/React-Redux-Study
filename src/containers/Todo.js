@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
-
+// Actions
 import {
   newTodo,
   addTodo,
   deleteTodo,
+  toggleTodo,
  } from 'store/modules/Todo'
 
 import {
@@ -34,6 +35,7 @@ const Todo = ({
   newTodoData,
   submitNewTodo,
   deleteTheTodo,
+  toggleTheTodo,
 }) => {
   return (
     <div>
@@ -62,7 +64,7 @@ const Todo = ({
           { todos.map(props =>
             (<TodoItem
               key={ props.id }
-              toggleFn={() => console.log('completed')}
+              toggleFn={() => toggleTheTodo(props.id)}
               deleteFn={() => deleteTheTodo(props.id)}
               {...props}
             />)) }
@@ -81,6 +83,7 @@ Todo.propTypes = {
   newTodoData: PropTypes.object,
   submitNewTodo: PropTypes.func,
   deleteTheTodo: PropTypes.func,
+  toggleTheTodo: PropTypes.func,
 }
 
 
@@ -98,6 +101,7 @@ export default connect(
     updateNewTodo: text => dispatch(newTodo(text)),
     submitNewTodo: todo => dispatch(addTodo(todo)),
     deleteTheTodo: id => dispatch(deleteTodo(id)),
+    toggleTheTodo: id => dispatch(toggleTodo(id)),
   })
 )(Todo)
 
