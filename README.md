@@ -1,34 +1,36 @@
-## Purpose
-This toy project is for exploring interesting paradigms and modules - Functional Programming React with Redux.
+## Purpose of project
+This toy project is for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux.
 
-## What I explored and used here
-- Basics of Functional Programming approach
+## What I've learnt from this practice.
+- **Basics of Functional Programming approach**
   - custom composer, pipe, curry, HOC
   - stateless components only, pure functions.
-- Structure
+- **Structure**
   - Atomic react like index.js export/import (automatic absolute path)
   - Duck pattern (actions, reducers -> 1 module)
     - [redux-actions](https://github.com/reduxactions/redux-actions)
-- Routing
+- **Routing**
   - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
     - params, parsing query with [query-string](https://github.com/sindresorhus/query-string)
     - deep integration needed? [react-router-redux 5.x ](https://github.com/reacttraining/react-router/tree/master/packages/react-router-redux)
       - Rather than dispatching actions to navigate you can pass the history object provided to route components to your actions and navigate with it there.
       - Routing data is already a prop of most of your components that care about it, whether it comes from the store or the router doesn’t change your component’s code.
-- Async action
+- **Async action**
   - [redux-thunk](https://github.com/gaearon/redux-thunk) -> Saga?
-- Selector pattern
+- **Selector pattern**
   - [reselect](https://github.com/reactjs/reselect)
   - for performance optimization and functional reusability
-- Promise action handling
+- **Promise action handling**
   - [From] [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)
   - [To] [redux-pender](https://github.com/velopert/redux-pender)
     - Appending PENDING, SUCCESS, FAILURE to action type automatically.
     - pender reducer itself is useful for aboved status.
-- SCSS -> [styled-component](https://www.styled-components.com/)
-- Meta tag handling
+- **Styling**
+  - SCSS -> [styled-component](https://www.styled-components.com/)
+- **Meta tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
-- Node with express, fake NoSQL DB like data handling in controller.
+- **Backend**
+  - Node with express, fake NoSQL document like data handling in controller.
 
 ## Planning
 - immutable.js
