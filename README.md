@@ -6,8 +6,8 @@ This toy project is for exploring interesting paradigms and modules to understan
   - custom composer, pipe, curry, HOC
   - stateless components only, pure functions.
 - **Structure**
-  - Atomic react like index.js export/import (automatic absolute path)
-  - Duck pattern (actions, reducers -> 1 module)
+  - [Atomic React](https://arc.js.org/) like index.js export/import (automatic absolute path)
+  - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) (actions, reducers -> 1 module)
     - [redux-actions](https://github.com/reduxactions/redux-actions)
 - **Routing**
   - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -15,9 +15,9 @@ This toy project is for exploring interesting paradigms and modules to understan
     - deep integration needed? [react-router-redux 5.x ](https://github.com/reacttraining/react-router/tree/master/packages/react-router-redux)
       - Rather than dispatching actions to navigate you can pass the history object provided to route components to your actions and navigate with it there.
       - Routing data is already a prop of most of your components that care about it, whether it comes from the store or the router doesn’t change your component’s code.
-- **Async action**
+- **Async Action**
   - [redux-thunk](https://github.com/gaearon/redux-thunk) -> Saga?
-- **Selector pattern**
+- **Selector Pattern**
   - [reselect](https://github.com/reactjs/reselect)
   - for performance optimization and functional reusability
 - **Promise action handling**
@@ -27,7 +27,7 @@ This toy project is for exploring interesting paradigms and modules to understan
     - pender reducer itself is useful for aboved status.
 - **Styling**
   - SCSS -> [styled-component](https://www.styled-components.com/)
-- **Meta tag handling (SEO)**
+- **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
 - **Backend**
   - Node with express, fake NoSQL document like data handling in controller.
