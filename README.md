@@ -25,12 +25,17 @@ This toy project is for exploring interesting paradigms and modules to understan
   - [To] [redux-pender](https://github.com/velopert/redux-pender)
     - Appending PENDING, SUCCESS, FAILURE to action type automatically.
     - pender reducer itself is useful for aboved status.
+- **Immutable data handling**
+  -
+- **Type Checking**
+  - prop-types
 - **Styling**
   - SCSS -> [styled-component](https://www.styled-components.com/)
 - **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
 - **Backend**
-  - Node with express, fake NoSQL document like data handling in controller.
+  - Node with express
+  - fake database - was good for playing with ES6 `new Map()`.
 
 ## Planning
 - immutable.js

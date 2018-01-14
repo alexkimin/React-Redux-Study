@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 
 import {
   newTodo,
-  addTodo
+  addTodo,
+  deleteTodo,
  } from 'store/modules/Todo'
 
 import {
@@ -16,9 +17,7 @@ import {
 
 import {
   TitleHeader,
-  Input,
-  Button,
-  Form,
+  TodoAddForm,
   NavFilterBar,
   TodoTemplate,
   TodoItem,
@@ -28,27 +27,20 @@ import {
 } from 'components'
 
 
-const renderTodo = (arr) => arr.map(props =>
-  (<TodoItem
-    key={ props.id }
-    checkFn={() => console.log('completed')}
-    {...props}
-  />))
-
-const TodoShow = ({
+const Todo = ({
   todos,
   isFetching,
   updateNewTodo,
   newTodoData,
   submitNewTodo,
+  deleteTheTodo,
 }) => {
-  console.log('rendering')
   return (
     <div>
       {/* Header */}
       <TitleHeader />
       {/* Todo Add Form */}
-      <Form
+      <TodoAddForm
         onSubmit={(e) => {
           e.preventDefault()
           if (newTodoData.text) {
@@ -58,25 +50,22 @@ const TodoShow = ({
             // multiple action dispatch?
           }
         }}
-      >
-        <Input
-          placeholder='text here...'
-          name='addTodo'
-          onChange={e => updateNewTodo({ text: e.target.value })}
-          value={ newTodoData.text }
-        />
-        <Button
-          name='ADD'
-          type='submit'
-        />
-      </Form>
+        onChange={e => updateNewTodo({ text: e.target.value })}
+        value={ newTodoData }
+      />
       {/* filter bar */}
       <NavFilterBar />
       {/* Todos list */}
       <TodoTemplate>
         <TodoList>
           <Spinner fetching={ isFetching }/>
-          { renderTodo(todos) }
+          { todos.map(props =>
+            (<TodoItem
+              key={ props.id }
+              toggleFn={() => console.log('completed')}
+              deleteFn={() => deleteTheTodo(props.id)}
+              {...props}
+            />)) }
         </TodoList>
       </TodoTemplate>
       {/* Footer */}
@@ -85,12 +74,13 @@ const TodoShow = ({
   )
 }
 
-TodoShow.propTypes = {
+Todo.propTypes = {
   todos: PropTypes.array,
   isFetching: PropTypes.bool,
   updateNewTodo: PropTypes.func,
   newTodoData: PropTypes.object,
   submitNewTodo: PropTypes.func,
+  deleteTheTodo: PropTypes.func,
 }
 
 
@@ -107,8 +97,9 @@ export default connect(
   (dispatch) => ({
     updateNewTodo: text => dispatch(newTodo(text)),
     submitNewTodo: todo => dispatch(addTodo(todo)),
+    deleteTheTodo: id => dispatch(deleteTodo(id)),
   })
-)(TodoShow)
+)(Todo)
 
 /*
 You can get access to the history object’s properties and

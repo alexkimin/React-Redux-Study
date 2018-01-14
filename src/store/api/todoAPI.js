@@ -4,8 +4,9 @@ const ROOT_API = '/todo'
 
 const api = str => ROOT_API.concat(str)
 
-export const fetchTodoAPI = body => axios.get(api(''))
+export const fetchTodoAPI = () => axios.get(api(''))
 export const addTodoAPI = body => axios.post(api(''), body)
+export const deleteTodoAPI = id => axios.delete(api(`/${id}`))
 
 
 

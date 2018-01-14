@@ -4,56 +4,69 @@ import uuid from 'uuid/v4'
 const router = express.Router()
 
 
-// fake database
-const tempId1 = uuid()
-const tempId2 = uuid()
-const tempTodo = {
-  todos: {
-    [tempId1]: {
-      id: tempId1,
-      text: 'Welcome to Todo toy project with functional programming',
-      isCompleted: false,
-      prioritized: false
-    },
-    [tempId2]: {
-      id: tempId2,
-      text: 'Todos comes from fake database',
-      isCompleted: false,
-      prioritized: false
-    }
-  },
-  allTodo: [tempId1, tempId2]
+/*
+  fake database
+*/
+const DB = new Map()
+// fake database init
+
+const id1 = uuid()
+const todo1 = {
+  id: id1,
+  text: 'Welcome to Todo toy project with functional programming',
+  isCompleted: false,
+  prioritized: false
+}
+const id2 = uuid()
+const todo2 = {
+  id: id2,
+  text: 'Todos comes from fake database',
+  isCompleted: true,
+  prioritized: true
 }
 
-// fake pupulate()
-const populate_fake = (ref, documents) => {
-  const data = ref.map(refId => documents[refId])
+DB.set(id1, todo1)
+DB.set(id2, todo2)
+
+
+const findAll = () => {
+  // map.values() will return iterator
+  const data = [...DB.values()]
   return new Promise(resolve => resolve(data))
+}
+
+const deleteById = id => {
+  return new Promise((resolve, reject) => {
+    return DB.delete(id) ? resolve(id) : reject('not deleted')
+  })
 }
 
 // fake delay(latency) function
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
+/*
+  RESTful routes below
+*/
+
 router.get('/', (req, res) => {
   // populating refs
   delay(1000)
-    .then(() => populate_fake(tempTodo.allTodo, tempTodo.todos))
+    .then(() => findAll())
     .then(data => res.json({ todos: data }))
 })
 
 router.post('/', (req, res) => {
-  const tempId = uuid()
+  const newId = uuid()
   const todoCollection = tempTodo.todos
   // new Todo
   const newTodo = {
-    id: tempId,
+    id: newId,
     text: req.body.text,
     isCompleted: false,
     prioritized: false
   }
   // save
-  todoCollection[tempId] = newTodo
-  tempTodo.allTodo.push(tempId)
+  DB.set(newId, newTodo)
   // send the new one back to front
   res.json({ newTodo })
 })
@@ -62,8 +75,11 @@ router.put('/', (req, res) => {
 
 })
 
-router.delete('/', (req, res) => {
-
+router.delete('/:id', (req, res) => {
+  const todoId = req.params.id
+  // delete
+  deleteById(todoId)
+    .then(id =>res.json({ id }) )
 })
 
 export default router
