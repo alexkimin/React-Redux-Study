@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import penderMiddleware from 'redux-pender'
 import modules from './modules'
-import Todo from './modules/Todo'
 
 const isDev = process.env.NODE_ENV === 'development' || true;
 
@@ -23,9 +22,7 @@ const configureStore = preloadedState => {
   ]
 
   const store = createStore(
-    combineReducers({
-      Todo
-    }),
+    modules,
     preloadedState,
     compose(...enhancers)
   )

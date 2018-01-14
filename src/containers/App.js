@@ -13,7 +13,7 @@ import {
 } from 'components'
 
 import {
-  TodoShow,
+  Todo,
   NoMatch,
 } from 'containers'
 
@@ -29,10 +29,10 @@ const App = props => {
       />
       {/*routes*/}
       <Switch>
-        <Route exact path="/" component={ TodoShow }/>
-        <Route path="/todo/:id" component={ TodoShow }/>
-        <Route path="/filter/:filter" component={ TodoShow }/>
-        <Route path="" component={ NoMatch }/>
+        <Route exact path='/' component={ Todo }/>
+        <Route path='/todo/:id' component={ Todo }/>
+        <Route path='/filter/:filter' component={ Todo }/>
+        <Route path='' component={ NoMatch }/>
       </Switch>
     </AppTemplate>
   )

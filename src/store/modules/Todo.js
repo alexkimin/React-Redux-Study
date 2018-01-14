@@ -8,50 +8,57 @@ import { pender } from 'redux-pender'
 
 // Action Types
 export const TODO_FETCH = 'todo/TODO_FETCH'
+export const TODO_NEW = 'todo/TODO_NEW'
 export const TODO_ADD = 'todo/TODO_ADD'
 
 
 // Actions Creater
 export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
+export const newTodo = createAction(TODO_NEW)
 export const addTodo = createAction(TODO_ADD, addTodoAPI)
-// add new todo to server ->  update local todo
+
 
 // need immutable.js!
 const initialState = {
   todos: [],
-  isFetching: false,
+  newTodo: { text: '' },
   err: { status: false, msg: '' }
 }
 
 // reducers
 const Todo = handleActions({
+  [TODO_NEW]: (state, action) => ({
+      ...state,
+      newTodo: action.payload
+  }),
   ...pender({
     type: TODO_FETCH,
-    onPending: (state, action) => ({
-      ...state,
-      isFetching: true
+    onPending: (state, action) => ({ ...state }),
+    onSuccess: (state, action) => ({
+        ...state,
+        todos: [...action.payload.data.todos],
+        err: { status: false, msg: '' }
     }),
+    onFailure: (state, action) => ({
+      ...state,
+      err: { status: true, msg: 'Fetching is failed' }
+    })
+  }),
+  ...pender({
+    type: TODO_ADD,
+    onPending: (state, action) => ({ ...state }),
     onSuccess: (state, action) => {
       return ({
         ...state,
-        todos: [...action.payload.data.todos],
-        isFetching: false,
+        todos: [...state.todos, action.payload.data.newTodo],
         err: { status: false, msg: '' }
       })
     },
     onFailure: (state, action) => ({
       ...state,
-      isFetching: false,
-      err: { status: true, msg: 'Initial Fetching is failed' }
+      err: { status: true, msg: 'New Todo Adding is failed' }
     })
   }),
 }, initialState)
-
-// prev version
-// const Todo = handleActions({
-//     [TODO_FETCH_PENDING]: (state, action) =>  ({...state, isFetching: true}),
-//     [TODO_FETCH_SUCCESS]: (state, action) =>  ({...state, ...action.payload, isFetching: false}),
-//     [TODO_FETCH_FAILURE]: (state, action) =>  ({...state, isFetching: false}),
-// }, initialState)
 
 export default Todo

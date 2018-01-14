@@ -1,18 +1,7 @@
-// From base
-export { default as SEO } from './base/SEO'
-export { default as FlexBox } from './base/FlexBox'
-export { default as Title } from './base/Title'
-export { default as Logo } from './base/Logo'
-export { default as TitleHeader } from './base/TitleHeader'
-export { default as Input } from './base/Input'
-export { default as Button } from './base/Button'
-export { default as TodoItem } from './base/TodoItem'
-export { default as TodoList } from './base/TodoList'
-export { default as NavItem } from './base/NavItem'
-export { default as NavFilterBar } from './base/NavFilterBar'
-export { default as Footer } from './base/Footer'
-export { default as Spinner } from './base/Spinner'
-export { default as WrongEntry } from './base/WrongEntry'
-// From Template
-export { default as AppTemplate } from './templetes/AppTemplate'
-export { default as TodoTemplate } from './templetes/TodoTemplate'
+const req = require.context('.', true, /\.\/[^/]+\/(?!index).*.js$/)
+
+req.keys().forEach((key) => {
+  const regex =  /.\/[^/]+\/(.*?).js$/
+  const componentName = regex.test(key) && key.match(regex)[1]
+  module.exports[componentName] = req(key).default
+})

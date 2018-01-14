@@ -5,19 +5,10 @@ import styled from 'styled-components'
 import {
   Route,
   Switch,
-  Link,
+  Link
 } from 'react-router-dom'
 
-import {
-  FlexBox,
-  TitleHeader,
-  NavFilterBar,
-  Footer,
-} from 'components'
-
-import {
-  TodoAdd,
-} from 'containers'
+import { FlexBox } from 'components'
 
 const CenterSpace = props => (<FlexBox
                               column
@@ -34,12 +25,7 @@ const AppLayout = ({ children }) => {
       <SideSpace col={ 1 } />
       {/*contents container*/}
       <CenterSpace col={ 10 }>
-        <TitleHeader />
-        <TodoAdd />
-        <NavFilterBar />
-        {/*todo rendering*/}
         { children }
-        <Footer/>
       </CenterSpace>
       {/*side-right space for responsive*/}
       <SideSpace col={ 1 } />
