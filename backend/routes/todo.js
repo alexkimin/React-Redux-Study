@@ -18,7 +18,7 @@ const tempTodo = {
     [tempId2]: {
       id: tempId2,
       text: 'Todos comes from fake database',
-      isCompleted: true,
+      isCompleted: false,
       prioritized: false
     }
   },

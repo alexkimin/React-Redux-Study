@@ -10,11 +10,13 @@ recalculations of derived data which in turn will speed up our application.
 const selectTodos = (state, props) => state.Todo.todos
 const selectFilter = (state, props) => props.match.params.filter
 
-const _filterType = type => filter => filter === type
+const _filterType = type => filterKeyword => type === filterKeyword
 const _typeChecker = _filterType('completed')
-const filterTodo = (todos, isfiltering) => {
-  return isfiltering
-  ? todos.filter(e => _typeChecker('completed') === e.isCompleted)
+const filterTodo = (todos, filterKeyword) => {
+  return filterKeyword
+  ? todos.filter(e => {
+    return _typeChecker(filterKeyword) === e.isCompleted
+  })
   : todos
 }
 
