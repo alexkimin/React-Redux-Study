@@ -1,6 +1,6 @@
 import React from 'react'
 import { App } from 'containers'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 const Root = ({ store }) => {

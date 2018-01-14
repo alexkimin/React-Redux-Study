@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { oneOfType, arrayOf } from 'prop-types'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledUl = styled.ul`

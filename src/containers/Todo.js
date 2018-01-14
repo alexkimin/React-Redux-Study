@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
-import axios from 'axios'
+
 import {
   newTodo,
   addTodo
  } from 'store/modules/Todo'
 
 import {
-  pipe,
   getFilteredTodo,
   getNewTodoData,
   getFetchingStatus,
@@ -51,17 +50,13 @@ const TodoShow = ({
       {/* Todo Add Form */}
       <Form
         onSubmit={(e) => {
-          if (newTodoData) {
           e.preventDefault()
-          // reset the data
-          updateNewTodo({ text: '' }) // need to be in post action?
-          console.log(newTodoData)
-          console.log('submit')
-          submitNewTodo(newTodoData)
-        } else {
-          e.preventDefault()
-          console.log('nothing to submit')
-        }
+          if (newTodoData.text) {
+            // reset the input value to ''
+            updateNewTodo({ text: '' }) // need to be in post action?
+            submitNewTodo(newTodoData)
+            // multiple action dispatch?
+          }
         }}
       >
         <Input

@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux'
 import { penderReducer } from 'redux-pender'
-import Todo from './Todo'
 
 // imports all file except index.js
 const req = require.context('.', true, /^(?!.\/index).*.js$/)

@@ -1,12 +1,5 @@
 import React from 'react'
-import PropTypes, { arrayOf } from 'prop-types'
-import styled from 'styled-components'
-
-import {
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import { FlexBox } from 'components'
 

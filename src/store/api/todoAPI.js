@@ -1,6 +1,4 @@
 import axios from 'axios'
-import { pipe } from 'libs'
-import { TODO_FETCH } from '../modules/Todo'
 
 const ROOT_API = '/todo'
 
