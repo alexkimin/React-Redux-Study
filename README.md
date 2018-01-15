@@ -26,11 +26,16 @@ This toy project is for exploring interesting paradigms and modules to understan
     - Appending PENDING, SUCCESS, FAILURE to action type automatically.
     - pender reducer itself is useful for aboved status.
 - **Immutable data handling**
-  -
+  - [immutable.js](https://facebook.github.io/immutable-js/)
 - **Type Checking**
   - prop-types
 - **Styling**
   - SCSS -> [styled-component](https://www.styled-components.com/)
+  - styled-component can create themes and reusable functions.
+- **UI Dev Env**
+  -
+- **Testing**
+  -
 - **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
 - **Backend**
@@ -39,7 +44,6 @@ This toy project is for exploring interesting paradigms and modules to understan
 
 ## Planning
 - immutable.js
-- styled-component themes and helper functions.
 - route base code splitting.
 - From Thunk to redux-saga
 - Testing practice with Jest, Enzyme

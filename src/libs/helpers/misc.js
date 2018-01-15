@@ -1,4 +1,4 @@
-export const resetValue = node => {
-  node.value = ''
-  node.blur()
-}
+// export const resetValue = node => {
+//   node.value = ''
+//   node.blur()
+// }

@@ -1,20 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
+
 // Actions
 import {
   addTodo,
   deleteTodo,
   toggleTodo,
   clearTodo,
+  inputTodo
  } from 'store/modules/Todo'
+
 // selectors
 import {
-  getFilteredTodo,
-  getFetchingStatus,
-  resetValue,
- } from 'libs'
+  getFiltered,
+  getIsFetching,
+  getInputValue,
+} from 'store/selectors'
+
 // components
 import {
   TitleHeader,
@@ -35,10 +39,9 @@ const Todo = ({
   deleteTheTodo,
   toggleTheTodo,
   clearCompleted,
+  inputValue,
+  updateInputVal
 }) => {
-  // local scoped variables.
-  let newTodoInputVal = ''
-  let inputNode = null // will works as ref in class component.
 
   return (
     <TodoTemplate>
@@ -47,19 +50,18 @@ const Todo = ({
       {/* Todo Add Form */}
       <TodoAddForm
         onSubmit={ e => {
-          // below logic is for avoiding input rerendering to keep focus status.
-            e.preventDefault()
-            resetValue(inputNode)
-            return newTodoInputVal && submitNewTodo({ text: newTodoInputVal })
-          }
+          e.preventDefault()
+          if (inputValue) {
+            // reset the input value to ''
+            updateInputVal({ input: '' }) // need to be in post action?
+            submitNewTodo({ text: inputValue })
+            // multiple action dispatch?
+          }}
         }
-        onChange={ e => newTodoInputVal = e.target.value }
-        getRef={ node => {
-            inputNode = node
-            // if rerendering happens, reset the value after getting the ref.
-            return inputNode && resetValue(inputNode)
-        }}
+        onChange={ e => updateInputVal({ input: e.target.value }) }
+        value={ inputValue }
       />
+
       {/* filter bar */}
       <NavFilterBar />
       {/* Todos list */}
@@ -93,14 +95,16 @@ Todo.propTypes = {
 // with reselect package, we can memoize selectors to enhance performance.
 export default connect(
   (state, props) => ({
-      isFetching: getFetchingStatus(state, props),
-      todos: getFilteredTodo(state, props),
+    isFetching: getIsFetching(state, props),
+    todos: getFiltered(state, props),
+    inputValue: getInputValue(state, props)
   }),
   (dispatch) => ({
-    submitNewTodo: todo => dispatch(addTodo(todo)),
-    deleteTheTodo: id => dispatch(deleteTodo(id)),
-    toggleTheTodo: id => dispatch(toggleTodo(id)),
-    clearCompleted: () => dispatch(clearTodo()),
+    submitNewTodo: bindActionCreators(addTodo, dispatch),
+    deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
+    toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
+    clearCompleted: bindActionCreators(clearTodo, dispatch),
+    updateInputVal: bindActionCreators(inputTodo, dispatch),
   })
 )(Todo)
 
@@ -118,19 +122,29 @@ The component is not a “route component”, meaning it is not rendered like so
 // export default withRouter(connect()(Todo))
 
 /*
-// This was previous version of form that has focus problem.
+// local scoped variables experiemnt
+let newTodoInputVal = ''
+let inputNode = null // will works as ref in class component.
 <TodoAddForm
   onSubmit={ e => {
-    e.preventDefault()
-    if (newTodoData.text) {
-      // reset the input value to ''
-      updateNewTodo({ text: '' }) // need to be in post action?
-      submitNewTodo(newTodoData)
-      // multiple action dispatch?
-    }}
+    // below logic is for avoiding input rerendering to keep focus status.
+      e.preventDefault()
+      resetValue(inputNode)
+      return newTodoInputVal && submitNewTodo({ text: newTodoInputVal })
+    }
   }
-  onChange={ e => updateNewTodo({ text: e.target.value }) }
-  value={ newTodoData }
-  getRef={ node => node && node.focus() }
+  onChange={ e => newTodoInputVal = e.target.value }
+  getRef={ node => {
+      inputNode = node
+      // if rerendering happens, reset the value after getting the ref.
+      return inputNode && resetValue(inputNode)
+  }}
 />
+(dispatch) => ({
+  submitNewTodo: todo => dispatch(addTodo(todo)),
+  deleteTheTodo: id => dispatch(deleteTodo(id)),
+  toggleTheTodo: id => dispatch(toggleTodo(id)),
+  clearCompleted: () => dispatch(clearTodo()),
+  updateInputVal: (text) => dispatch(inputTodo(text)),
+})
 */

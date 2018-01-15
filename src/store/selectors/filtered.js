@@ -12,7 +12,7 @@ const selectFilter = (state, props) => props.match.params.filter
 
 const _filterType = type => filterKeyword => type === filterKeyword
 const _typeChecker = _filterType('completed')
-const filterTodo = (todos, filterKeyword) => {
+const getFiltered = (todos, filterKeyword) => {
   return filterKeyword
   ? todos.filter(e => {
     return _typeChecker(filterKeyword) === e.isCompleted
@@ -22,5 +22,5 @@ const filterTodo = (todos, filterKeyword) => {
 
 export default createSelector(
   [selectTodos, selectFilter],
-  filterTodo
+  getFiltered
 )

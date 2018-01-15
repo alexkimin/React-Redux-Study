@@ -3,16 +3,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
 import { AppContainer as HotContainer } from 'react-hot-loader'
-
+// Root Component
 import Root from './Root'
-import 'styles/main.css'
-
+// CSS
+import { reset, theme } from 'styles'
+// Redux Store
 import store from 'store'
 
 const render = Component => ReactDOM.render(
   (
     <HotContainer>
-      <Component store={ store }/>
+      <Component store={ store } theme={ theme } />
     </HotContainer>
   ),
   document.getElementById('root')

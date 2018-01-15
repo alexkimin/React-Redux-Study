@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-// const ROOT_API = 'http://localhost:3001/todo'
 const ROOT_API = '/todo'
 
 const api = str => ROOT_API.concat(str)
