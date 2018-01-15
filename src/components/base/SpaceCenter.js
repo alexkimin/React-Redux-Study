@@ -9,12 +9,19 @@ const StyledDiv =  styled.div`
   flex: 10;
 `
 
-const SpaceCenter = props => {
+const SpaceCenter = ({ children }) => {
   return (
     <StyledDiv>
-      { props.children }
+      { children }
     </StyledDiv>
   )
+}
+
+SpaceCenter.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ]),
 }
 
 export default SpaceCenter

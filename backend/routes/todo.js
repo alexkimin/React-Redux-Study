@@ -95,7 +95,12 @@ router.delete('/delete/:id', (req, res) => {
 })
 router.delete('/clear', (req, res) => {
   // clear completed
-
+  findAll()
+    .then(todos => {
+      // delete completed todo
+      todos.forEach(todo => todo.isCompleted && DB.delete(todo.id))
+      return res.json({ todos: [...DB.values()] })
+    })
 })
 
 export default router

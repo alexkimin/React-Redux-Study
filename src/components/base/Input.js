@@ -13,6 +13,7 @@ const Input = ({
   value,
   getRef,
 }) => {
+  console.log(value)
   return (
     <StyledInput
       type={ type }

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 // Actions
 import {
-  newTodo,
   addTodo,
   deleteTodo,
   toggleTodo,
@@ -13,7 +12,6 @@ import {
 // selectors
 import {
   getFilteredTodo,
-  getNewTodoData,
   getFetchingStatus,
  } from 'libs'
 // components
@@ -32,15 +30,15 @@ import {
 const Todo = ({
   todos,
   isFetching,
-  updateNewTodo,
-  // newTodoData,
   submitNewTodo,
   deleteTheTodo,
   toggleTheTodo,
   clearCompleted,
 }) => {
-  let newTodoInputVal
+  let newTodoInputVal = ''
+  let inputNode = null
 
+  console.log('rendered')
   return (
     <TodoTemplate>
       {/* Header */}
@@ -48,12 +46,14 @@ const Todo = ({
       {/* Todo Add Form */}
       <TodoAddForm
         onSubmit={ e => {
+          // below logic is for avoiding input rerendering to keep focus status.
             e.preventDefault()
+            inputNode.value = ''
             return newTodoInputVal && submitNewTodo({ text: newTodoInputVal })
           }
         }
         onChange={ e => newTodoInputVal = e.target.value }
-        value={ newTodoInputVal }
+        getRef={ node => inputNode = node }
       />
       {/* filter bar */}
       <NavFilterBar />
@@ -77,9 +77,6 @@ const Todo = ({
 Todo.propTypes = {
   todos: PropTypes.array,
   isFetching: PropTypes.bool,
-  updateNewTodo: PropTypes.func,
-  newTodoData: PropTypes.object,
-  submitNewTodo: PropTypes.func,
   deleteTheTodo: PropTypes.func,
   toggleTheTodo: PropTypes.func,
   clearCompleted: PropTypes.func,
@@ -93,10 +90,8 @@ export default connect(
   (state, props) => ({
       isFetching: getFetchingStatus(state, props),
       todos: getFilteredTodo(state, props),
-      // newTodoData: getNewTodoData(state, props),
   }),
   (dispatch) => ({
-    // updateNewTodo: text => dispatch(newTodo(text)),
     submitNewTodo: todo => dispatch(addTodo(todo)),
     deleteTheTodo: id => dispatch(deleteTodo(id)),
     toggleTheTodo: id => dispatch(toggleTodo(id)),
