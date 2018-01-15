@@ -31,7 +31,8 @@ This toy project is for exploring interesting paradigms and modules to understan
   - prop-types
 - **Styling**
   - SCSS -> [styled-component](https://www.styled-components.com/)
-  - styled-component can create themes and reusable functions.
+  - styled-component can create themes and reusable functions
+
 - **UI Dev Env**
   -
 - **Testing**

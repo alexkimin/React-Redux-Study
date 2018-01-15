@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { NavLink } from 'react-router-dom'
 import logo from '../../static/images/logo.png'
 
 const StyledDiv = styled.div`
@@ -12,6 +12,10 @@ const StyledDiv = styled.div`
   display: inline-block;
 `
 
-const Logo = props => (<StyledDiv />)
+const Logo = props => (
+  <NavLink to="/">
+    <StyledDiv />
+  </NavLink>
+)
 
 export default Logo

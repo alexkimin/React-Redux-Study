@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-import { theme } from 'styles'
+import { utils, theme } from 'styles'
 
 const StyledDiv = styled.div`
   color: ${props => props.theme.color.disabled};
@@ -25,7 +25,8 @@ const NavItem = ({
           fontWeight: '900',
           color: 'black',
           borderBottom: `2px solid ${theme.color.primary}`,
-          padding: '0 8px'
+          padding: '0 8px',
+          transition: `${utils.transitMap(['border-bottom', 'padding'])}`
         }}
         { ...rest }
       >

@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   background: white;
   flex: 1;
+  box-shadow: ${props => props.theme.shadow};
 `
 
 const TodoTemplate = ({ children }) => {

@@ -14,7 +14,7 @@ const Form = ({
   ...rest
 }) => {
   return (
-    <StyledForm onSubmit={ onSubmit } {...rest}>
+    <StyledForm center onSubmit={ onSubmit } {...rest}>
       { children }
     </StyledForm>
   )

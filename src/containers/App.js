@@ -17,8 +17,8 @@ const App = props => {
       {/*routes*/}
       <Switch>
         <Route exact path='/' component={ Todo }/>
-        <Route path='/todo/:id' component={ Todo }/>
-        <Route path='/filter/:filter' component={ Todo }/>
+        <Route exact path='/todo/:id' component={ Todo }/>
+        <Route exact path='/filter/:filter' component={ Todo }/>
         <Route path='' component={ NoMatch }/>
       </Switch>
     </AppTemplate>

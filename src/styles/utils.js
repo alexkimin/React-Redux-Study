@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components"
+import { theme } from 'styles'
 
 export default {
   flexBox: (props) => {
@@ -12,5 +13,10 @@ export default {
     margin: ${props.margin || 0};
     padding: ${props.padded && props.theme.space.padded};
   `},
-
+  transitMap: (arr) => {
+    const lastIdx = arr.length - 1
+    return arr.map((target, i) => {
+      return `${target} ${theme.transition}${lastIdx === i ? '' : ', '}`
+    }).join('')
+  },
 }

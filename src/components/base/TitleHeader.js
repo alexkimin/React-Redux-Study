@@ -9,6 +9,7 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: center;
   font-family: ${props => props.theme.font.title};
+  margin: 10px 0;
 `
 
 const composeStyle = `
@@ -22,7 +23,7 @@ const TitleHeader = (props) => {
       <Logo />
       <Title
         title='Todos'
-        size={ 70 }
+        size={ 60 }
         composeStyle={ composeStyle }
       />
     </StyledHeader>

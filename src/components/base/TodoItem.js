@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { CheckButton, DeleteButton } from 'components'
+
 const StyledLi = styled.li`
   display: flex;
   align-items: center;
@@ -9,6 +11,11 @@ const StyledLi = styled.li`
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.color.border};
   vertical-align: center;
+  transition: background ${props => props.theme.transition};
+
+  &:hover {
+    background: ${props => props.theme.color.border};
+  }
 `
 const StyledSpan = styled.span`
   text-decoration: ${({ isCompleted }) =>
@@ -18,7 +25,11 @@ const StyledSpan = styled.span`
 `
 
 const TempBtn = styled.button`
-
+  border-radius: 9999px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid ${props => props.theme.color.border};
+  background: transparent;
 `
 
 const TodoItem = ({
@@ -30,15 +41,14 @@ const TodoItem = ({
 }) => {
   return (
     <StyledLi id={ id }>
-      <TempBtn onClick={ toggleFn }>
-        V
-      </TempBtn>
-      <StyledSpan isCompleted={ isCompleted } >
+      <CheckButton
+        onClick={ toggleFn }
+        toggle={ isCompleted }
+      />
+      <StyledSpan isCompleted={ isCompleted } onClick={ toggleFn } >
         { text }
       </StyledSpan>
-      <TempBtn onClick={ deleteFn }>
-        Delete
-      </TempBtn>
+      <DeleteButton onClick={ deleteFn }/>
     </StyledLi>
   )
 }
