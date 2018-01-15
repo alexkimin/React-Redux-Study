@@ -9,14 +9,17 @@ const reset = injectGlobal`
 
   body {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto';
-    background: #e1e5e9;
   }
-
 
   *, *:before, *:after {
     box-sizing: inherit;
+  }
+
+  li, ul {
+    margin: 0;
+    padding: 0;
   }
 
   a {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 // components
-import { SEO, AppTemplate, Footer } from 'components'
+import { SEO, AppTemplate } from 'components'
 import { Todo, NoMatch } from 'containers'
 
 const App = props => {
@@ -21,7 +21,6 @@ const App = props => {
         <Route path='/filter/:filter' component={ Todo }/>
         <Route path='' component={ NoMatch }/>
       </Switch>
-      <Footer text='App Footer' />
     </AppTemplate>
   )
 }

@@ -31,7 +31,6 @@ import {
   TodoFooter,
 } from 'components'
 
-
 const Todo = ({
   todos,
   isFetching,
@@ -63,9 +62,9 @@ const Todo = ({
       />
 
       {/* filter bar */}
-      <NavFilterBar />
+      <NavFilterBar col={ 1 }/>
       {/* Todos list */}
-      <TodoList>
+      <TodoList col={ 10 }>
         <Spinner fetching={ isFetching }/>
         { todos.map(props =>
           (<TodoItem
@@ -76,7 +75,7 @@ const Todo = ({
           />)) }
       </TodoList>
       {/* Footer */}
-      <TodoFooter onClick={ () => clearCompleted() }/>
+      <TodoFooter onClick={ () => clearCompleted() } />
     </TodoTemplate>
   )
 }

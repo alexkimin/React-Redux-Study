@@ -2,16 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { utils } from 'styles'
+
 const StyledDiv =  styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 100px 0 0 0;
-  flex: 10;
+  ${props => utils.flexBox(props)}
 `
 
-const SpaceCenter = ({ children }) => {
+const SpaceCenter = ({ children, ...rest }) => {
   return (
-    <StyledDiv>
+    <StyledDiv {...rest}>
       { children }
     </StyledDiv>
   )

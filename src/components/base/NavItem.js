@@ -3,9 +3,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-const StyledDiv = styled.div`
+import { theme } from 'styles'
 
+const StyledDiv = styled.div`
+  color: ${props => props.theme.color.disabled};
+  margin: 0 10px;
 `
+
 
 const NavItem = ({
   to,
@@ -16,8 +20,14 @@ const NavItem = ({
     <StyledDiv>
       <NavLink
         to={ to }
-        activeStyle={{ opacity: 1, fontWeight: '600'}}
-        {...rest}
+        activeStyle={{
+          opacity: 1,
+          fontWeight: '900',
+          color: 'black',
+          borderBottom: `2px solid ${theme.color.primary}`,
+          padding: '0 8px'
+        }}
+        { ...rest }
       >
         { children }
       </NavLink>

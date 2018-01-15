@@ -3,7 +3,16 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledInput = styled.input`
-  flex-grow: 1;
+  flex: 1;
+  height: 35px;
+  border: none;
+  margin-right: 10px;
+  border-bottom: 1px solid ${props => props.theme.color.border};
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid ${props => props.theme.color.secondary};
+  }
 `
 const Input = ({
   type,

@@ -2,16 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { utils } from 'styles'
+
 const StyledUl = styled.ul`
-  boader: 1px solid green;
-  padding: 5px;
-  width: 100%;
+  ${props => utils.flexBox(props)}
   list-style:none;
 `
 
-const TodoList = ({ children }) => {
+const TodoList = ({ children, ...rest }) => {
   return (
-    <StyledUl>{ children }</StyledUl>
+    <StyledUl padded {...rest}>{ children }</StyledUl>
   )
 }
 

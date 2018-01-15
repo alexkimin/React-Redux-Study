@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  border: 1px solid gray;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  background: white;
+  flex: 1;
 `
 
 const TodoTemplate = ({ children }) => {

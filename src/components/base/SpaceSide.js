@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { utils } from 'styles'
+
 const StyledDiv =  styled.div`
-  display: flex;
-  flex: 1;
+  ${props => utils.flexBox(props)}
 `
 
-const SpaceSide = props => (<StyledDiv />)
+const SpaceSide = props => (<StyledDiv { ...props } />)
 
 export default SpaceSide

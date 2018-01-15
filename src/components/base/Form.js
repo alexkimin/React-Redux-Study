@@ -2,17 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { utils } from 'styles'
+
 const StyledForm = styled.form`
-  width: 100%;
-  display: flex;
+  ${props => utils.flexBox(props)}
 `
 
 const Form = ({
   onSubmit,
   children,
+  ...rest
 }) => {
   return (
-    <StyledForm onSubmit={ onSubmit }>
+    <StyledForm onSubmit={ onSubmit } {...rest}>
       { children }
     </StyledForm>
   )

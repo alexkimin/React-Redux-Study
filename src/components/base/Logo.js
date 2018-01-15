@@ -7,8 +7,8 @@ const StyledDiv = styled.div`
   background-image: url("${ logo }");
   background-repeat: no-repeat;
   background-size: contain;
-  width: 150px;
-  height: 50px;
+  width: 120px;
+  height: 40px;
   display: inline-block;
 `
 

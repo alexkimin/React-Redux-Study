@@ -5,10 +5,9 @@ import styled from 'styled-components'
 const StyledLi = styled.li`
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   width: 100%;
-  height: 40px;
-  border: 1px solid gray;
+  border-bottom: 1px solid ${props => props.theme.color.border};
   vertical-align: center;
 `
 const StyledSpan = styled.span`
