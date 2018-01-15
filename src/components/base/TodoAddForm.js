@@ -19,7 +19,7 @@ const TodoAddForm = ({
       <Input
         placeholder='text here...'
         onChange={ onChange }
-        value={ value.text }
+        value={ value }
         getRef={ getRef }
       />
       <Button
@@ -37,7 +37,7 @@ TodoAddForm.defaultProps = {
 TodoAddForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
-  value: PropTypes.object,
+  value: PropTypes.string,
   getRef: PropTypes.func,
 }
 

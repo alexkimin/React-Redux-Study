@@ -21,7 +21,6 @@ const Input = ({
       onChange={ onChange }
       value={ value }
       innerRef={ getRef }
-      onBlur={() => console.log('blur!')}
     />
   )
 }

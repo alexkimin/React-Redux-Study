@@ -33,20 +33,20 @@ const Todo = ({
   todos,
   isFetching,
   updateNewTodo,
-  newTodoData,
+  // newTodoData,
   submitNewTodo,
   deleteTheTodo,
   toggleTheTodo,
   clearCompleted,
 }) => {
-  console.log('rendering')
-  let inputNode;
+  let newTodoInputVal
+
   return (
     <TodoTemplate>
       {/* Header */}
       <TitleHeader />
       {/* Todo Add Form */}
-      <TodoAddForm
+      {/*<TodoAddForm
         onSubmit={ e => {
           e.preventDefault()
           if (newTodoData.text) {
@@ -58,8 +58,17 @@ const Todo = ({
         }
         onChange={ e => updateNewTodo({ text: e.target.value }) }
         value={ newTodoData }
-        getRef={ node => inputNode = node }
+        getRef={ node => node && node.focus() }
+      />*/}
+      <TodoAddForm
+        onSubmit={ e => !e.preventDefault()
+          && newTodoInputVal
+          && submitNewTodo({ text: newTodoInputVal })
+        }
+        onChange={ e => newTodoInputVal = e.target.value }
+        value={ newTodoInputVal }
       />
+
       {/* filter bar */}
       <NavFilterBar />
       {/* Todos list */}
@@ -98,10 +107,10 @@ export default connect(
   (state, props) => ({
       isFetching: getFetchingStatus(state, props),
       todos: getFilteredTodo(state, props),
-      newTodoData: getNewTodoData(state, props),
+      // newTodoData: getNewTodoData(state, props),
   }),
   (dispatch) => ({
-    updateNewTodo: text => dispatch(newTodo(text)),
+    // updateNewTodo: text => dispatch(newTodo(text)),
     submitNewTodo: todo => dispatch(addTodo(todo)),
     deleteTheTodo: id => dispatch(deleteTodo(id)),
     toggleTheTodo: id => dispatch(toggleTodo(id)),
