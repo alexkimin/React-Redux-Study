@@ -4,6 +4,7 @@ import {
   addTodoAPI,
   deleteTodoAPI,
   toggleTodoAPI,
+  clearTodoAPI,
  } from '../api/todoAPI'
 import { pender } from 'redux-pender'
 
@@ -14,6 +15,7 @@ export const TODO_NEW = 'todo/TODO_NEW'
 export const TODO_ADD = 'todo/TODO_ADD'
 export const TODO_TOGGLE = 'todo/TODO_TOGGLE'
 export const TODO_DELETE = 'todo/TODO_DELETE'
+export const TODO_CLEAR = 'todo/TODO_CLEAR'
 
 
 // Actions Creater
@@ -22,6 +24,7 @@ export const newTodo = createAction(TODO_NEW)
 export const addTodo = createAction(TODO_ADD, addTodoAPI)
 export const toggleTodo = createAction(TODO_TOGGLE, toggleTodoAPI)
 export const deleteTodo = createAction(TODO_DELETE, deleteTodoAPI)
+export const clearTodo = createAction(TODO_CLEAR, clearTodoAPI)
 
 
 // need immutable.js!
@@ -46,8 +49,8 @@ const Todo = handleActions({
   ...pender({
     type: TODO_ADD,
     onSuccess: (state, action) => ({
-        ...state,
-        todos: [...state.todos, action.payload.data.newTodo],
+            ...state,
+            todos: [...state.todos, action.payload.data.newTodo],
     }),
   }),
   ...pender({
@@ -69,6 +72,13 @@ const Todo = handleActions({
           return todo
         })
       return ({ ...state, todos })
+    },
+  }),
+  ...pender({
+    type: TODO_CLEAR,
+    onSuccess: (state, action) => {
+      console.log(action.payload.data)
+      return ({ ...state })
     },
   }),
 }, initialState)

@@ -5,21 +5,25 @@ import styled from 'styled-components'
 import { FlexBox } from 'components'
 
 const Wrapper = styled.div`
-
+  border: 1px solid gray;
+  padding: 20px;
 `
 
-const TodoLayout = ({ children }) => {
+const TodoTemplate = ({ children }) => {
   return (
     <Wrapper>
-      <FlexBox column center>
+      <FlexBox column>
         { children }
       </FlexBox>
     </Wrapper>
   )
 }
 
-TodoLayout.propTypes = {
-  children: PropTypes.element,
+TodoTemplate.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ]),
 }
 
-export default TodoLayout
+export default TodoTemplate

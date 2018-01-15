@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 import {
   Form,
@@ -13,14 +12,15 @@ const TodoAddForm = ({
   onSubmit,
   onChange,
   value,
+  getRef,
 }) => {
   return (
     <Form onSubmit={ onSubmit } >
       <Input
         placeholder='text here...'
-        name='addTodo'
         onChange={ onChange }
         value={ value.text }
+        getRef={ getRef }
       />
       <Button
         name='ADD'
@@ -38,6 +38,7 @@ TodoAddForm.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   value: PropTypes.object,
+  getRef: PropTypes.func,
 }
 
 export default TodoAddForm

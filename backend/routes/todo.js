@@ -3,7 +3,6 @@ import uuid from 'uuid/v4'
 
 const router = express.Router()
 
-
 /*
   fake database
 */
@@ -68,7 +67,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const newId = uuid()
-  const todoCollection = tempTodo.todos
   // new Todo
   const newTodo = {
     id: newId,
@@ -79,7 +77,7 @@ router.post('/', (req, res) => {
   // save
   DB.set(newId, newTodo)
   // send the new one back to front
-  res.json({ newTodo })
+  return res.json({ newTodo })
 })
 
 router.put('/:id', (req, res) => {
@@ -89,7 +87,7 @@ router.put('/:id', (req, res) => {
     .then(id => res.json({ id }))
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const todoId = req.params.id
   // delete
   deleteOneById(todoId)
@@ -97,6 +95,7 @@ router.delete('/:id', (req, res) => {
 })
 router.delete('/clear', (req, res) => {
   // clear completed
+
 })
 
 export default router

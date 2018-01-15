@@ -4,10 +4,13 @@ import express from 'express'
 import logger from 'morgan'
 import debug from 'debug'
 import path from 'path'
+// import cors from 'cors'
 
 import todo from './routes/todo'
 
 const app = express()
+
+// app.use(cors())
 
 // app.use(logger('dev'))
 app.use(bodyParser.json())

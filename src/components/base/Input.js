@@ -11,6 +11,7 @@ const Input = ({
   placeholder,
   onChange,
   value,
+  getRef,
 }) => {
   return (
     <StyledInput
@@ -19,6 +20,8 @@ const Input = ({
       placeholder={ placeholder }
       onChange={ onChange }
       value={ value }
+      innerRef={ getRef }
+      onBlur={() => console.log('blur!')}
     />
   )
 }
@@ -33,6 +36,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  getRef: PropTypes.func,
 }
 
 export default Input

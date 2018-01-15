@@ -15,6 +15,7 @@ const StyledSpan = styled.span`
   text-decoration: ${({ isCompleted }) =>
     isCompleted ? 'line-through' : 'none'};
   margin: 0 10px;
+  flex: 1;
 `
 
 const TempBtn = styled.button`

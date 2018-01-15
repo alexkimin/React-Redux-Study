@@ -1,13 +1,15 @@
 import axios from 'axios'
 
+// const ROOT_API = 'http://localhost:3001/todo'
 const ROOT_API = '/todo'
 
 const api = str => ROOT_API.concat(str)
 
 export const fetchTodoAPI = () => axios.get(api(''))
-export const addTodoAPI = body => axios.post(api(''), body)
-export const deleteTodoAPI = id => axios.delete(api(`/${id}`))
+export const addTodoAPI = body => axios.post(api(''), { text: body.text })
+export const deleteTodoAPI = id => axios.delete(api(`/delete/${id}`))
 export const toggleTodoAPI = id => axios.put(api(`/${id}`))
+export const clearTodoAPI = id => axios.delete(api(`/clear`))
 
 
 

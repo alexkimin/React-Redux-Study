@@ -1,15 +1,16 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledFooter = styled.footer`
-
+  flex: 1;
+  margin: 10px;
 `
 
-const Footer = (props) => {
+const Footer = ({ text }) => {
   return (
     <StyledFooter>
-      Footer - let's show how many left and clear completed
+      { text }
     </StyledFooter>
   )
 }
@@ -19,7 +20,7 @@ Footer.defaultProps = {
 }
 
 Footer.propTypes = {
-
+  text: PropTypes.string,
 }
 
 export default Footer
