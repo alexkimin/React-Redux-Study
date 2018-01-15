@@ -1,33 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { FlexBox } from 'components'
+import { SpaceCenter, SpaceSide } from 'components'
 
-const CenterSpace = props => (<FlexBox
-                              column
-                              margin={ '100px 0 0 0' }
-                              { ...props } />)
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+`
 
-const SideSpace = props => (<FlexBox { ...props } />)
-
-
-const AppLayout = ({ children }) => {
+const AppTemplate = ({ children }) => {
   return (
-    <FlexBox>
+    <Wrapper>
       {/*side-left space for responsive*/}
-      <SideSpace col={ 1 } />
+      <SpaceSide col={ 1 } />
       {/*contents container*/}
-      <CenterSpace col={ 10 }>
+      <SpaceCenter col={ 10 }>
         { children }
-      </CenterSpace>
+      </SpaceCenter>
       {/*side-right space for responsive*/}
-      <SideSpace col={ 1 } />
-    </FlexBox>
+      <SpaceSide col={ 1 } />
+    </Wrapper>
   )
 }
 
-AppLayout.propTypes = {
+AppTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
 }
 
-export default AppLayout
+export default AppTemplate

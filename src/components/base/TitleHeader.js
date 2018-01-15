@@ -20,7 +20,7 @@ const TitleHeader = (props) => {
     <StyledHeader>
       <Logo />
       <Title
-        title={'Todos'}
+        title='Todos'
         size={ 30 }
         composeStyle={ composeStyle }
       />
@@ -29,7 +29,7 @@ const TitleHeader = (props) => {
 }
 
 TitleHeader.defaultProps = {
-  type: 'button',
+
 }
 
 TitleHeader.propTypes = {

@@ -46,29 +46,15 @@ const Todo = ({
       {/* Header */}
       <TitleHeader />
       {/* Todo Add Form */}
-      {/*<TodoAddForm
-        onSubmit={ e => {
-          e.preventDefault()
-          if (newTodoData.text) {
-            // reset the input value to ''
-            updateNewTodo({ text: '' }) // need to be in post action?
-            submitNewTodo(newTodoData)
-            // multiple action dispatch?
-          }}
-        }
-        onChange={ e => updateNewTodo({ text: e.target.value }) }
-        value={ newTodoData }
-        getRef={ node => node && node.focus() }
-      />*/}
       <TodoAddForm
-        onSubmit={ e => !e.preventDefault()
-          && newTodoInputVal
-          && submitNewTodo({ text: newTodoInputVal })
+        onSubmit={ e => {
+            e.preventDefault()
+            return newTodoInputVal && submitNewTodo({ text: newTodoInputVal })
+          }
         }
         onChange={ e => newTodoInputVal = e.target.value }
         value={ newTodoInputVal }
       />
-
       {/* filter bar */}
       <NavFilterBar />
       {/* Todos list */}
@@ -77,13 +63,13 @@ const Todo = ({
         { todos.map(props =>
           (<TodoItem
             key={ props.id }
-            toggleFn={() => toggleTheTodo(props.id)}
-            deleteFn={() => deleteTheTodo(props.id)}
+            toggleFn={ () => toggleTheTodo(props.id) }
+            deleteFn={ () => deleteTheTodo(props.id) }
             {...props}
           />)) }
       </TodoList>
       {/* Footer */}
-      <TodoFooter onClick={() => clearCompleted()}/>
+      <TodoFooter onClick={ () => clearCompleted() }/>
     </TodoTemplate>
   )
 }
@@ -130,3 +116,21 @@ The component is not a “route component”, meaning it is not rendered like so
 */
 // import { withRouter } from 'react-router'
 // export default withRouter(connect()(Todo))
+
+/*
+// This was previous version of form that has focus problem.
+<TodoAddForm
+  onSubmit={ e => {
+    e.preventDefault()
+    if (newTodoData.text) {
+      // reset the input value to ''
+      updateNewTodo({ text: '' }) // need to be in post action?
+      submitNewTodo(newTodoData)
+      // multiple action dispatch?
+    }}
+  }
+  onChange={ e => updateNewTodo({ text: e.target.value }) }
+  value={ newTodoData }
+  getRef={ node => node && node.focus() }
+/>
+*/

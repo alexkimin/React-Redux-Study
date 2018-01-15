@@ -7,14 +7,14 @@ import { FlexBox } from 'components'
 const Wrapper = styled.div`
   border: 1px solid gray;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 `
 
 const TodoTemplate = ({ children }) => {
   return (
     <Wrapper>
-      <FlexBox column>
-        { children }
-      </FlexBox>
+      { children }
     </Wrapper>
   )
 }
