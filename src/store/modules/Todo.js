@@ -69,10 +69,10 @@ const Todo = handleActions({
   }),
   ...pender({
     type: TODO_CLEAR,
-    onSuccess: (state, action) => {
-      console.log(action.payload.data)
-      return ({ ...state })
-    },
+    onSuccess: (state, action) => ({
+      ...state,
+      todos: action.payload.data.todos
+    }),
   }),
 }, initialState)
 

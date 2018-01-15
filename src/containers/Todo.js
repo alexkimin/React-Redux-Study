@@ -35,10 +35,10 @@ const Todo = ({
   toggleTheTodo,
   clearCompleted,
 }) => {
+  // local scoped variables.
   let newTodoInputVal = ''
-  let inputNode = null
+  let inputNode = null // will works as ref in class component.
 
-  console.log('rendered')
   return (
     <TodoTemplate>
       {/* Header */}
