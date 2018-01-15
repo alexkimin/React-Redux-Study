@@ -13,6 +13,7 @@ import {
 import {
   getFilteredTodo,
   getFetchingStatus,
+  resetValue,
  } from 'libs'
 // components
 import {
@@ -48,12 +49,16 @@ const Todo = ({
         onSubmit={ e => {
           // below logic is for avoiding input rerendering to keep focus status.
             e.preventDefault()
-            inputNode.value = ''
+            resetValue(inputNode)
             return newTodoInputVal && submitNewTodo({ text: newTodoInputVal })
           }
         }
         onChange={ e => newTodoInputVal = e.target.value }
-        getRef={ node => inputNode = node }
+        getRef={ node => {
+            inputNode = node
+            // if rerendering happens, reset the value after getting the ref.
+            return inputNode && resetValue(inputNode)
+        }}
       />
       {/* filter bar */}
       <NavFilterBar />
