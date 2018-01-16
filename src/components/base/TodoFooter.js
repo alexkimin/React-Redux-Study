@@ -15,7 +15,7 @@ const StyledDiv = styled.div`
 const TodoFooter = ({ onClick, theme }) => {
   return (
     <StyledDiv center row>
-      <Footer text='todo footer'/>
+      <Footer text='Created by Alex Min'/>
       <Button
         name='Clear Completed'
         onClick={ onClick }

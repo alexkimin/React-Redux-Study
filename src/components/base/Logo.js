@@ -6,7 +6,7 @@ import logo from '../../static/images/logo.png'
 const StyledDiv = styled.div`
   background-image: url("${ logo }");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 380px;
   width: 100px;
   height: 40px;
   display: inline-block;

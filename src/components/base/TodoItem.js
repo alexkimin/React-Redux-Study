@@ -1,8 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import { CheckButton, DeleteButton } from 'components'
+
+const testAni = keyframes`
+  from {
+    opacity: 0.01;
+  }
+  to {
+    opacity: 1.0;
+  }
+`
 
 const TodoBody = styled.li`
   display: flex;
@@ -11,10 +20,12 @@ const TodoBody = styled.li`
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.color.border};
   vertical-align: center;
-  transition: background ${props => props.theme.transition},
-              opacity 500ms;
+  transition: background ${props => props.theme.transition};
+  opacity: 0;
 
-
+  animation: ${testAni} 500ms ease-in-out;
+  animation-delay: ${props => props.idx * 80}ms;
+  animation-fill-mode: forwards;
 
   &:hover {
     background: ${props => props.theme.color.border};
@@ -33,9 +44,10 @@ const TodoItem = ({
   toggleFn,
   deleteFn,
   isCompleted,
+  idx,
 }) => {
   return (
-    <TodoBody id={ id }>
+    <TodoBody id={ id } idx={ idx }>
       <CheckButton
         onClick={ toggleFn }
         toggle={ isCompleted }

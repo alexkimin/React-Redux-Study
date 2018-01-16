@@ -67,9 +67,10 @@ const Todo = ({
       {/* Todos list */}
       <TodoList col={ 10 } fetching={ isFetching }>
         <Spinner />
-        { todos.map(props =>
+        { todos.map((props, i) =>
           (<TodoItem
             key={ props.id }
+            idx={ i }
             toggleFn={ () => toggleTheTodo(props.id) }
             deleteFn={ () => deleteTheTodo(props.id) }
             {...props}
