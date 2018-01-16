@@ -9,9 +9,16 @@ const StyledUl = styled.ul`
   list-style:none;
 `
 
-const TodoList = ({ children, ...rest }) => {
+const TodoList = ({
+  children,
+  fetching,
+   ...rest
+ }) => {
   return (
-    <StyledUl padded {...rest}>{ children }</StyledUl>
+    <StyledUl padded center={ fetching } {...rest}>
+      { React.Children.map(children, child =>
+          React.cloneElement(child, { fetching })) }
+    </StyledUl>
   )
 }
 

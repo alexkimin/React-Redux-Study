@@ -4,32 +4,27 @@ import styled from 'styled-components'
 
 import { CheckButton, DeleteButton } from 'components'
 
-const StyledLi = styled.li`
+const TodoBody = styled.li`
   display: flex;
   align-items: center;
   padding: 10px;
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.color.border};
   vertical-align: center;
-  transition: background ${props => props.theme.transition};
+  transition: background ${props => props.theme.transition},
+              opacity 500ms;
+
+
 
   &:hover {
     background: ${props => props.theme.color.border};
   }
 `
-const StyledSpan = styled.span`
+const Texts = styled.span`
   text-decoration: ${({ isCompleted }) =>
     isCompleted ? 'line-through' : 'none'};
   margin: 0 10px;
   flex: 1;
-`
-
-const TempBtn = styled.button`
-  border-radius: 9999px;
-  width: 30px;
-  height: 30px;
-  border: 1px solid ${props => props.theme.color.border};
-  background: transparent;
 `
 
 const TodoItem = ({
@@ -40,16 +35,16 @@ const TodoItem = ({
   isCompleted,
 }) => {
   return (
-    <StyledLi id={ id }>
+    <TodoBody id={ id }>
       <CheckButton
         onClick={ toggleFn }
         toggle={ isCompleted }
       />
-      <StyledSpan isCompleted={ isCompleted } onClick={ toggleFn } >
+      <Texts isCompleted={ isCompleted } onClick={ toggleFn } >
         { text }
-      </StyledSpan>
+      </Texts>
       <DeleteButton onClick={ deleteFn }/>
-    </StyledLi>
+    </TodoBody>
   )
 }
 

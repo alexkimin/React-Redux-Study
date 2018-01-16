@@ -11,8 +11,6 @@ import {
 const StyledDiv = styled.div`
   padding: 10px 0;
 `
-
-
 const TodoAddForm = ({
   onSubmit,
   onChange,

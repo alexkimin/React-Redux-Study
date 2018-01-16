@@ -3,20 +3,19 @@ import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 
 import { loading } from 'styles/keyframes'
+import { utils } from 'styles'
+
 
 const SpinnerWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
+${props => utils.flexBox(props)}
+  padding: 50px;
 `
 
 const SpinnerItem = styled.span`
   display: inline-block;
   width: 73px;
   height: 10px;
-  background: gray;
+  background: ${props => props.theme.color.base};
   border-radius: 97px;
   transform-origin: center center;
   animation: ${ loading } 4.6s ease infinite;
@@ -27,7 +26,7 @@ const Spinner = ({ fetching }) => {
   return (
     <div>
       { fetching && (
-        <SpinnerWrapper>
+        <SpinnerWrapper center row>
           <SpinnerItem />
         </SpinnerWrapper>
       ) }

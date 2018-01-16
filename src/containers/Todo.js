@@ -31,6 +31,7 @@ import {
   TodoFooter,
 } from 'components'
 
+
 const Todo = ({
   todos,
   isFetching,
@@ -64,8 +65,8 @@ const Todo = ({
       {/* filter bar */}
       <NavFilterBar col={ 1 }/>
       {/* Todos list */}
-      <TodoList col={ 10 }>
-        <Spinner fetching={ isFetching }/>
+      <TodoList col={ 10 } fetching={ isFetching }>
+        <Spinner />
         { todos.map(props =>
           (<TodoItem
             key={ props.id }
@@ -146,4 +147,7 @@ let inputNode = null // will works as ref in class component.
   clearCompleted: () => dispatch(clearTodo()),
   updateInputVal: (text) => dispatch(inputTodo(text)),
 })
+
+
+
 */

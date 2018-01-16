@@ -9,6 +9,7 @@ import { utils } from 'styles'
 const StyledDiv = styled.div`
   ${props => utils.flexBox(props)}
   border-top: 1px solid ${props => props.theme.color.border};
+  padding-top: 5px;
 `
 
 const TodoFooter = ({ onClick, theme }) => {
@@ -16,7 +17,7 @@ const TodoFooter = ({ onClick, theme }) => {
     <StyledDiv center row>
       <Footer text='todo footer'/>
       <Button
-        name='Clear'
+        name='Clear Completed'
         onClick={ onClick }
       />
     </StyledDiv>

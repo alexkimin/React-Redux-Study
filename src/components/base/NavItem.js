@@ -8,6 +8,7 @@ import { utils, theme } from 'styles'
 const StyledDiv = styled.div`
   color: ${props => props.theme.color.disabled};
   margin: 0 10px;
+  padding: 0 8px;
 `
 
 
@@ -16,6 +17,7 @@ const NavItem = ({
   children,
   ...rest
  }) => {
+
   return to ? (
     <StyledDiv>
       <NavLink
@@ -25,8 +27,8 @@ const NavItem = ({
           fontWeight: '900',
           color: 'black',
           borderBottom: `2px solid ${theme.color.primary}`,
-          padding: '0 8px',
-          transition: `${utils.transitMap(['border-bottom', 'padding'])}`
+          padding: '0 2px',
+          transition: `${utils.transitMap(['color', 'border-bottom'])}`
         }}
         { ...rest }
       >
