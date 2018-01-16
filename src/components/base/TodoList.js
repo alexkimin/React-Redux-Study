@@ -5,8 +5,9 @@ import styled from 'styled-components'
 import { utils } from 'styles'
 
 const StyledUl = styled.ul`
-  ${props => utils.flexBox(props)}
   list-style:none;
+  flex:1;
+  overflow: auto;
 `
 
 const TodoList = ({

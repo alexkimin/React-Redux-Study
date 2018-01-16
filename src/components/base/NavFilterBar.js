@@ -9,6 +9,7 @@ const StyledUl = styled.ul`
   display: inline-block;
   border-bottom: 1px solid ${props => props.theme.color.border};
   margin-top: 15px;
+  margin-bottom: 10px;
 `
 
 const StyledLi = styled.li`

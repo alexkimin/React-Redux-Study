@@ -90,3 +90,23 @@ export const loaderSpin = keyframes`
     }
   }
 `
+
+export const fadein = keyframes`
+  from {
+    opacity: 0.01;
+  }
+  to {
+    opacity: 1.0;
+  }
+`
+export const fadeout = keyframes`
+  from {
+    opacity: 1.0;
+  }
+
+  to {
+    opacity: 0.01;
+    width: 0px;
+    color: white;
+  }
+`

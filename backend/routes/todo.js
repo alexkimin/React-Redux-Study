@@ -14,14 +14,16 @@ const todo1 = {
   id: id1,
   text: 'Welcome to Todo toy project with functional programming',
   isCompleted: false,
-  prioritized: false
+  prioritized: false,
+  willUnmount: false
 }
 const id2 = uuid()
 const todo2 = {
   id: id2,
   text: 'Todos comes from fake database',
   isCompleted: true,
-  prioritized: true
+  prioritized: true,
+  willUnmount: false
 }
 
 DB.set(id1, todo1)
@@ -72,7 +74,8 @@ router.post('/', (req, res) => {
     id: newId,
     text: req.body.text,
     isCompleted: false,
-    prioritized: false
+    prioritized: false,
+    willUnmount: false
   }
   // save
   DB.set(newId, newTodo)

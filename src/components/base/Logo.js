@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
   background-repeat: no-repeat;
   background-size: 380px;
   width: 100px;
-  height: 40px;
+  height: 38px;
   display: inline-block;
 `
 

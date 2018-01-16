@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
 // Actions
 import {
   addTodo,
   deleteTodo,
   toggleTodo,
   clearTodo,
-  inputTodo
+  inputTodo,
+  updateTodo,
  } from 'store/modules/Todo'
 
 // selectors
@@ -40,7 +40,9 @@ const Todo = ({
   toggleTheTodo,
   clearCompleted,
   inputValue,
-  updateInputVal
+  updateInputVal,
+  updateTheTodo,
+  ...rest
 }) => {
 
   return (
@@ -67,13 +69,17 @@ const Todo = ({
       {/* Todos list */}
       <TodoList col={ 10 } fetching={ isFetching }>
         <Spinner />
-        { todos.map((props, i) =>
+        { todos.reverse().map((props, i) =>
           (<TodoItem
-            key={ props.id }
-            idx={ i }
-            toggleFn={ () => toggleTheTodo(props.id) }
-            deleteFn={ () => deleteTheTodo(props.id) }
-            {...props}
+              key={ props.id }
+              idx={ i }
+              toggleFn={ () => toggleTheTodo(props.id) }
+              deleteFn={ () => { updateTheTodo({ id: props.id })
+                                 deleteTheTodo(props.id, 500) }
+              }
+              enterDelay={ 0 }
+              willUnmount={ props.willUnmount }
+              {...props}
           />)) }
       </TodoList>
       {/* Footer */}
@@ -83,7 +89,10 @@ const Todo = ({
 }
 
 Todo.propTypes = {
-  todos: PropTypes.array,
+  todos: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
   isFetching: PropTypes.bool,
   deleteTheTodo: PropTypes.func,
   toggleTheTodo: PropTypes.func,
@@ -106,6 +115,7 @@ export default connect(
     toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
     clearCompleted: bindActionCreators(clearTodo, dispatch),
     updateInputVal: bindActionCreators(inputTodo, dispatch),
+    updateTheTodo: bindActionCreators(updateTodo, dispatch),
   })
 )(Todo)
 
