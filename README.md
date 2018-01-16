@@ -7,7 +7,8 @@ This toy project is for exploring interesting paradigms and modules to understan
   - stateless components only, pure functions.
 - **Structure**
   - [Atomic React](https://arc.js.org/) like index.js export/import (automatic absolute path)
-  - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) (actions, reducers -> 1 module)
+    - maybe has problem with code splitting?
+  - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) (actions, reducers -> 1 module file)
     - [redux-actions](https://github.com/reduxactions/redux-actions)
 - **Routing**
   - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -34,22 +35,20 @@ This toy project is for exploring interesting paradigms and modules to understan
   - styled-component can create themes and reusable functions
 
 - **UI Dev Env**
-  -
+  - stylebook
 - **Testing**
-  -
+  - Jest
 - **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
 - **Backend**
   - Node with express
-  - fake database - was good for playing with ES6 `new Map()`.
 
 ## Planning
-- immutable.js
 - route base code splitting.
-- From Thunk to redux-saga
 - Testing practice with Jest, Enzyme
 - Typescript or flow
-- Storybook
+- storybook
+- websocket
 
 ## Run
 add `NODE_PATH=src/` to `.env`
