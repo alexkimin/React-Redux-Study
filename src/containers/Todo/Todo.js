@@ -11,15 +11,18 @@ import {
   deleteTodo,
   clearTodo
 } from 'store/modules/Todo'
+import { concurrentUser } from 'store/modules/User'
 // Components
 import {
   TitleHeader,
   NavFilterBar,
   TodoTemplate,
-  TodoFooter
 } from 'components'
 // Containers
-import { TodoRender, TodoAddForm } from 'containers'
+import {
+  TodoRender,
+  TodoAddForm,
+  TodoFooter } from 'containers'
 
 const Todo = (props) => {
 
@@ -30,6 +33,7 @@ const Todo = (props) => {
   socket.on('toggleTodo', id => props.toggleTheTodo(id))
   socket.on('deleteTodo', id => props.deleteTheTodo(id))
   socket.on('clearTodo', todos => props.clearCompleted({ todos }))
+  socket.on('conUser', num => props.updateConcurrentUser({ num }))
 
   return (
     <TodoTemplate>
@@ -52,6 +56,7 @@ Todo.propTypes = {
   deleteTheTodo: PropTypes.func,
   toggleTheTodo: PropTypes.func,
   clearCompleted: PropTypes.func,
+  updateConcurrentUser: PropTypes.func,
 }
 
 // Selector Pattern with reselector
@@ -67,5 +72,6 @@ export default connect(
     toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
     deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
     clearCompleted: bindActionCreators(clearTodo, dispatch),
+    updateConcurrentUser: bindActionCreators(concurrentUser, dispatch),
   })
 )(Todo)

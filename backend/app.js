@@ -32,9 +32,20 @@ app.use(function (req, res, next) {
   res.locals.io = io
   next();
 });
+
+// hackey concurrentUser tracking for fun.
+let concurrent = 0
 io.on('connect', (socket) => {
   console.log('connected', socket.id)
+  // add id to io object
   io.id = socket.id
+  concurrent++
+  io.emit('conUser', concurrent)
+
+  socket.on('disconnect', () => {
+    concurrent--
+    io.emit('conUser', concurrent)
+  })
 })
 // router register
 app.use('/todo', todo);
