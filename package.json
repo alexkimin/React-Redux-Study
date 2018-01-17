@@ -69,7 +69,7 @@
     "test": "node scripts/test.js --env=jsdom",
     "install": "(cd backend && yarn) && (cd .. && yarn)",
     "start": "cd backend && node ./bin/start.js",
-    "heroku-postbuild": "cd .. && yarn --production=false && yarn run build"
+    "heroku-postbuild": "(cd .. && yarn --production=false) && yarn run build"
   },
   "proxy": "http://localhost:3001/",
   "main": "index.js",
