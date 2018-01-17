@@ -56,9 +56,7 @@ const Todo = ({
       {/* filter bar */}
       <NavFilterBar col={ 1 }/>
       {/* Todos list */}
-      <TodoList col={ 10 } fetching={ isFetching }>
-        <TodoRender reverse/>
-      </TodoList>
+      <TodoRender reverse/>
       {/* Footer */}
       <TodoFooter onClick={ () => clearCompleted() } />
     </TodoTemplate>
@@ -76,7 +74,6 @@ Todo.propTypes = {
 // with reselect package, we can memoize selectors to enhance performance.
 export default connect(
   (state, props) => ({
-    isFetching: getIsFetching(state, props),
     inputValue: getInputValue(state, props)
   }),
   (dispatch) => ({

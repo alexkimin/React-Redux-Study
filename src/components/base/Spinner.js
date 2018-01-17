@@ -34,6 +34,10 @@ const Spinner = ({ fetching }) => {
   )
 }
 
+Spinner.defaultProps = {
+  fetching: true,
+}
+
 Spinner.propTypes = {
   fetching: PropTypes.bool,
 }

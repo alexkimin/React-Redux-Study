@@ -39,9 +39,6 @@ const TodoItem = props => {
     deleteFn,
     updateFn,
     isCompleted,
-    idx,
-    enterDelay,
-    willUnmount,
   } = props
 
   return (

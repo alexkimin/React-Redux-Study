@@ -12,39 +12,51 @@ import {
  } from 'store/modules/Todo'
 
 // selectors
-import { getFiltered } from 'store/selectors'
+import { getFiltered, getIsFetching } from 'store/selectors'
 // components
-import { TodoItem, Spinner } from 'components'
+import {
+  TodoItem,
+  Spinner,
+  TodoList } from 'components'
 
-const TodoRender = ({
-  todos,
-  reverse,
-  deleteTheTodo,
-  toggleTheTodo,
-  updateTheTodo,
-}) => {
+// logic is splitted from component
+const rendering = (props, list) => list.map((todo, i) =>
+    (<TodoItem
+        key={ todo.id }
+        idx={ i }
+        toggleFn={ () => props.toggleTheTodo(todo.id) }
+        deleteFn={ () => { props.updateTheTodo({ id: todo.id })
+                           props.deleteTheTodo(todo.id, 500) }
+        }
+        enterDelay={ 0 }
+        willUnmount={ todo.willUnmount }
+        {...todo}
+    />)
+  )
+
+/*
+ After splitted this component from Todo.js
+ performance enhanced due to preventing unnecessary rerendering
+ via store update. (230ms -> 130ms)
+*/
+const TodoRender = props => {
+  const { todos, reverse, isFetching } = props
   const todosList = reverse ? todos.reverse() : todos
   return (
-    <div>
-      <Spinner />
-      { todosList.map((props, i) =>
-        (<TodoItem
-            key={ props.id }
-            idx={ i }
-            toggleFn={ () => toggleTheTodo(props.id) }
-            deleteFn={ () => { updateTheTodo({ id: props.id })
-                               deleteTheTodo(props.id, 500) }
-            }
-            enterDelay={ 0 }
-            willUnmount={ props.willUnmount }
-            {...props}
-        />)) }
-    </div>
+    <TodoList col={ 10 }>
+      {/*
+      <Spinner fetching={ isFetching }/>
+      { rendering(props, todosList) }
+
+      Aboved prev version of code had double rendering() issue.
+      after changed like bewlow, ms of app loading became half (130ms -> 70ms).
+      */}
+      { isFetching
+        ? (<Spinner />)
+        : rendering(props, todosList)
+      }
+    </TodoList>
   )
-}
-
-TodoRender.defaultProps = {
-
 }
 
 TodoRender.propTypes = {
@@ -58,9 +70,11 @@ TodoRender.propTypes = {
   updateTheTodo: PropTypes.func,
 }
 
+// withRouter HOC is for accessing to parmas of the closest router.
 export default withRouter(connect(
   (state, props) => ({
     todos: getFiltered(state, props),
+    isFetching: getIsFetching(state, props),
   }),
   (dispatch) => ({
     deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
@@ -68,13 +82,3 @@ export default withRouter(connect(
     updateTheTodo: bindActionCreators(updateTodo, dispatch),
   })
 )(TodoRender))
-/*
-You can get access to the history object’s properties and
-the closest <Route>'s match via the withRouter
-higher-order component. withRouter() will re-render
-its component every time the route changes with the same props
-as <Route> render props: { match, location, history }.
-The component is connected to redux via connect()(Comp).
-The component is not a “route component”, meaning it is not rendered like so:
-<Route component={SomeConnectedThing}/>
-*/
