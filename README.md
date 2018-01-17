@@ -23,6 +23,13 @@ This toy project is for exploring interesting paradigms and modules to understan
 - **Selector Pattern**
   - [reselect](https://github.com/reactjs/reselect)
   - for performance optimization and functional reusability
+  - **Performance Optimazation**
+  - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension.
+  - I realized that if I follow general rules, then the performance will follow.
+  - Mind rerendering, especially due to redux-store updating
+  - Don't connect unnecessary state or dispatches to props, split it into smaller component.
+  - Splitting components and logic functions.
+  - maybe will try [recompose](https://github.com/acdlite/recompose)
 - **Offline-First Architecture**
   - I tried manually for studying but there are many choices.
 - **Promise action handling**
@@ -32,22 +39,17 @@ This toy project is for exploring interesting paradigms and modules to understan
     - pender reducer itself is useful for aboved status.
 - **Immutable data handling**
   - [immutable.js](https://facebook.github.io/immutable-js/)
-- **Type Checking**
-  - [prop-types](https://www.npmjs.com/package/prop-types)
 - **Styling**
-  - SCSS -> [styled-component](https://www.styled-components.com/)
-  - styled-component can create themes and reusable functions.
-  - styling without any className usage or frameworks for small challenges.
+  - [styled-component](https://www.styled-components.com/) can create themes and reusable functions.
+  - Responsive styling without any className usage or frameworks for small challenges.
   - But if using className is okay, then I will use [classNames](https://www.npmjs.com/package/classnames).
   - For animation, I used styled-component. but [velocity-react](https://github.com/google-fabric/velocity-react), [react-motion](https://github.com/chenglou/react-motion) are seems nice.
+- **Type Checking**
+  - [prop-types](https://www.npmjs.com/package/prop-types)
 - **UI Dev Env**
   - stylebook: not yet.
 - **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
-- **Performance Optimazation**
-  - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension.
-  - soon, I will do refactor.
-  - maybe will try [recompose](https://github.com/acdlite/recompose)
 - **Backend**
   - Node with express, no database now.
   - proxying from port 3000(front) to 3001(back) for CORS problem.
@@ -59,8 +61,6 @@ This toy project is for exploring interesting paradigms and modules to understan
   - babel transform
 - Testing practice with Jest, Enzyme
 - storybook
-- websocket
-- Typescript or flow
 
 ## Run
 
