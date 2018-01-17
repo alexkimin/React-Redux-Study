@@ -44,9 +44,10 @@ This toy project is for exploring interesting paradigms and modules to understan
   - stylebook: not yet.
 - **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
-- **Performance Enhance**
+- **Performance Optimazation**
   - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension.
   - soon, I will do refactor.
+  - maybe will try [recompose](https://github.com/acdlite/recompose)
 - **Backend**
   - Node with express, no database now.
   - proxying from port 3000(front) to 3001(back) for CORS problem.

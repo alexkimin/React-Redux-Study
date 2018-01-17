@@ -7,7 +7,7 @@ import {
   clearTodoAPI,
  } from '../api/todoAPI'
 import { pender } from 'redux-pender'
-import { Map, List, toJS, fromJS } from 'immutable'
+import { Map, List } from 'immutable'
 
 
 // Action Types
@@ -50,7 +50,7 @@ const Todo = handleActions({
   }),
   ...pender({
     type: TODO_ADD,
-    onSuccess: (state, action) => console.log(action) ||
+    onSuccess: (state, action) =>
       state.update(
         'todos',
         todos => todos.push(action.payload.data.newTodo)

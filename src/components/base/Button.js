@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { utils } from 'styles'
-
 const StyledButton = styled.button`
   ${props =>`
       border-radius: none;
