@@ -13,7 +13,23 @@ This toy project is for exploring interesting paradigms and modules to understan
   - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) (actions, reducers -> 1 module file)
     - [redux-actions](https://github.com/reduxactions/redux-actions)
   ```
-  testing...
+  ...
+  /src
+    /components
+      /base - normal components.
+      /templates - layout components for containers.
+    /containers - components connected with redux store, foldering based on router components.
+    /libs
+    /static
+    /store
+      /api - axios to backend.
+      /modules - duck pattern (action creators, reducers).
+      /selectors - selector pattern for mapStateToProps.
+      configure.js - redux store configuration.
+    /styles
+      theme.js - theme with styled-components.
+      utils.js - styling helper functions.
+  ...
   ```
 - **Routing**
   - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -29,7 +45,7 @@ This toy project is for exploring interesting paradigms and modules to understan
 - **Performance Optimazation**
   - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension to check performance enhancement in number of ms.
     - I realized that if I follow general rules, then the performance will follow.
-    - Mind rerendering, especially due to redux-store updating
+    - Mind re-rendering, especially due to redux-store updating
     - Don't connect unnecessary states to props, split it into smaller component.
     - Splitting components and logic functions.
   - maybe will try [recompose](https://github.com/acdlite/recompose)
@@ -68,8 +84,10 @@ This toy project is for exploring interesting paradigms and modules to understan
 ## Run
 
 add `NODE_PATH=src/` to `.env`
+
 ```
 yarn install
 yarn start-all
 ```
+
 the both command will be applied to frontend and backend automatically.
