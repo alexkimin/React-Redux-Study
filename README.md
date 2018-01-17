@@ -35,8 +35,6 @@ This toy project is for exploring interesting paradigms and modules to understan
   - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
     - params, parsing query with [query-string](https://github.com/sindresorhus/query-string)
     - deep integration needed? [react-router-redux 5.x ](https://github.com/reacttraining/react-router/tree/master/packages/react-router-redux)
-      - Rather than dispatching actions to navigate you can pass the history object provided to route components to your actions and navigate with it there.
-      - Routing data is already a prop of most of your components that care about it, whether it comes from the store or the router doesn’t change your component’s code.
 - **Async Action**
   - [redux-thunk](https://github.com/gaearon/redux-thunk) -> Saga?
 - **Selector Pattern**
