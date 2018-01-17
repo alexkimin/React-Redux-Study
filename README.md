@@ -23,12 +23,12 @@ This toy project is for exploring interesting paradigms and modules to understan
 - **Selector Pattern**
   - [reselect](https://github.com/reactjs/reselect)
   - for performance optimization and functional reusability
-  - **Performance Optimazation**
-  - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension.
-  - I realized that if I follow general rules, then the performance will follow.
-  - Mind rerendering, especially due to redux-store updating
-  - Don't connect unnecessary state or dispatches to props, split it into smaller component.
-  - Splitting components and logic functions.
+- **Performance Optimazation**
+  - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension to check performance enhancement in number of ms.
+    - I realized that if I follow general rules, then the performance will follow.
+    - Mind rerendering, especially due to redux-store updating
+    - Don't connect unnecessary state or dispatches to props, split it into smaller component.
+    - Splitting components and logic functions.
   - maybe will try [recompose](https://github.com/acdlite/recompose)
 - **Offline-First Architecture**
   - I tried manually for studying but there are many choices.
