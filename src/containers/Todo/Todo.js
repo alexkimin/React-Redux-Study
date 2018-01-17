@@ -2,8 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+// APIs
+import { clearTodoAPI } from 'store/api/todoAPI'
 // Actions
-import { clearTodo } from 'store/modules/Todo'
+import {
+  addTodo,
+  toggleTodo,
+  deleteTodo,
+  clearTodo
+} from 'store/modules/Todo'
 // Components
 import {
   TitleHeader,
@@ -15,6 +22,15 @@ import {
 import { TodoRender, TodoAddForm } from 'containers'
 
 const Todo = (props) => {
+
+  // Socket.io eventListening
+  const socket = props.socket
+  socket.off()
+  socket.on('addTodo', todo => props.submitNewTodo({ todo }))
+  socket.on('toggleTodo', id => props.toggleTheTodo(id))
+  socket.on('deleteTodo', id => props.deleteTheTodo(id))
+  socket.on('clearTodo', todos => props.clearCompleted({ todos }))
+
   return (
     <TodoTemplate>
       {/* Header */}
@@ -26,12 +42,15 @@ const Todo = (props) => {
       {/* Todos list */}
       <TodoRender reverse />
       {/* Footer */}
-      <TodoFooter onClick={ () => props.clearCompleted() } />
+      <TodoFooter onClick={ clearTodoAPI } />
     </TodoTemplate>
   )
 }
 
 Todo.propTypes = {
+  submitNewTodo: PropTypes.func,
+  deleteTheTodo: PropTypes.func,
+  toggleTheTodo: PropTypes.func,
   clearCompleted: PropTypes.func,
 }
 
@@ -44,6 +63,9 @@ export default connect(
 
   }),
   (dispatch) => ({
+    submitNewTodo: bindActionCreators(addTodo, dispatch),
+    toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
+    deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
     clearCompleted: bindActionCreators(clearTodo, dispatch),
   })
 )(Todo)

@@ -1,38 +1,44 @@
 #!/usr/bin/env node
-'use strict'
+/* eslint strict: 0 */
 
-/**
- * Module dependencies.
- */
+'use strict'
 
 // enables ES6 ('import'.. etc) in Node
 require('babel-core/register')
 require('babel-polyfill')
 
-const app = require('../app').default
+const app = require('../app').app
+const server = require('../app').server
 const debug = require('debug')('backend:server')
-const http = require('http')
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+const normalizePort = function(val) {
+  const port = parseInt(val, 10)
+  // named pipe
+  if (isNaN(port)) return val
+  // port number
+  if (port >= 0) return port
+  return false
+}
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = process.env.PORT || '3001'
+const port = normalizePort(process.env.PORT || '3001')
 app.set('port', port)
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app)
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(app.get('port'), () => {
-  console.log('App is running at http://localhost:' + app.get('port')); 
-});
+ server.listen(app.get('port'), () => {
+   console.log('App is running at http://localhost:' + app.get('port')); 
+ });
 
 /**
  * Event listener for HTTP server "error" event.
@@ -44,10 +50,10 @@ server.on('error', (error) => {
   }
 
   const bind = typeof port === 'string'
-    ? `Pipe ${port}`
-    : `Port ${port}`
+   ? `Pipe ${port}`
+   : `Port ${port}`
 
-  // handle specific listen errors with friendly messages
+   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       debug(`${bind} requires elevated privileges`)

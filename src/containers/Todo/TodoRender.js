@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
-// Actions
+// APIs
 import {
-  deleteTodo,
-  toggleTodo,
-  updateTodo,
- } from 'store/modules/Todo'
+  toggleTodoAPI,
+  deleteTodoAPI,
+} from 'store/api/todoAPI'
+// Actions
+import { updateTodo } from 'store/modules/Todo'
 // Selectors
 import { getFiltered, getIsFetching } from 'store/selectors'
 // Components
@@ -19,15 +20,16 @@ const rendering = (props, list) => list.map((todo, i) =>
     (<TodoItem
         key={ todo.id }
         idx={ i }
-        toggleFn={ () => props.toggleTheTodo(todo.id) }
+        toggleFn={ () => toggleTodoAPI(todo.id) }
         deleteFn={ () => { props.updateTheTodo({ id: todo.id })
-                           props.deleteTheTodo(todo.id, 500) }
+                           deleteTodoAPI(todo.id, 500) }
         }
         enterDelay={ 0 }
         willUnmount={ todo.willUnmount }
         {...todo}
     />)
   )
+
 
 /*
  After splitted this component from Todo.js
@@ -60,8 +62,6 @@ TodoRender.propTypes = {
     PropTypes.object
   ]),
   reverse: PropTypes.bool,
-  deleteTheTodo: PropTypes.func,
-  toggleTheTodo: PropTypes.func,
   updateTheTodo: PropTypes.func,
 }
 
@@ -73,8 +73,6 @@ export default withRouter(connect(
     isFetching: getIsFetching(state, props),
   }),
   (dispatch) => ({
-    deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
-    toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
     updateTheTodo: bindActionCreators(updateTodo, dispatch),
   })
 )(TodoRender))

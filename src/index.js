@@ -9,15 +9,23 @@ import Root from './Root'
 import store from 'store'
 // CSS
 import { reset, theme, utils } from 'styles'
+// Socket.io
+import io from 'socket.io-client'
+
 // Performance checking extention
 // import registerObserver from 'react-perf-devtool'
 // registerObserver()
 
+const socket = io('/')
 
 const render = Component => ReactDOM.render(
   (
     <HotContainer>
-      <Component store={ store } theme={ theme } />
+      <Component
+        store={ store }
+        theme={ theme }
+        socket={ socket }
+      />
     </HotContainer>
   ),
   document.getElementById('root')

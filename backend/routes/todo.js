@@ -3,7 +3,7 @@ import uuid from 'uuid/v4'
 
 const router = express.Router()
 
-/*
+/* ================================
   fake database
 */
 const DB = new Map()
@@ -29,7 +29,7 @@ const todo2 = {
 DB.set(id1, todo1)
 DB.set(id2, todo2)
 
-/*
+/* ================================
   Mongoose like helpers
 */
 const findAll = () => {
@@ -56,18 +56,18 @@ const findByIdAndUpdate = id => {
 // fake delay(latency) function
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-/*
+/* ================================
   RESTful routes below
 */
 
 router.get('/', (req, res) => {
-  // populating refs
-  delay(1000)
+  delay(700)
     .then(() => findAll())
     .then(data => res.json({ todos: data }))
 })
 
 router.post('/', (req, res) => {
+  const io = res.locals.io
   const newId = uuid()
   // new Todo
   const newTodo = {
@@ -80,29 +80,40 @@ router.post('/', (req, res) => {
   // save
   DB.set(newId, newTodo)
   // send the new one back to front
-  return res.json({ newTodo })
+  io.emit('addTodo', newTodo)
+  return res.json({ status: 'sucess' })
 })
 
 router.put('/:id', (req, res) => {
+  const io = res.locals.io
   const todoId = req.params.id
   // toggle updating
   findByIdAndUpdate(todoId)
-    .then(id => res.json({ id }))
+    .then(id => {
+      io.emit('toggleTodo', { id })
+      return res.json({ status: 'sucess' })
+    })
 })
 
 router.delete('/delete/:id', (req, res) => {
+  const io = res.locals.io
   const todoId = req.params.id
   // delete
   deleteOneById(todoId)
-    .then(id => res.json({ id }) )
+    .then(id => {
+      io.emit('deleteTodo', { id })
+      return res.json({ status: 'sucess' })
+    })
 })
 router.delete('/clear', (req, res) => {
+  const io = res.locals.io
   // clear completed
   findAll()
     .then(todos => {
       // delete completed todo
       todos.forEach(todo => todo.isCompleted && DB.delete(todo.id))
-      return res.json({ todos: [...DB.values()] })
+      io.emit('clearTodo', [...DB.values()])
+      return res.json({ status: 'sucess' })
     })
 })
 

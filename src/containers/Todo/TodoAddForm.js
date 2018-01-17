@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+// APIs
+import { addTodoAPI } from 'store/api/todoAPI'
 // Actions
 import { addTodo, inputTodo } from 'store/modules/Todo'
 // Selectors
@@ -13,7 +15,7 @@ const submitTodo = props => e => {
   e.preventDefault()
   if (props.inputValue) {
     props.updateInputVal({ input: '' })
-    props.submitNewTodo({ text: props.inputValue })
+    addTodoAPI({ text: props.inputValue })
   }
 }
 
@@ -43,7 +45,6 @@ TodoAddForm.defaultProps = {
 
 TodoAddForm.propTypes = {
   inputValue: PropTypes.string,
-  submitNewTodo: PropTypes.func,
   updateInputVal: PropTypes.func,
 }
 
@@ -53,7 +54,6 @@ export default connect(
     inputValue: getInputValue(state, props)
   }),
   (dispatch) => ({
-    submitNewTodo: bindActionCreators(addTodo, dispatch),
     updateInputVal: bindActionCreators(inputTodo, dispatch),
   })
 )(TodoAddForm)

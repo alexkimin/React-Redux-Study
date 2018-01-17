@@ -5,7 +5,10 @@ import { SEO, AppTemplate } from 'components'
 // Containers
 import { Todo, NoMatch } from 'containers'
 
-const App = props => {
+const mapSocketToComponent = socket => props =>
+  (<Todo socket={ socket } { ...props }/>)
+
+const App = ({ socket }) => {
   return (
     <AppTemplate>
       {/* meta tag configure */}
@@ -17,9 +20,9 @@ const App = props => {
       />
       {/*routes*/}
       <Switch>
-        <Route exact path='/' component={ Todo }/>
-        <Route exact path='/todo/:id' component={ Todo }/>
-        <Route exact path='/filter/:filter' component={ Todo }/>
+        <Route exact path='/' render={ mapSocketToComponent(socket) } />
+        <Route exact path='/todo/:id' render={ mapSocketToComponent(socket) } />
+        <Route exact path='/filter/:filter' render={ mapSocketToComponent(socket) } />
         <Route path='' component={ NoMatch }/>
       </Switch>
     </AppTemplate>

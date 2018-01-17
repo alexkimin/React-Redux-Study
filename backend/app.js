@@ -5,11 +5,15 @@ import logger from 'morgan'
 import debug from 'debug'
 import path from 'path'
 // import cors from 'cors'
+import http from 'http'
+import Socket from 'socket.io'
+
 
 import todo from './routes/todo'
 
-const app = express()
-
+export const app = express()
+export const server = http.Server(app)
+const io = Socket(server)
 // app.use(cors())
 
 // app.use(logger('dev'))
@@ -24,12 +28,15 @@ app.use(express.static(path.join(__dirname, '../build')))
 
 // custom middleware
 app.use(function (req, res, next) {
-  // res.locals.user = {name: 'alex'}
+  // socket setting with local scope
+  res.locals.io = io
   next();
 });
-
+io.on('connect', (socket) => {
+  console.log('connected', socket.id)
+  io.id = socket.id
+})
 // router register
-console.log('router registered')
 app.use('/todo', todo);
 
 // catch 404 and forward to error handler
