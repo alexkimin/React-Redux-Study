@@ -1,5 +1,6 @@
 ## Purpose of project
 This toy project is for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux.
+This is built on `create-react-app`.
 
 ## What I've learnt from this practice.
 - **Basics of Functional Programming approach**
@@ -33,22 +34,25 @@ This toy project is for exploring interesting paradigms and modules to understan
 - **Styling**
   - SCSS -> [styled-component](https://www.styled-components.com/)
   - styled-component can create themes and reusable functions
-
+  - styling without any className
 - **UI Dev Env**
   - stylebook
-- **Testing**
-  - Jest
 - **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
+- **Performance Enhance**
+  - soon
 - **Backend**
-  - Node with express
+  - Node with express, no database now.
 
 ## Planning
-- route base code splitting.
+- webpack configuration from scratch
+  - route base code splitting.
+  - tree shaking
+  - babel transform
 - Testing practice with Jest, Enzyme
-- Typescript or flow
 - storybook
 - websocket
+- Typescript or flow
 
 ## Run
 add `NODE_PATH=src/` to `.env`
