@@ -10,7 +10,8 @@ import store from 'store'
 // CSS
 import { reset, theme, utils } from 'styles'
 // Performance checking extention
-import registerObserver from 'react-perf-devtool'
+// import registerObserver from 'react-perf-devtool'
+// registerObserver()
 
 
 const render = Component => ReactDOM.render(
@@ -27,5 +28,4 @@ if(module.hot) {
   module.hot.accept('./Root', () => render(Root))
 }
 
-registerObserver()
 registerServiceWorker()
