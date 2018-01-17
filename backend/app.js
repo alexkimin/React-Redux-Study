@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser())
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../build')))
 
 // custom middleware
 app.use(function (req, res, next) {

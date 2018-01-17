@@ -64,11 +64,12 @@
   "scripts": {
     "start-frontend": "node scripts/start.js",
     "start-backend": "cd backend && yarn nodemon ./bin/start",
-    "start": "node scripts/start.js",
     "start-all": "npm-run-all -p start-backend start-frontend",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "install": "(cd backend && yarn) && (cd .. && yarn)"
+    "install": "(cd backend && yarn) && (cd .. && yarn)",
+    "start": "cd backend && node ./bin/start.js",
+    "heroku-postbuild": "cd .. && yarn --production=false && yarn run build"
   },
   "proxy": "http://localhost:3001/",
   "main": "index.js",
