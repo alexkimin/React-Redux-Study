@@ -1,10 +1,5 @@
 import { injectGlobal } from 'styled-components'
 
-// @font-face {
-//   font-family: 'Raleway';
-//   src: url('static/fonts/Raleway/Raleway-Light.ttf');
-// }
-
 const reset = injectGlobal`
 
   body {

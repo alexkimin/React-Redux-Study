@@ -15,10 +15,6 @@ const Footer = ({ text }) => {
   )
 }
 
-Footer.defaultProps = {
-
-}
-
 Footer.propTypes = {
   text: PropTypes.string,
 }

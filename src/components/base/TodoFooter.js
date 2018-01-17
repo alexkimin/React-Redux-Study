@@ -7,12 +7,12 @@ import { Footer, Button } from 'components'
 import { utils } from 'styles'
 
 const StyledDiv = styled.div`
-  ${props => utils.flexBox(props)}
-  border-top: 1px solid ${props => props.theme.color.border};
+  ${ props => utils.flexBox(props) }
+  border-top: 1px solid ${ props => props.theme.color.border };
   padding-top: 5px;
 `
 
-const TodoFooter = ({ onClick, theme }) => {
+const TodoFooter = ({ onClick }) => {
   return (
     <StyledDiv center row>
       <Footer text='Created by Alex Min'/>
@@ -24,13 +24,9 @@ const TodoFooter = ({ onClick, theme }) => {
   )
 }
 
-TodoFooter.defaultProps = {
-
-}
 
 TodoFooter.propTypes = {
   onClick: PropTypes.func,
-  theme: PropTypes.object,
 }
 
 export default TodoFooter

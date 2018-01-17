@@ -17,14 +17,20 @@ const CircleBorder = styled.div`
       &:hover {
         border: 1px solid ${ props.theme.color.secondary };
       }
-    `
-  }
-  ${props => props.toggle && `
-      border-color: ${ props.theme.color.secondary };
-      animation: none;
-      transition: border 500ms ease-out;
-    `
-  }
+
+      ${props.spin && `
+        border-left-color: ${ props.theme.color.secondary };
+        animation-name: ${ loaderSpin };
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      `}
+      ${props.toggle && `
+          border-color: ${ props.theme.color.secondary };
+          animation: none;
+          transition: border 500ms ease-out;
+      `}
+  `}
 `
 
 const CheckMark = styled.div`
@@ -50,12 +56,14 @@ const CheckButton = ({
   size,
   onClick,
   toggle,
+  ...rest
 }) => {
   return (
     <CircleBorder
       size={ size }
       onClick={ onClick }
       toggle={ toggle }
+      { ...rest }
     >
       { toggle && <CheckMark size={ size } toggle={ toggle } /> }
     </CircleBorder>
@@ -73,6 +81,7 @@ CheckButton.propTypes = {
   ]),
   onClick: PropTypes.func,
   toggle: PropTypes.bool,
+  spin: PropTypes.bool,
 }
 
 export default CheckButton

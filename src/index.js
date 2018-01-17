@@ -5,11 +5,11 @@ import registerServiceWorker from './registerServiceWorker'
 import { AppContainer as HotContainer } from 'react-hot-loader'
 // Root Component
 import Root from './Root'
-// CSS
-import { reset, theme } from 'styles'
 // Redux Store
 import store from 'store'
-// Performance interesting
+// CSS
+import { reset, theme, utils } from 'styles'
+// Performance checking extention
 import registerObserver from 'react-perf-devtool'
 
 

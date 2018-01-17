@@ -9,12 +9,12 @@ const StyledInput = styled.input`
   height: 35px;
   border: none;
   margin-right: 10px;
-  border-bottom: 1px solid ${props => props.theme.color.border};
-  transition: ${utils.transitMap(['border-bottom', 'background'])}; 
+  border-bottom: 1px solid ${ props => props.theme.color.border };
+  transition: ${ utils.transitMap(['border-bottom', 'background']) };
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid ${props => props.theme.color.secondary};
+    border-bottom: 2px solid ${ props => props.theme.color.secondary };
     ::placeholder {
       opacity: 0;
     }
@@ -27,7 +27,6 @@ const Input = ({
   placeholder,
   onChange,
   value,
-  getRef,
 }) => {
   return (
     <StyledInput
@@ -36,7 +35,6 @@ const Input = ({
       placeholder={ placeholder }
       onChange={ onChange }
       value={ value }
-      innerRef={ getRef }
     />
   )
 }
@@ -51,7 +49,6 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  getRef: PropTypes.func,
 }
 
 export default Input

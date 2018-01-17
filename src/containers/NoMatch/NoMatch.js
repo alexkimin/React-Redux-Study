@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// components
+// Components
 import { TodoTemplate, WrongEntry } from 'components'
 
 const NoMatch = ({ location }) => {

@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import { utils } from 'styles'
 
 const StyledForm = styled.form`
-  ${props => utils.flexBox(props)}
+  ${ props => utils.flexBox(props) }
+  padding: 10px 0;
 `
 
 const Form = ({
@@ -14,15 +15,16 @@ const Form = ({
   ...rest
 }) => {
   return (
-    <StyledForm center onSubmit={ onSubmit } {...rest}>
+    <StyledForm
+      center
+      onSubmit={ onSubmit }
+      { ...rest }
+    >
       { children }
     </StyledForm>
   )
 }
 
-Form.defaultProps = {
-
-}
 
 Form.propTypes = {
   onSubmit: PropTypes.func,

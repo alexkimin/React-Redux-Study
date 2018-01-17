@@ -3,7 +3,7 @@ import { fetchTodo } from 'store/modules/Todo'
 
 const store = configureStore()
 
-// get init fetching
+// get init todo fetching
 store.dispatch(fetchTodo('init dispatch'))
 
 export default store

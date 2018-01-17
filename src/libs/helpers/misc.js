@@ -1,4 +1,1 @@
-// export const resetValue = node => {
-//   node.value = ''
-//   node.blur()
-// }
+// for later use

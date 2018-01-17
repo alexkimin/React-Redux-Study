@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { NavItem } from 'components'
@@ -7,7 +6,7 @@ import { NavItem } from 'components'
 const StyledUl = styled.ul`
   list-style: none;
   display: inline-block;
-  border-bottom: 1px solid ${props => props.theme.color.border};
+  border-bottom: 1px solid ${ props => props.theme.color.border };
   margin-top: 15px;
   margin-bottom: 10px;
 `
@@ -30,14 +29,6 @@ const NavFilterBar = props => {
       </StyledLi>
     </StyledUl>
   )
-}
-
-NavFilterBar.defaultProps = {
-
-}
-
-NavFilterBar.propTypes = {
-
 }
 
 export default NavFilterBar

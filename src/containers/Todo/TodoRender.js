@@ -3,21 +3,16 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
-
 // Actions
 import {
   deleteTodo,
   toggleTodo,
   updateTodo,
  } from 'store/modules/Todo'
-
-// selectors
+// Selectors
 import { getFiltered, getIsFetching } from 'store/selectors'
-// components
-import {
-  TodoItem,
-  Spinner,
-  TodoList } from 'components'
+// Components
+import { TodoItem, Spinner, TodoList } from 'components'
 
 // logic is splitted from component
 const rendering = (props, list) => list.map((todo, i) =>
@@ -43,7 +38,7 @@ const TodoRender = props => {
   const { todos, reverse, isFetching } = props
   const todosList = reverse ? todos.reverse() : todos
   return (
-    <TodoList col={ 10 }>
+    <TodoList flex={ 10 }>
       {/*
       <Spinner fetching={ isFetching }/>
       { rendering(props, todosList) }
@@ -71,6 +66,7 @@ TodoRender.propTypes = {
 }
 
 // withRouter HOC is for accessing to parmas of the closest router.
+// Selector Pattern with reselector
 export default withRouter(connect(
   (state, props) => ({
     todos: getFiltered(state, props),

@@ -11,8 +11,8 @@ const StyledDiv = styled.div`
 
 const WrongEntry = ({ path }) => {
   return (
-    <StyledDiv center col={ 1 }>
-      <div>Sorry!</div>
+    <StyledDiv center flex={ 1 }>
+      <div>Sorry !!!</div>
       <div>{ path }</div>
       <div>didn’t match any pages.</div>
     </StyledDiv>
@@ -20,7 +20,7 @@ const WrongEntry = ({ path }) => {
 }
 
 WrongEntry.propTypes = {
-  path: PropTypes.string,
+  path: PropTypes.string.required,
 }
 
 export default WrongEntry

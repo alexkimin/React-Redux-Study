@@ -1,7 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-// components
+// Components
 import { SEO, AppTemplate } from 'components'
+// Containers
 import { Todo, NoMatch } from 'containers'
 
 const App = props => {
@@ -9,7 +10,7 @@ const App = props => {
     <AppTemplate>
       {/* meta tag configure */}
       <SEO
-        title={ 'Toy TODO project' }
+        title={ 'TODO' }
         link={ [{
           rel: 'canonical',
           href: window.location.href }] }

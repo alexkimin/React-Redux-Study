@@ -8,7 +8,7 @@ export default {
     display: flex;
     justify-content: ${props.center && 'center'};
     align-items: ${props.center && 'center'};
-    flex: ${props.col};
+    flex: ${props.flex};
     flex-direction: ${props.row ? 'row' : 'column'};
     margin: ${props.margin || 0};
     padding: ${props.padded && props.theme.space.padded};

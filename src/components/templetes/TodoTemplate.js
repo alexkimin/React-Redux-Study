@@ -2,18 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import { utils } from 'styles'
+
 const Wrapper = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+  ${props => utils.flexBox(props)}
   background: white;
-  flex: 1;
   box-shadow: ${props => props.theme.shadow};
 `
 
 const TodoTemplate = ({ children }) => {
   return (
-    <Wrapper>
+    <Wrapper flex={ 1 } padded>
       { children }
     </Wrapper>
   )

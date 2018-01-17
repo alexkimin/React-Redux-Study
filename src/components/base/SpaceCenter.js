@@ -5,12 +5,12 @@ import styled from 'styled-components'
 import { utils } from 'styles'
 
 const StyledDiv =  styled.div`
-  ${props => utils.flexBox(props)}
+  ${ props => utils.flexBox(props) }
 `
 
 const SpaceCenter = ({ children, ...rest }) => {
   return (
-    <StyledDiv {...rest}>
+    <StyledDiv { ...rest }>
       { children }
     </StyledDiv>
   )

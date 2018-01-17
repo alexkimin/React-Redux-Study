@@ -12,6 +12,9 @@ This toy project is for exploring interesting paradigms and modules to understan
     - maybe has problem with code splitting?
   - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) (actions, reducers -> 1 module file)
     - [redux-actions](https://github.com/reduxactions/redux-actions)
+  ```
+  testing...
+  ```
 - **Routing**
   - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
     - params, parsing query with [query-string](https://github.com/sindresorhus/query-string)
@@ -27,7 +30,7 @@ This toy project is for exploring interesting paradigms and modules to understan
   - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension to check performance enhancement in number of ms.
     - I realized that if I follow general rules, then the performance will follow.
     - Mind rerendering, especially due to redux-store updating
-    - Don't connect unnecessary state or dispatches to props, split it into smaller component.
+    - Don't connect unnecessary states to props, split it into smaller component.
     - Splitting components and logic functions.
   - maybe will try [recompose](https://github.com/acdlite/recompose)
 - **Offline-First Architecture**

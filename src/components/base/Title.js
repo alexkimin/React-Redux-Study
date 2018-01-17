@@ -4,18 +4,15 @@ import styled from 'styled-components'
 
 // if I use this at the outside of Title, need to pass prop again
 const StyledDiv = styled.span`
-  font-size: ${({ size }) => `${size}px`};
-  ${({ compose }) => compose }
+  font-size: ${ props => `${props.size}px` };
+  flex-grow: 1;
+  text-align: center;
 `
 const Title = ({
   title,
-  composeStyle,
   size,
 }) => (
-  <StyledDiv
-    compose={ composeStyle }
-    size={ size }
-  >
+  <StyledDiv size={ size }>
     { title }
   </StyledDiv>
 )
@@ -23,7 +20,6 @@ const Title = ({
 Title.propTypes = {
   title: PropTypes.string,
   size: PropTypes.number,
-  composeStyle: PropTypes.string,
 }
 
 export default Title

@@ -12,6 +12,7 @@ req.keys().forEach((key) => {
   modules[moduleName] = req(key).default
 })
 
+// add pender reducer
 modules['pender'] = penderReducer;
 
 export default combineReducers(modules);

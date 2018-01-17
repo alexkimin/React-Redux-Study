@@ -6,18 +6,18 @@ const StyledButton = styled.button`
   ${props =>`
       border-radius: none;
       background: white;
-      width: ${props.width};
-      height: ${props.height};
-      border: 1px solid ${props.theme.color.border};
-      border-bottom: 2px solid ${props.theme.color.border};
-      border-right: 2px solid ${props.theme.color.border};
+      width: ${ props.width };
+      height: ${ props.height };
+      border: 1px solid ${ props.theme.color.border };
+      border-bottom: 2px solid ${ props.theme.color.border };
+      border-right: 2px solid ${ props.theme.color.border };
 
       &:focus {
         outline: none;
       }
 
       &:active {
-        border: 1px solid ${props.theme.color.border};
+        border: 1px solid ${ props.theme.color.border };
       }
     `
   }

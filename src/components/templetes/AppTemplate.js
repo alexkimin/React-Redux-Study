@@ -7,35 +7,40 @@ import { utils } from 'styles'
 
 const FlexBox = styled.div`
   ${props => utils.flexBox(props)}
+  ${props => `
+    background: ${ props.theme.color.background };
+    font-family: ${ props.theme.font.main };
+  `}
   height: 100vh;
-  background: ${props => props.theme.color.background};
-  font-family: ${props => props.theme.font.main}
 `
 
 const AppTemplate = ({ children, ...rest }) => {
   return (
     <FlexBox {...rest}>
       {/*top space*/}
-      <SpaceSide col={ 1 } />
+      <SpaceSide flex={ 1 } />
       {/*center space of App*/}
-      <SpaceCenter row col={ 10 }>
+      <SpaceCenter row flex={ 10 }>
         {/*left space of center*/}
-        <SpaceSide col={ 1 } />
-        {/*contents space*/}
-        <SpaceCenter col={ 10 }>
+        <SpaceSide flex={ 1 } />
+        {/*Actual contents space*/}
+        <SpaceCenter flex={ 10 }>
           { children }
         </SpaceCenter>
         {/*right space of center*/}
-        <SpaceSide col={ 1 } />
+        <SpaceSide flex={ 1 } />
       </SpaceCenter>
       {/*bottom space*/}
-      <SpaceSide col={ 1 } />
+      <SpaceSide flex={ 1 } />
     </FlexBox>
   )
 }
 
 AppTemplate.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ]),
 }
 
 export default AppTemplate

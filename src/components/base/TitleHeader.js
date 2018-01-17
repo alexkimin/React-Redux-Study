@@ -1,37 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
+// Components
 import { Title, Logo } from 'components'
 
+import { utils } from 'styles'
+
 const StyledHeader = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: ${props => props.theme.font.title};
+  ${ props => utils.flexBox(props) }
+  font-family: ${ props => props.theme.font.title };
   margin: 10px 0;
 `
 
-const composeStyle = `
-  flex-grow: 1;
-  text-align: center;
-`
-
-const TitleHeader = (props) => {
+const TitleHeader = props => {
   return (
-    <StyledHeader>
+    <StyledHeader center row>
       <Logo />
       <Title
         title='Todos'
         size={ 60 }
-        composeStyle={ composeStyle }
       />
     </StyledHeader>
   )
-}
-
-TitleHeader.defaultProps = {
-
 }
 
 TitleHeader.propTypes = {

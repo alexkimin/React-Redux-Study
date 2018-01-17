@@ -6,18 +6,16 @@ import { NavLink } from 'react-router-dom'
 import { utils, theme } from 'styles'
 
 const StyledDiv = styled.div`
-  color: ${props => props.theme.color.disabled};
+  color: ${ props => props.theme.color.disabled} ;
   margin: 0 10px;
   padding: 0 8px;
 `
-
 
 const NavItem = ({
   to,
   children,
   ...rest
  }) => {
-
   return to ? (
     <StyledDiv>
       <NavLink
@@ -26,9 +24,9 @@ const NavItem = ({
           opacity: 1,
           fontWeight: '900',
           color: 'black',
-          borderBottom: `2px solid ${theme.color.primary}`,
+          borderBottom: `2px solid ${ theme.color.primary }`,
           padding: '0 2px',
-          transition: `${utils.transitMap(['color', 'border-bottom'])}`
+          transition: `${ utils.transitMap(['color', 'border-bottom']) }`
         }}
         { ...rest }
       >

@@ -4,11 +4,11 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
   ${props => `
-    color: ${props.theme.color.border};
-    transition: color ${props.theme.transition};
+    color: ${ props.theme.color.border };
+    transition: color ${ props.theme.transition };
 
     &:hover {
-      color: ${props.theme.color.alert};
+      color: ${ props.theme.color.alert };
     }
     `
   }
@@ -20,10 +20,6 @@ const DeleteButton = ({ onClick }) => {
       <i className="fas fa-lg fa-trash-alt"></i>
     </StyledDiv>
   )
-}
-
-DeleteButton.defaultProps = {
-
 }
 
 DeleteButton.propTypes = {

@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 import { CheckButton, DeleteButton } from 'components'
 import { fadein, fadeout } from 'styles/keyframes'
+import { utils } from 'styles'
+
 
 const TodoBody = styled.li`
-  display: flex;
-  align-items: center;
-  padding: 10px;
+  ${ props => utils.flexBox(props) }
   padding-right: 30px;
-  width: 100%;
   border-bottom: 1px solid ${props => props.theme.color.border};
   transition: background ${props => props.theme.transition};
   opacity: 0;
@@ -31,7 +30,6 @@ const Texts = styled.span`
 `
 
 const TodoItem = props => {
-
   const {
     id,
     text,
@@ -39,15 +37,25 @@ const TodoItem = props => {
     deleteFn,
     updateFn,
     isCompleted,
+    ...rest
   } = props
-
   return (
-    <TodoBody id={ id } { ...props } >
+    <TodoBody
+      id={ id }
+      center
+      row
+      padded
+      { ...rest }
+    >
       <CheckButton
         onClick={ toggleFn }
         toggle={ isCompleted }
+        spin
       />
-      <Texts isCompleted={ isCompleted } onClick={ toggleFn }>
+      <Texts
+        isCompleted={ isCompleted }
+        onClick={ toggleFn }
+      >
         { text }
       </Texts>
       <DeleteButton onClick={ deleteFn } />

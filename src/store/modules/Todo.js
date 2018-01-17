@@ -9,7 +9,6 @@ import {
 import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
 
-
 // Action Types
 export const TODO_FETCH = 'todo/TODO_FETCH'
 export const TODO_INPUT = 'todo/TODO_INPUT'

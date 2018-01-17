@@ -3,68 +3,35 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 // Actions
-import {
-  addTodo,
-  clearTodo,
-  inputTodo,
- } from 'store/modules/Todo'
-
-// selectors
-import {
-  getIsFetching,
-  getInputValue,
-} from 'store/selectors'
-
-// components
+import { clearTodo } from 'store/modules/Todo'
+// Components
 import {
   TitleHeader,
-  TodoAddForm,
   NavFilterBar,
   TodoTemplate,
-  TodoList,
-  TodoFooter,
+  TodoFooter
 } from 'components'
-import { TodoRender } from 'containers'
+// Containers
+import { TodoRender, TodoAddForm } from 'containers'
 
-
-const Todo = ({
-  isFetching,
-  submitNewTodo,
-  clearCompleted,
-  inputValue,
-  updateInputVal,
-  ...rest
-}) => {
-
+const Todo = (props) => {
   return (
     <TodoTemplate>
       {/* Header */}
       <TitleHeader />
       {/* Todo Add Form */}
-      <TodoAddForm
-        onSubmit={ e => {
-          e.preventDefault()
-          if (inputValue) {
-            updateInputVal({ input: '' })
-            submitNewTodo({ text: inputValue })
-          }}
-        }
-        onChange={ e => updateInputVal({ input: e.target.value }) }
-        value={ inputValue }
-      />
-
+      <TodoAddForm />
       {/* filter bar */}
-      <NavFilterBar col={ 1 }/>
+      <NavFilterBar />
       {/* Todos list */}
-      <TodoRender reverse/>
+      <TodoRender reverse />
       {/* Footer */}
-      <TodoFooter onClick={ () => clearCompleted() } />
+      <TodoFooter onClick={ () => props.clearCompleted() } />
     </TodoTemplate>
   )
 }
 
 Todo.propTypes = {
-  isFetching: PropTypes.bool,
   clearCompleted: PropTypes.func,
 }
 
@@ -74,11 +41,9 @@ Todo.propTypes = {
 // with reselect package, we can memoize selectors to enhance performance.
 export default connect(
   (state, props) => ({
-    inputValue: getInputValue(state, props)
+
   }),
   (dispatch) => ({
-    submitNewTodo: bindActionCreators(addTodo, dispatch),
-    updateInputVal: bindActionCreators(inputTodo, dispatch),
     clearCompleted: bindActionCreators(clearTodo, dispatch),
   })
 )(Todo)
