@@ -15,7 +15,6 @@ const StyledDiv = styled.div`
 `
 
 const TodoFooter = ({ onClick, conUsers }) => {
-  console.log('render')
   return (
     <StyledDiv center row>
       <Footer text='Created by Alex Min'/>

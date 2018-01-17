@@ -2,6 +2,40 @@
 
 This toy project is for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux. This is built on `create-react-app`.
 
+It is realtime Todo App. [App Link](getConcurrent)
+
+## Structure
+```
+...
+/src
+  /components
+    /base - normal components.
+    /templates - layout components for containers.
+  /containers - components connected with redux store, foldering based on router components.
+  /libs
+  /static
+  /store
+    /api - axios to backend.
+    /modules - duck pattern (action creators, reducers).
+    /selectors - selector pattern for mapStateToProps.
+    configure.js - redux store configuration.
+  /styles
+    theme.js - theme with styled-components.
+    utils.js - styling helper functions.
+...
+```
+- **Data flow.**
+  - For instance, adding a new todo ;
+    1. Dispatch async action_1 with axios(POST) and redux-pender.
+    2. In POST router, new one will be created and saved.
+      1. [pender-Success] Fire socket-event_1 with the new todo to all clients, send back success status to action_1's reducer.
+      2. [pender-Failure] Send back failure status to action_1's reducer of POST request's owner. Handling the exceptions.
+    3. If socket-event_1 is success, matched socket event listener will receive the new todo data.
+    4. Fire dispatch withe sync action_2 for adding the new one into redux store.
+    5. State will be updated -> re-rendering.
+  - Offline-First Architecture will be applied soon.
+
+
 ## What I've learnt from this practice.
 
 - **Basics of Functional Programming approach**
@@ -12,25 +46,6 @@ This toy project is for exploring interesting paradigms and modules to understan
     - maybe has problem with code splitting?
   - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) (actions, reducers -> 1 module file)
     - [redux-actions](https://github.com/reduxactions/redux-actions)
-  ```
-  ...
-  /src
-    /components
-      /base - normal components.
-      /templates - layout components for containers.
-    /containers - components connected with redux store, foldering based on router components.
-    /libs
-    /static
-    /store
-      /api - axios to backend.
-      /modules - duck pattern (action creators, reducers).
-      /selectors - selector pattern for mapStateToProps.
-      configure.js - redux store configuration.
-    /styles
-      theme.js - theme with styled-components.
-      utils.js - styling helper functions.
-  ...
-  ```
 - **Routing**
   - [react-router v4](https://reacttraining.com/react-router/web/guides/quick-start)
     - params, parsing query with [query-string](https://github.com/sindresorhus/query-string)
@@ -48,7 +63,7 @@ This toy project is for exploring interesting paradigms and modules to understan
     - Splitting components and logic functions.
   - maybe will try [recompose](https://github.com/acdlite/recompose)
 - **Offline-First Architecture**
-  - I tried manually for studying but there are many choices.
+  - [NOT YET] I tried manually for studying but there are many choices.
 - **Promise action handling**
   - [From] [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)
   - [To] [redux-pender](https://github.com/velopert/redux-pender)
@@ -69,7 +84,7 @@ This toy project is for exploring interesting paradigms and modules to understan
   - [react-helmet](https://github.com/nfl/react-helmet)
 - **Backend**
   - Node with express, no database now.
-  - proxying from port 3000(front) to 3001(back) for CORS problem.
+  - Websocket implemented by [Socket.io](https://socket.io/)
 
 ## Planning
 - webpack configuration from scratch
