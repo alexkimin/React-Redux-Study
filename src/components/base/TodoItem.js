@@ -13,6 +13,7 @@ const TodoBody = styled.li`
   border-bottom: 1px solid ${props => props.theme.color.border};
   transition: background ${props => props.theme.transition};
   opacity: 0;
+  width: 100%;
 
   animation: ${props => props.willUnmount ? fadeout : fadein } 500ms ease-in-out;
   animation-delay: ${props => props.idx * props.enterDelay}ms;
