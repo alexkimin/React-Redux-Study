@@ -9,6 +9,9 @@ import Root from './Root'
 import { reset, theme } from 'styles'
 // Redux Store
 import store from 'store'
+// Performance interesting
+import registerObserver from 'react-perf-devtool'
+
 
 const render = Component => ReactDOM.render(
   (
@@ -24,4 +27,5 @@ if(module.hot) {
   module.hot.accept('./Root', () => render(Root))
 }
 
+registerObserver()
 registerServiceWorker()

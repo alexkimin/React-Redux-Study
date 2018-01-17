@@ -1,8 +1,9 @@
 ## Purpose of project
-This toy project is for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux.
-This is built on `create-react-app`.
+
+This toy project is for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux. This is built on `create-react-app`.
 
 ## What I've learnt from this practice.
+
 - **Basics of Functional Programming approach**
   - custom composer, pipe, curry, HOC
   - stateless components only, pure functions.
@@ -22,6 +23,8 @@ This is built on `create-react-app`.
 - **Selector Pattern**
   - [reselect](https://github.com/reactjs/reselect)
   - for performance optimization and functional reusability
+- **Offline-First Architecture**
+  - I tried manually for studying but there are many choices.
 - **Promise action handling**
   - [From] [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)
   - [To] [redux-pender](https://github.com/velopert/redux-pender)
@@ -30,19 +33,23 @@ This is built on `create-react-app`.
 - **Immutable data handling**
   - [immutable.js](https://facebook.github.io/immutable-js/)
 - **Type Checking**
-  - prop-types
+  - [prop-types](https://www.npmjs.com/package/prop-types)
 - **Styling**
   - SCSS -> [styled-component](https://www.styled-components.com/)
-  - styled-component can create themes and reusable functions
-  - styling without any className
+  - styled-component can create themes and reusable functions.
+  - styling without any className usage or frameworks for small challenges.
+  - But if using className is okay, then I will use [classNames](https://www.npmjs.com/package/classnames).
+  - For animation, I used styled-component. but [velocity-react](https://github.com/google-fabric/velocity-react), [react-motion](https://github.com/chenglou/react-motion) are seems nice.
 - **UI Dev Env**
-  - stylebook
+  - stylebook: not yet.
 - **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
 - **Performance Enhance**
-  - soon
+  - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension.
+  - soon, I will do refactor.
 - **Backend**
   - Node with express, no database now.
+  - proxying from port 3000(front) to 3001(back) for CORS problem.
 
 ## Planning
 - webpack configuration from scratch
@@ -55,6 +62,7 @@ This is built on `create-react-app`.
 - Typescript or flow
 
 ## Run
+
 add `NODE_PATH=src/` to `.env`
 ```
 yarn install
