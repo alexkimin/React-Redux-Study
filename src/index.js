@@ -12,10 +12,6 @@ import { reset, theme, utils } from 'styles'
 // Socket.io
 import io from 'socket.io-client'
 
-// Performance checking extention
-// import registerObserver from 'react-perf-devtool'
-// registerObserver()
-
 const socket = io('/')
 
 const render = Component => ReactDOM.render(

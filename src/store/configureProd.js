@@ -3,22 +3,12 @@ import thunk from 'redux-thunk'
 import penderMiddleware from 'redux-pender'
 import modules from './modules'
 
-const isDev = process.env.NODE_ENV === 'development' || true;
-
-const devtools = isDev && window.devToolsExtension
-  ? window.devToolsExtension
-  : () => fn => fn;
-
-const configureStore = preloadedState => {
+const configureStoreProd = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk,
       penderMiddleware()
     ),
-    devtools({
-      actionsBlacklist: [null],
-      maxAge: 1000
-    })
   ]
 
   const store = createStore(
@@ -34,4 +24,4 @@ const configureStore = preloadedState => {
   return store
 }
 
-export default configureStore
+export default configureStoreProd
