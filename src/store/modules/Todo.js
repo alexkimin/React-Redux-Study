@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions'
 import { fetchTodoAPI } from '../api/todoAPI'
 import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
+import { pipeMutations } from 'libs'
 
 /* Action Types */
 // Sync actions
@@ -28,41 +29,55 @@ export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
 
 const initialState = Map({
   todos: List(),
-  input: ''
+  input: '',
+  err: Map({ statue: false, msg: '' })
 })
+
+// Mutations
+// use withMutations when you want to group several changes on an object.
+// Belowed cases were for practicing, so over used.
+const setInput = value => state => state.set('input', value)
+const updateToggle = id => state => state.update('todos', todos =>
+  todos.map(todo => {
+    if (todo.id === id ) todo.isCompleted = !todo.isCompleted
+    return todo
+  })
+)
+const addNew = todo => state => state.update('todos', todos =>
+  todos.push(todo)
+)
+const deleteOne = id => state => state.update('todos', todos =>
+  todos.filter(todo => todo.id !== id)
+)
+const clearSome = todos => state => state.set('todos', List(todos))
 
 /* reducers with redux-pender */
 const Todo = handleActions({
   [TODO_INPUT]: (state, action) =>
-    state.set('input', action.payload.input),
+    pipeMutations([
+      setInput(action.payload.input),
+    ], state),
   [TODO_UPDATE]: (state, action) =>
     state.update('todos', todos => todos.map(todo => {
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
-  [TODO_TOGGLE]: (state, action) => {
-    const todos = state.get('todos')
-      .map(todo => {
-        if (todo.id === action.payload.id ) {
-          todo.isCompleted = !todo.isCompleted
-        }
-        return todo
-      })
-    return state.set('todos', todos)
-  },
-  [TODO_ADD]: ((state, action) =>
-    state.update(
-      'todos',
-      todos => todos.push(action.payload.todo)
-    )
-  ),
-  [TODO_DELETE]: (state, action) => {
-    const todos = state.get('todos')
-      .filter(todo => todo.id !== action.payload.id)
-    return state.set('todos', todos)
-  },
+  [TODO_TOGGLE]: (state, action) =>
+    pipeMutations([
+        updateToggle(action.payload.id),
+      ], state),
+  [TODO_ADD]: (state, action) =>
+    pipeMutations([
+        addNew(action.payload.todo),
+      ], state),
+  [TODO_DELETE]: (state, action) =>
+    pipeMutations([
+        deleteOne(action.payload.id),
+      ], state),
   [TODO_CLEAR]: (state, action) =>
-    state.set('todos', List(action.payload.todos)),
+    pipeMutations([
+        clearSome(action.payload.todos),
+      ], state),
   ...pender({
     type: TODO_FETCH,
     onSuccess: (state, action) =>

@@ -20,10 +20,10 @@ const activeStyle = {
   transition: `${ utils.transitMap(['color', 'border-bottom']) }`
 }
 
-const NavItem = ({ to, children }) => {
+const NavItem = ({ to, children, exact }) => {
   return to ? (
     <StyledDiv>
-      <NavLink to={ to } activeStyle={ activeStyle }>
+      <NavLink to={ to } activeStyle={ activeStyle } exact={ exact }>
         { children }
       </NavLink>
     </StyledDiv>
@@ -41,6 +41,7 @@ NavItem.defaultProps = {
 NavItem.propTypes = {
   to: PropTypes.string,
   children: PropTypes.string,
+  exact: PropTypes.bool,
 }
 
 export default NavItem

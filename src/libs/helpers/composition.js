@@ -1,5 +1,12 @@
+//
+
+const _applyFn = (state, fn) => fn(state)
+
 export const composer = (...fns) => data =>
-  fns.reduceRight((val, fn) => fn(val), data)
+  fns.reduceRight(_applyFn, data)
 
 export const pipe = (...fns) => data =>
-  fns.reduce((val, fn) => fn(val), data)
+  fns.reduce(_applyFn, data)
+
+export const pipeMutations = (fns, state) =>
+  state.withMutations(s => fns.reduce(_applyFn, s))

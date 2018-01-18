@@ -29,7 +29,7 @@ const rendering = (props, list) => {
         key={ todo.id }
         idx={ i }
         toggleFn={ () => toggleTodoAPI(todo.id) }
-        deleteFn={ () => { deleteTodoAnimation({ id: todo.id })
+        deleteFn={ () => { //deleteTodoAnimation({ id: todo.id })
                            deleteTodoAPI(todo.id, 500) }
         }
         enterDelay={ 0 }
