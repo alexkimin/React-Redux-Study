@@ -19,7 +19,7 @@ const AppTemplate = ({ children }) => {
   return (
     <FlexBox>
       {/*top space*/}
-      <SpaceSide vertical flex={ 1 } />
+      <SpaceSide flex={ 1 } />
       {/*center space of App*/}
       <SpaceCenter row flex={ 10 }>
         {/*left space of center*/}

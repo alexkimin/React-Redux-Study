@@ -89,6 +89,7 @@ It is a real-time Todo App.
 **Styling**
   - [styled-component](https://www.styled-components.com/) can create themes and reusable functions.
   - Responsive styling without any className usage or frameworks for small challenges.
+  - `@media` helpers in utils.js and theme.js 
   - But if using className is okay, then I will use [classNames](https://www.npmjs.com/package/classnames).
   - For animation, I used styled-component. but [velocity-react](https://github.com/google-fabric/velocity-react), [react-motion](https://github.com/chenglou/react-motion) are seemed nice.
 
