@@ -3,7 +3,7 @@
 This toy project was for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux. This is built on `create-react-app`.
 
 It is a real-time Todo App.
-[App Link](getConcurrent)
+[App Link](https://todopaloit.herokuapp.com/)
 
 ## Structure
 ```
