@@ -17,7 +17,7 @@ const StyledDiv = styled.div`
 const TodoFooter = ({ onClick, conUsers }) => {
   return (
     <StyledDiv center row>
-      <Footer text='Created by Alex Min'/>
+      <Footer text='Created by'/>
       <Concurrent users={ conUsers }/>
       <Button
         name='Clear Completed'

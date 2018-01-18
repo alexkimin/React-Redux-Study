@@ -1,5 +1,16 @@
-// import styled, { css } from "styled-components"
+import styled, { css } from "styled-components"
 import { theme } from 'styles'
+
+/*
+  em and rem units should not be affected by changes in font-size in the HTML
+  since they’re based on the browser’s internal font-size property.
+
+  400px ÷ 16px = 25rem
+
+  em vs root-em(rem)
+*/
+// can use this like ${media.phone`width: 100%`}
+const { screenSizes } = theme
 
 export default {
   flexBox: (props) => {
@@ -19,4 +30,12 @@ export default {
       return `${target} ${theme.transition}${lastIdx === i ? '' : ', '}`
     }).join('')
   },
+  media: Object.keys(screenSizes).reduce((acc, label) => {
+    acc[label] = (...args) => css`
+      @media (max-width: ${screenSizes[label]}rem) {
+        ${css(...args)}
+      }
+    `
+    return acc
+  }, {})
 }

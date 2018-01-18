@@ -37,6 +37,9 @@ export const theme = {
     0 1px 18px 0 rgba(0, 0, 0, 0.12),
     0 3px 5px -1px rgba(0, 0, 0, 0.3)
   `,
+  screenSizes: {
+    mobile: 25,
+  },
 }
 
 export default theme

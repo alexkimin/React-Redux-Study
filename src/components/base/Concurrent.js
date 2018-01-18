@@ -6,6 +6,10 @@ import { utils } from 'styles'
 const StyledDiv = styled.div`
   margin: 0 20px;
   color: ${ props => props.theme.color.base };
+
+  ${props => utils.media.mobile`
+      margin: 0;
+    `}
 `
 const StyledSpan = styled.span`
   margin: 0 10px;
