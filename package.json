@@ -22,7 +22,7 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "socket.io-client": "^2.0.4",
-    "styled-components": "^2.4.0"
+    "styled-components": "^2.4.0",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
