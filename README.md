@@ -1,8 +1,9 @@
 ## Purpose of project
 
-This toy project is for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux. This is built on `create-react-app`.
+This toy project was for exploring interesting paradigms and modules to understand more about functional Programming in React with Redux. This is built on `create-react-app`.
 
-It is realtime Todo App. [App Link](getConcurrent)
+It is a real-time Todo App.
+[App Link](getConcurrent)
 
 ## Structure
 ```
@@ -36,14 +37,14 @@ It is realtime Todo App. [App Link](getConcurrent)
   - Offline-First Architecture will be applied soon.
 
 
-## What I've learnt from this practice.
+## What I've learned from this practice.
 
 - **Basics of Functional Programming approach**
   - custom composer, pipe, curry, HOC
   - stateless components only, pure functions.
 - **Structure**
   - [Atomic React](https://arc.js.org/) like index.js export/import (automatic absolute path)
-    - maybe has problem with code splitting?
+    - maybe has a problem with code splitting?
   - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) (actions, reducers -> 1 module file)
     - [redux-actions](https://github.com/reduxactions/redux-actions)
 - **Routing**
@@ -55,11 +56,11 @@ It is realtime Todo App. [App Link](getConcurrent)
 - **Selector Pattern**
   - [reselect](https://github.com/reactjs/reselect)
   - for performance optimization and functional reusability
-- **Performance Optimazation**
-  - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension to check performance enhancement in number of ms.
+- **Performance Optimization**
+  - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension to check performance enhancement in ms.
     - I realized that if I follow general rules, then the performance will follow.
     - Mind re-rendering, especially due to redux-store updating
-    - Don't connect unnecessary states to props, split it into smaller component.
+    - Don't connect unnecessary states to props, split it into a smaller component.
     - Splitting components and logic functions.
   - maybe will try [recompose](https://github.com/acdlite/recompose)
 - **Offline-First Architecture**
@@ -75,7 +76,7 @@ It is realtime Todo App. [App Link](getConcurrent)
   - [styled-component](https://www.styled-components.com/) can create themes and reusable functions.
   - Responsive styling without any className usage or frameworks for small challenges.
   - But if using className is okay, then I will use [classNames](https://www.npmjs.com/package/classnames).
-  - For animation, I used styled-component. but [velocity-react](https://github.com/google-fabric/velocity-react), [react-motion](https://github.com/chenglou/react-motion) are seems nice.
+  - For animation, I used styled-component. but [velocity-react](https://github.com/google-fabric/velocity-react), [react-motion](https://github.com/chenglou/react-motion) are seemed nice.
 - **Type Checking**
   - [prop-types](https://www.npmjs.com/package/prop-types)
 - **UI Dev Env**
