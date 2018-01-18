@@ -1,11 +1,8 @@
-import configureStoreDev from './configureDev'
-import configureStoreProd from './configureProd'
+import configureStore from './configure'
 import { fetchTodo } from 'store/modules/Todo'
 
 
-const store = process.env.NODE_ENV === 'development'
-  ? configureStoreDev()
-  : configureStoreProd()
+const store =  configureStore()
 
 // get init todo fetching
 store.dispatch(fetchTodo('init dispatch'))

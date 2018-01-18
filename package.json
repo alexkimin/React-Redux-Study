@@ -2,9 +2,6 @@
   "name": "react-todo",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-perf-devtool": "^3.0.2"    
-  },
   "dependencies": {
     "axios": "^0.17.1",
     "immutable": "^3.8.2",
