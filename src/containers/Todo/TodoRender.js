@@ -14,14 +14,22 @@ import { updateTodo } from 'store/modules/Todo'
 import { getFiltered, getIsFetching } from 'store/selectors'
 // Components
 import { TodoItem, Spinner, TodoList } from 'components'
+// helpers
+import { memo } from 'libs'
+
+// Momoize event handlers
+let memoizeRender = {}
+const memoizer = memo(memoizeRender)
 
 // logic is splitted from component
-const rendering = (props, list) => list.map((todo, i) =>
+const rendering = (props, list) => {
+  const deleteTodoAnimation = memoizer('delete', props.updateTheTodo)
+  return list.map((todo, i) =>
     (<TodoItem
         key={ todo.id }
         idx={ i }
         toggleFn={ () => toggleTodoAPI(todo.id) }
-        deleteFn={ () => { props.updateTheTodo({ id: todo.id })
+        deleteFn={ () => { deleteTodoAnimation({ id: todo.id })
                            deleteTodoAPI(todo.id, 500) }
         }
         enterDelay={ 0 }
@@ -29,6 +37,7 @@ const rendering = (props, list) => list.map((todo, i) =>
         {...todo}
     />)
   )
+}
 
 
 /*

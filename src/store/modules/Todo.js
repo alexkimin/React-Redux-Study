@@ -3,24 +3,27 @@ import { fetchTodoAPI } from '../api/todoAPI'
 import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
 
-// Action Types
-export const TODO_FETCH = 'todo/TODO_FETCH'
+/* Action Types */
+// Sync actions
 export const TODO_INPUT = 'todo/TODO_INPUT'
 export const TODO_ADD = 'todo/TODO_ADD'
 export const TODO_TOGGLE = 'todo/TODO_TOGGLE'
 export const TODO_DELETE = 'todo/TODO_DELETE'
 export const TODO_CLEAR = 'todo/TODO_CLEAR'
 export const TODO_UPDATE = 'todo/TODO_UPDATE'
+// Async actions
+export const TODO_FETCH = 'todo/TODO_FETCH'
 
-// Actions Creater
-export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
+/* Actions Creater */
+// Sync actions
 export const inputTodo = createAction(TODO_INPUT)
 export const addTodo = createAction(TODO_ADD)
 export const toggleTodo = createAction(TODO_TOGGLE)
 export const deleteTodo = createAction(TODO_DELETE)
 export const clearTodo = createAction(TODO_CLEAR)
 export const updateTodo = createAction(TODO_UPDATE)
-
+// Async actions
+export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
 
 
 const initialState = Map({
@@ -28,13 +31,8 @@ const initialState = Map({
   input: ''
 })
 
-// reducers with redux-pender
+/* reducers with redux-pender */
 const Todo = handleActions({
-  ...pender({
-    type: TODO_FETCH,
-    onSuccess: (state, action) =>
-    state.set('todos', List(action.payload.data.todos)),
-  }),
   [TODO_INPUT]: (state, action) =>
     state.set('input', action.payload.input),
   [TODO_UPDATE]: (state, action) =>
@@ -63,8 +61,13 @@ const Todo = handleActions({
       .filter(todo => todo.id !== action.payload.id)
     return state.set('todos', todos)
   },
-  [TODO_CLEAR]: (state, action) => 
+  [TODO_CLEAR]: (state, action) =>
     state.set('todos', List(action.payload.todos)),
+  ...pender({
+    type: TODO_FETCH,
+    onSuccess: (state, action) =>
+    state.set('todos', List(action.payload.data.todos)),
+  }),
 }, initialState)
 
 export default Todo

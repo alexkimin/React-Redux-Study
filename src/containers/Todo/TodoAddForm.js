@@ -5,22 +5,32 @@ import { bindActionCreators } from 'redux'
 // APIs
 import { addTodoAPI } from 'store/api/todoAPI'
 // Actions
-import { addTodo, inputTodo } from 'store/modules/Todo'
+import { inputTodo } from 'store/modules/Todo'
 // Selectors
 import { getInputValue } from 'store/selectors'
 // Components
 import { Form, Input, Button } from 'components'
+// helpers
+import { memo } from 'libs'
+
+// Momoize event handlers
+let memoizeForm = {}
+const memoizer = memo(memoizeForm)
 
 const submitTodo = props => e => {
   e.preventDefault()
+  const inputValueUpdater = memoizer('input', props.updateInputVal)
   if (props.inputValue) {
-    props.updateInputVal({ input: '' })
+    inputValueUpdater({ input: '' })
     addTodoAPI({ text: props.inputValue })
   }
 }
 
-const inputValueUpdater = props => e =>
-  props.updateInputVal({ input: e.target.value })
+const inputValueUpdater = props => e => {
+  const inputValueUpdater = memoizer('input', props.updateInputVal)
+  inputValueUpdater({ input: e.target.value })
+}
+
 
 const TodoAddForm = props => {
   return (
