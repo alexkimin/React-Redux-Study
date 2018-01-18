@@ -33,8 +33,10 @@ It is a real-time Todo App.
   - Passing useless props into child.
   - Using dynamically generated event handler functions as props.
   - Using anonymous function as selectors of redux state.
+
 **[Duck Pattern](https://github.com/erikras/ducks-modular-redux) for redux**
   - Actions, reducers -> 1 module file with  [redux-actions](https://github.com/reduxactions/redux-actions)
+
 [Atomic React](https://arc.js.org/) like index.js export/import (**automatic absolute path**)
   - maybe has a problem with code splitting? -> need to check.
   - will refactor this after being familiar with Webpack.
