@@ -14,7 +14,7 @@ import { Form, Input, Button } from 'components'
 import { memo } from 'libs'
 
 // Momoize event handlers
-let memoizeForm = {}
+let memoizeForm = new Map()
 const memoizer = memo(memoizeForm)
 
 const submitTodo = props => e => {

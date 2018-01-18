@@ -18,7 +18,7 @@ import { TodoItem, Spinner, TodoList } from 'components'
 import { memo } from 'libs'
 
 // Momoize event handlers
-let memoizeRender = {}
+let memoizeRender = new Map()
 const memoizer = memo(memoizeRender)
 
 // logic is splitted from component

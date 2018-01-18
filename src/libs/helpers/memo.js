@@ -1,4 +1,4 @@
-export const memo = obj => (type, fn) => {
-  if (!obj[type]) obj[type] = fn
-  return obj[type]
+export const memo = map => (type, fn) => {
+  if (!map.has(type)) map.set(type, fn)
+  return map.get(type)
 }
