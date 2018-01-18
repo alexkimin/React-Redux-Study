@@ -41,11 +41,6 @@ It is a real-time Todo App.
   - maybe has a problem with code splitting? -> need to check.
   - will refactor this after being familiar with Webpack.
 
-**Offline-First Architecture**
-  - implemented manually for practice (soon)
-  - can use library like [redux-optimistic-ui](https://github.com/mattkrick/redux-optimistic-ui)
-  - didn't use localStorage, but if needed? -> [redux-persist](https://github.com/rt2zz/redux-persist)
-
 **More funcitonal Approach??**
   - maybe will try [recompose](https://github.com/acdlite/recompose) soon.
 
@@ -89,7 +84,7 @@ It is a real-time Todo App.
 **Styling**
   - [styled-component](https://www.styled-components.com/) can create themes and reusable functions.
   - Responsive styling without any className usage or frameworks for small challenges.
-  - `@media` helpers in utils.js and theme.js 
+  - `@media` helpers in utils.js and theme.js
   - But if using className is okay, then I will use [classNames](https://www.npmjs.com/package/classnames).
   - For animation, I used styled-component. but [velocity-react](https://github.com/google-fabric/velocity-react), [react-motion](https://github.com/chenglou/react-motion) are seemed nice.
 
