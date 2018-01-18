@@ -15,7 +15,7 @@ const StyledA = styled.a`
   }
 
   ${props => utils.media.mobile`
-      font-size: 0.8rem;
+      font-size: 0.65rem;
     `}
 `
 

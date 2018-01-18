@@ -38,7 +38,18 @@ export const theme = {
     0 3px 5px -1px rgba(0, 0, 0, 0.3)
   `,
   screenSizes: {
-    mobile: 25,
+    mobile: {
+      type: 'max-width',
+      size: 25
+    },
+    medium: {
+      type: 'min-width',
+      size: 45
+    },
+    large: {
+      type: 'min-width',
+      size: 55
+    },
   },
 }
 

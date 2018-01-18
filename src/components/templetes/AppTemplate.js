@@ -19,20 +19,20 @@ const AppTemplate = ({ children }) => {
   return (
     <FlexBox>
       {/*top space*/}
-      <SpaceSide flex={ 1 } />
+      <SpaceSide vertical flex={ 1 } />
       {/*center space of App*/}
       <SpaceCenter row flex={ 10 }>
         {/*left space of center*/}
-        <SpaceSide flex={ 1 } />
+        <SpaceSide horizon flex={ 1 } />
         {/*Actual contents space*/}
         <SpaceCenter flex={ 10 }>
           { children }
         </SpaceCenter>
         {/*right space of center*/}
-        <SpaceSide flex={ 1 } />
+        <SpaceSide horizon flex={ 1 } />
       </SpaceCenter>
       {/*bottom space*/}
-      <SpaceSide flex={ 1 } />
+      <SpaceSide vertical flex={ 1 } />
     </FlexBox>
   )
 }

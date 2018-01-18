@@ -14,7 +14,6 @@ const { screenSizes } = theme
 
 export default {
   flexBox: (props) => {
-    // console.log(props)
     return`
     display: flex;
     justify-content: ${props.center && 'center'};
@@ -32,7 +31,7 @@ export default {
   },
   media: Object.keys(screenSizes).reduce((acc, label) => {
     acc[label] = (...args) => css`
-      @media (max-width: ${screenSizes[label]}rem) {
+      @media (${screenSizes[label].type}: ${screenSizes[label].size}rem) {
         ${css(...args)}
       }
     `
