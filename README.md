@@ -115,8 +115,8 @@ It is a real-time Todo App.
 add `NODE_PATH=src/` to `.env`
 
 ```
-yarn install
+yarn install-all
 yarn start-all
 ```
 
-the both command will be applied to frontend and backend automatically.
+the both command will be applied to frontend and backend automatically by [npm-run-all](https://github.com/mysticatea/npm-run-all).
