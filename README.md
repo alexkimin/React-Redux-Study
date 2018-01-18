@@ -34,7 +34,6 @@ It is a real-time Todo App.
   - Using dynamically generated event handler functions as props.
   - Using anonymous function as selectors of redux state.
 
-
 - [Duck Pattern](https://github.com/erikras/ducks-modular-redux) for redux
   - Actions, reducers -> 1 module file with  [redux-actions](https://github.com/reduxactions/redux-actions)
 
