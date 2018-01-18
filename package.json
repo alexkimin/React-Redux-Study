@@ -68,9 +68,7 @@
     "start-all": "npm-run-all -p start-backend start-frontend",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "install-front": "yarn",
-    "install-back": "cd backend && yarn",
-    "install-all": "npm-run-all -p install-front install-back",
+    "install": "(cd backend && yarn) && (cd .. & yarn)",
     "start": "cd backend && node ./bin/start.js",
     "heroku-postbuild": "yarn --production=false && yarn run build"
   },
