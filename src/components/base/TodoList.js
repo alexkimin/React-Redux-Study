@@ -7,15 +7,12 @@ const StyledUl = styled.ul`
   flex:1;
   overflow: auto;
 `
-const TodoList = ({
-  children,
-  fetching,
-   ...rest
- }) => {
+const TodoList = ({ children, fetching }) => {
+   // According to documentation,
    // New children will replace existing children.
    // key and ref from the original element will be preserved.
   return (
-    <StyledUl padded center={ fetching } {...rest}>
+    <StyledUl padded center={ fetching }>
       { React.Children.map(children, child =>
           React.cloneElement(child, { fetching })) }
     </StyledUl>
@@ -28,6 +25,7 @@ TodoList.propTypes = {
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.any
   ]),
+  fetching: PropTypes.bool,
 }
 
 export default TodoList

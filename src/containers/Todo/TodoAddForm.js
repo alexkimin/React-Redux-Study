@@ -19,17 +19,16 @@ const submitTodo = props => e => {
   }
 }
 
+const inputValueUpdater = props => e =>
+  props.updateInputVal({ input: e.target.value })
+
 const TodoAddForm = props => {
   return (
-    <Form
-      row
-      margin='10px 0'
-      onSubmit={ submitTodo(props) }
-    >
+    <Form onSubmit={ submitTodo(props) }>
       <Input
         placeholder='text here...'
         value={ props.inputValue }
-        onChange={ e => props.updateInputVal({ input: e.target.value }) }
+        onChange={ inputValueUpdater(props) }
       />
       <Button
         name='ADD'

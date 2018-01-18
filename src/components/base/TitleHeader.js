@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 // Components
 import { Title, Logo } from 'components'
@@ -16,16 +15,9 @@ const TitleHeader = props => {
   return (
     <StyledHeader center row>
       <Logo />
-      <Title
-        title='Todos'
-        size={ 60 }
-      />
+      <Title title='Todos' size={ 60 } />
     </StyledHeader>
   )
-}
-
-TitleHeader.propTypes = {
-  type: PropTypes.string,
 }
 
 export default TitleHeader

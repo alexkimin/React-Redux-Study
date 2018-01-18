@@ -28,7 +28,6 @@ const Button = ({
   onClick,
   width,
   height,
-  ...rest
 }) => {
   return (
     <StyledButton
@@ -36,7 +35,6 @@ const Button = ({
       onClick={ onClick }
       width={ width }
       height={ height }
-      { ...rest }
     >
       { name }
     </StyledButton>

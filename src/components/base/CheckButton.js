@@ -56,14 +56,12 @@ const CheckButton = ({
   size,
   onClick,
   toggle,
-  ...rest
 }) => {
   return (
     <CircleBorder
       size={ size }
       onClick={ onClick }
       toggle={ toggle }
-      { ...rest }
     >
       { toggle && <CheckMark size={ size } toggle={ toggle } /> }
     </CircleBorder>

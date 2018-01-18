@@ -11,25 +11,19 @@ const StyledDiv = styled.div`
   padding: 0 8px;
 `
 
-const NavItem = ({
-  to,
-  children,
-  ...rest
- }) => {
+const activeStyle = {
+  opacity: 1,
+  fontWeight: '900',
+  color: 'black',
+  borderBottom: `2px solid ${ theme.color.primary }`,
+  padding: '0 2px',
+  transition: `${ utils.transitMap(['color', 'border-bottom']) }`
+}
+
+const NavItem = ({ to, children }) => {
   return to ? (
     <StyledDiv>
-      <NavLink
-        to={ to }
-        activeStyle={{
-          opacity: 1,
-          fontWeight: '900',
-          color: 'black',
-          borderBottom: `2px solid ${ theme.color.primary }`,
-          padding: '0 2px',
-          transition: `${ utils.transitMap(['color', 'border-bottom']) }`
-        }}
-        { ...rest }
-      >
+      <NavLink to={ to } activeStyle={ activeStyle }>
         { children }
       </NavLink>
     </StyledDiv>

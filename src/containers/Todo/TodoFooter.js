@@ -30,6 +30,7 @@ const TodoFooter = ({ onClick, conUsers }) => {
 
 TodoFooter.propTypes = {
   onClick: PropTypes.func,
+  conUsers: PropTypes.number,
 }
 
 export default connect(

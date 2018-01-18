@@ -30,33 +30,31 @@ const Texts = styled.span`
   flex: 1;
 `
 
-const TodoItem = props => {
-  const {
-    id,
-    text,
-    toggleFn,
-    deleteFn,
-    updateFn,
-    isCompleted,
-    ...rest
-  } = props
+const TodoItem = ({
+  id,
+  text,
+  toggleFn,
+  deleteFn,
+  updateFn,
+  isCompleted,
+  enterDelay,
+  willUnmount,
+}) => {
   return (
     <TodoBody
       id={ id }
       center
       row
       padded
-      { ...rest }
+      enterDelay={ enterDelay }
+      willUnmount={ willUnmount }
     >
       <CheckButton
         onClick={ toggleFn }
         toggle={ isCompleted }
         spin
       />
-      <Texts
-        isCompleted={ isCompleted }
-        onClick={ toggleFn }
-      >
+      <Texts isCompleted={ isCompleted } onClick={ toggleFn } >
         { text }
       </Texts>
       <DeleteButton onClick={ deleteFn } />

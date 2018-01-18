@@ -8,10 +8,7 @@ const StyledDiv = styled.span`
   flex-grow: 1;
   text-align: center;
 `
-const Title = ({
-  title,
-  size,
-}) => (
+const Title = ({ title, size }) => (
   <StyledDiv size={ size }>
     { title }
   </StyledDiv>

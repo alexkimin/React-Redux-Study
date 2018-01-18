@@ -42,11 +42,11 @@ const TodoRender = props => {
   return (
     <TodoList flex={ 10 }>
       {/*
-      <Spinner fetching={ isFetching }/>
-      { rendering(props, todosList) }
+        <Spinner fetching={ isFetching }/>
+        { rendering(props, todosList) }
 
-      Aboved prev version of code had double rendering() issue.
-      after changed like bewlow, ms of app loading became half (130ms -> 70ms).
+        Aboved prev version of code had double rendering() issue.
+        after changed like bewlow, ms of app loading became a half (130ms -> 70ms).
       */}
       { isFetching
         ? (<Spinner />)

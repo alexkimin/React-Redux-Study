@@ -9,16 +9,12 @@ const StyledForm = styled.form`
   padding: 10px 0;
 `
 
-const Form = ({
-  onSubmit,
-  children,
-  ...rest
-}) => {
+const Form = ({ onSubmit, children }) => {
   return (
     <StyledForm
       center
+      row
       onSubmit={ onSubmit }
-      { ...rest }
     >
       { children }
     </StyledForm>

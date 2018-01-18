@@ -14,9 +14,10 @@ const FlexBox = styled.div`
   height: 100vh;
 `
 
-const AppTemplate = ({ children, ...rest }) => {
+const AppTemplate = ({ children }) => {
+
   return (
-    <FlexBox {...rest}>
+    <FlexBox>
       {/*top space*/}
       <SpaceSide flex={ 1 } />
       {/*center space of App*/}
