@@ -9,7 +9,7 @@ import {
   deleteTodoAPI,
 } from 'store/api/todoAPI'
 // Actions
-import { updateTodo } from 'store/modules/Todo'
+import { updateTodo, toggleTodoServer } from 'store/modules/Todo'
 // Selectors
 import { getFiltered, getIsFetching } from 'store/selectors'
 // Components
@@ -28,7 +28,7 @@ const rendering = (props, list) => {
     (<TodoItem
         key={ todo.id }
         idx={ i }
-        toggleFn={ () => toggleTodoAPI(todo.id) }
+        toggleFn={ () => props.toggleTheTodo(todo.id) }
         deleteFn={ () => {
           // deleteTodoAnimation({ id: todo.id })
                            deleteTodoAPI(todo.id, 1500)
@@ -49,6 +49,7 @@ const rendering = (props, list) => {
 const TodoRender = props => {
   const { todos, reverse, isFetching } = props
   const todosList = reverse ? todos.reverse() : todos
+  console.log('todo rendering')
   return (
     <TodoList flex={ 10 }>
       {/* 130ms -> 70ms */}
@@ -78,5 +79,6 @@ export default withRouter(connect(
   }),
   (dispatch) => ({
     updateTheTodo: bindActionCreators(updateTodo, dispatch),
+    toggleTheTodo: bindActionCreators(toggleTodoServer, dispatch),
   })
 )(TodoRender))

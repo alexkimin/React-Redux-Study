@@ -1,8 +1,10 @@
 import { createAction, handleActions } from 'redux-actions'
-import { fetchTodoAPI } from '../api/todoAPI'
+import * as api from '../api/todoAPI'
 import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
 import { pipeMutations } from 'libs'
+import offFirstAction from '../middlewares/offline/offFirstAction'
+
 
 /* Action Types */
 // Sync actions
@@ -24,7 +26,10 @@ export const deleteTodo = createAction(TODO_DELETE)
 export const clearTodo = createAction(TODO_CLEAR)
 export const updateTodo = createAction(TODO_UPDATE)
 // Async actions
-export const fetchTodo = createAction(TODO_FETCH, fetchTodoAPI)
+export const fetchTodo = createAction(TODO_FETCH, api.fetchTodoAPI)
+export const toggleTodoServer = offFirstAction(
+  createAction(TODO_TOGGLE, api.toggleTodoAPI)
+)
 
 
 const initialState = Map({
@@ -62,7 +67,7 @@ const Todo = handleActions({
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
-  [TODO_TOGGLE]: (state, action) =>
+  [TODO_TOGGLE]: (state, action) => console.log(action) ||
     pipeMutations([
         updateToggle(action.payload.id),
       ], state),
@@ -80,7 +85,6 @@ const Todo = handleActions({
       ], state),
   ...pender({
     type: TODO_FETCH,
-    onPending: (state, action) => console.log(action, state) || state,
     onSuccess: (state, action) =>
       state.set('todos', List(action.payload.data.todos)),
   }),

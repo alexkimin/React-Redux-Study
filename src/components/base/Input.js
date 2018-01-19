@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { utils } from 'styles'
+import { blink } from 'styles/keyframes'
 
 const Wrapper = styled.span`
   position: relative;
@@ -26,8 +27,13 @@ const StyledInput = styled.input`
     border-bottom: 2px solid ${ props => props.theme.color.secondary };
 
     + div {
-      top: -10px;
-      color: ${ props => props.theme.color.secondary }
+      color: ${ props => props.theme.color.secondary };
+      transform: translate(0, -20px);
+
+      > span {
+        animation: ${ blink } 1.2s infinite;
+      }
+
     }
   }
 `
@@ -39,7 +45,13 @@ const Placeholder = styled.div`
   font-size: ${ props => props.theme.font.small };
   color: ${ props => props.theme.color.base };
   top: 15px;
-  transition: ${ utils.transitMap(['top']) };
+  transform: translate(0, 0);
+  transition: ${ utils.transitMap(['color', 'transform']) };
+`
+
+const Blinker = styled.span`
+  margin: 0 5px;
+  opacity: 0;
 `
 
 const Input = ({
@@ -54,11 +66,12 @@ const Input = ({
       <StyledInput
         type={ type }
         name={ name }
-        placeholder={ placeholder }
         onChange={ onChange }
         value={ value }
       />
-    <Placeholder>New todo here...</Placeholder>
+    <Placeholder>
+      { placeholder } <Blinker>__</Blinker>
+    </Placeholder>
     </Wrapper>
   )
 }

@@ -2,15 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const StyledDiv = styled.div`
-  ${props => `
-    color: ${ props.theme.color.border };
-    transition: color ${ props.theme.transition };
+import { utils } from 'styles'
 
-    &:hover {
-      color: ${ props.theme.color.alert };
-    }
-    `
+const StyledDiv = styled.div`
+  color: ${ props => props.theme.color.border };
+  transition: ${ utils.transitMap(['all']) };
+  transform: scale(1, 1);
+
+  &:hover {
+    color: ${ props => props.theme.color.alert };
+    transform: scale(1.1, 1.1);
   }
 `
 

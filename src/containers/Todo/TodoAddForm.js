@@ -14,22 +14,19 @@ import { Form, Input, Button } from 'components'
 import { memo } from 'libs'
 
 // Momoize event handlers
-let memoizeForm = new Map()
-const memoizer = memo(memoizeForm)
+// let memoizeForm = new Map()
+// const memoizer = memo(memoizeForm)
 
 const submitTodo = props => e => {
   e.preventDefault()
-  const inputValueUpdater = memoizer('input', props.updateInputVal)
   if (props.inputValue) {
-    inputValueUpdater({ input: '' })
+    props.updateInputVal({ input: '' })
     addTodoAPI({ text: props.inputValue })
   }
 }
 
-const inputValueUpdater = props => e => {
-  const inputValueUpdater = memoizer('input', props.updateInputVal)
-  inputValueUpdater({ input: e.target.value })
-}
+const inputValueUpdater = props => e =>
+  props.updateInputVal({ input: e.target.value })
 
 
 const TodoAddForm = props => {
@@ -38,6 +35,7 @@ const TodoAddForm = props => {
       <Input
         value={ props.inputValue }
         onChange={ inputValueUpdater(props) }
+        placeholder='Add a todo'
       />
       <Button
         name='ADD'

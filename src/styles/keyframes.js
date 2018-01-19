@@ -110,3 +110,11 @@ export const fadeout = keyframes`
     color: white;
   }
 `
+
+export const blink = keyframes`
+{
+  0% {opacity: 1}
+	49%{opacity: 1}
+	50% {opacity: 0}
+}
+`
