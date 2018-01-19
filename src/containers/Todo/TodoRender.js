@@ -23,17 +23,18 @@ const memoizer = memo(memoizeRender)
 
 // logic is splitted from component
 const rendering = (props, list) => {
-  const deleteTodoAnimation = memoizer('delete', props.updateTheTodo)
+  // const deleteTodoAnimation = memoizer('delete', props.updateTheTodo)
   return list.map((todo, i) =>
     (<TodoItem
         key={ todo.id }
         idx={ i }
         toggleFn={ () => toggleTodoAPI(todo.id) }
-        deleteFn={ () => { //deleteTodoAnimation({ id: todo.id })
-                           deleteTodoAPI(todo.id, 500) }
+        deleteFn={ () => {
+          // deleteTodoAnimation({ id: todo.id })
+                           deleteTodoAPI(todo.id, 1500)
+             }
         }
         enterDelay={ 0 }
-        willUnmount={ todo.willUnmount }
         {...todo}
     />)
   )
@@ -50,13 +51,7 @@ const TodoRender = props => {
   const todosList = reverse ? todos.reverse() : todos
   return (
     <TodoList flex={ 10 }>
-      {/*
-        <Spinner fetching={ isFetching }/>
-        { rendering(props, todosList) }
-
-        Aboved prev version of code had double rendering() issue.
-        after changed like bewlow, ms of app loading became a half (130ms -> 70ms).
-      */}
+      {/* 130ms -> 70ms */}
       { isFetching
         ? (<Spinner />)
         : rendering(props, todosList)

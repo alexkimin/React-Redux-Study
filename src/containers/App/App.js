@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 // Components
-import { SEO, AppTemplate } from 'components'
+import { SEO, AppTemplate, TitleHeader } from 'components'
 // Containers
 import { Todo, NoMatch } from 'containers'
 
@@ -18,6 +18,8 @@ const App = ({ socket }) => {
           rel: 'canonical',
           href: window.location.href }] }
       />
+      {/* Header */}
+      <TitleHeader />
       {/*routes*/}
       <Switch>
         <Route exact path='/' render={ mapSocketToComponent(socket) } />

@@ -80,8 +80,9 @@ const Todo = handleActions({
       ], state),
   ...pender({
     type: TODO_FETCH,
+    onPending: (state, action) => console.log(action, state) || state,
     onSuccess: (state, action) =>
-    state.set('todos', List(action.payload.data.todos)),
+      state.set('todos', List(action.payload.data.todos)),
   }),
 }, initialState)
 

@@ -4,21 +4,42 @@ import styled from 'styled-components'
 
 import { utils } from 'styles'
 
-const StyledInput = styled.input`
+const Wrapper = styled.span`
+  position: relative;
   flex: 1;
+  padding-right: 10px;
+  padding-bottom: 5px;
+`
+
+const StyledInput = styled.input`
+  position: relative;
+  z-index: 1;
+  background: transparent;
   height: 35px;
   border: none;
-  margin-right: 10px;
+  width: 100%;
   border-bottom: 1px solid ${ props => props.theme.color.border };
   transition: ${ utils.transitMap(['border-bottom', 'background']) };
 
   &:focus {
     outline: none;
     border-bottom: 2px solid ${ props => props.theme.color.secondary };
-    ::placeholder {
-      opacity: 0;
+
+    + div {
+      top: -10px;
+      color: ${ props => props.theme.color.secondary }
     }
   }
+`
+
+const Placeholder = styled.div`
+  position: absolute;
+  z-index: 0;
+  padding-left: 3px;
+  font-size: ${ props => props.theme.font.small };
+  color: ${ props => props.theme.color.base };
+  top: 15px;
+  transition: ${ utils.transitMap(['top']) };
 `
 
 const Input = ({
@@ -29,18 +50,22 @@ const Input = ({
   value,
 }) => {
   return (
-    <StyledInput
-      type={ type }
-      name={ name }
-      placeholder={ placeholder }
-      onChange={ onChange }
-      value={ value }
-    />
+    <Wrapper>
+      <StyledInput
+        type={ type }
+        name={ name }
+        placeholder={ placeholder }
+        onChange={ onChange }
+        value={ value }
+      />
+    <Placeholder>New todo here...</Placeholder>
+    </Wrapper>
   )
 }
 
 Input.defaultProps = {
   type: 'text',
+  placeholder: ''
 }
 
 Input.propTypes = {

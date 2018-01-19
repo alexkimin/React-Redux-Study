@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import penderMiddleware from 'redux-pender'
+import { socketMiddleware } from './middlewares/socket'
+import { offlineMiddleware } from './middlewares/offline'
 import modules from './modules'
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -9,10 +11,13 @@ const devtools = isDev && window.devToolsExtension
   ? window.devToolsExtension
   : () => fn => fn;
 
+
 const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk,
+      socketMiddleware('/'),
+      offlineMiddleware(''),
       penderMiddleware()
     ),
     devtools({

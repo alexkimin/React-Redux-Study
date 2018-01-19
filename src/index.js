@@ -13,6 +13,7 @@ import { reset, theme, utils } from 'styles'
 import io from 'socket.io-client'
 
 const socket = io('/')
+// const socket = null
 
 const render = Component => ReactDOM.render(
   (

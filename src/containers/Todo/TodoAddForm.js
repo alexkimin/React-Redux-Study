@@ -36,7 +36,6 @@ const TodoAddForm = props => {
   return (
     <Form onSubmit={ submitTodo(props) }>
       <Input
-        placeholder='text here...'
         value={ props.inputValue }
         onChange={ inputValueUpdater(props) }
       />

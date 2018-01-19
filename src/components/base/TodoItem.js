@@ -16,8 +16,8 @@ const TodoBody = styled.li`
   width: 100%;
 
   animation: ${props => props.willUnmount ? fadeout : fadein } 500ms ease-in-out;
-  animation-delay: ${props => props.idx * props.enterDelay}ms;
   animation-fill-mode: forwards;
+  animation-delay: ${ props => props.idx * 150}ms;
 
   &:hover {
     background: ${props => props.theme.color.border};
@@ -32,22 +32,22 @@ const Texts = styled.span`
 
 const TodoItem = ({
   id,
+  idx,
   text,
   toggleFn,
   deleteFn,
   updateFn,
   isCompleted,
   enterDelay,
-  willUnmount,
 }) => {
   return (
     <TodoBody
       id={ id }
+      idx={ idx }
       center
       row
       padded
       enterDelay={ enterDelay }
-      willUnmount={ willUnmount }
     >
       <CheckButton
         onClick={ toggleFn }
@@ -73,7 +73,6 @@ TodoItem.propTypes = {
     PropTypes.string
   ]),
   enterDelay: PropTypes.number,
-  willUnmount: PropTypes.bool,
 }
 
 export default TodoItem

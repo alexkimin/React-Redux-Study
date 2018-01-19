@@ -21,12 +21,12 @@ export const theme = {
     Helvetica,
     Arial,
     sans-serif`,
-    base: '13px',
-    small: '11px',
-    xsmall: '9px',
-    large: '20px',
-    xlarge: '30px',
-    xxlarge: '50px',
+    base: '1rem',
+    small: '0.75rem',
+    xsmall: '0.5rem',
+    large: '1.25rem',
+    xlarge: '1.5rem',
+    xxlarge: '2rem',
   },
   space:{
     padded: '1em'

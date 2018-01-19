@@ -14,7 +14,6 @@ import {
 import { concurrentUser } from 'store/modules/User'
 // Components
 import {
-  TitleHeader,
   NavFilterBar,
   TodoTemplate,
 } from 'components'
@@ -37,8 +36,6 @@ const Todo = (props) => {
 
   return (
     <TodoTemplate>
-      {/* Header */}
-      <TitleHeader />
       {/* Todo Add Form */}
       <TodoAddForm />
       {/* filter bar */}
