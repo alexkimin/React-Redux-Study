@@ -17,8 +17,11 @@ const configureStore = preloadedState => {
     applyMiddleware(
       thunk,
       socketMiddleware('/'),
-      offlineMiddleware({ actionCreater: true }),
-      penderMiddleware()
+      offlineMiddleware({
+        actionCreater: true,
+        major: false
+      }),
+      penderMiddleware(),
     ),
     devtools({
       actionsBlacklist: [null],

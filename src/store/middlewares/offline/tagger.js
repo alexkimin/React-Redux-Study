@@ -1,9 +1,18 @@
+function _isPromise(promise) {
+   if(!promise) return false;
+   return promise.then && promise.catch;
+}
+
 const _asyncTagger = (action, data) => {
   // if local status
-  // if (!action.payload.hasOwnProperty('request')) {
+  if (_isPromise(action.payload)) {
     action.offline = { tag: 'OFFLINE', data }
     return action
-  // }
+  }
+  if (!_isPromise(action.payload)) {
+    action.offline = { tag: 'LOCAL', data }
+    return action
+  }
 
   // if success status
   if (action.payload.status.toString()[0] === '2') {

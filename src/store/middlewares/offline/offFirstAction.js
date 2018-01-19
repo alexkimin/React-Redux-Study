@@ -1,10 +1,19 @@
 import tagger from './tagger'
 
 // it should be work before action creation
-const offFirstAction = actionCreate => data => {
-  const action = actionCreate(data)
-  const taggedAction = tagger(action, data)
-  return action
-}
+const createOffFirstAction = (
+  type,
+  payloadCreator = payload => payload
+) =>
+  data => {
+    const typeString = type
 
-export default offFirstAction
+    const payload = payloadCreator(data)
+
+    return tagger({
+        type: typeString,
+        payload
+      }, data)
+  }
+
+export default createOffFirstAction
