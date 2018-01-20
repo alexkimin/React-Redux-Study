@@ -1,48 +1,82 @@
 import filterActions from './filterActions'
 import { pipe } from './helper'
 
+// isPromise?
+function _isPromise(promise) {
+   if(!promise) return false;
+   return promise.then && promise.catch;
+}
 
-const offlineMiddleware = option => store => next => action => {
-  // skip non-related actions
-  if(filterActions(action)) return next(action)
+function compare() {
 
-  const { actionCreater, major } = option
+}
+
+const offlineMiddleware = option => {
+  const offlineHistory = new Map()
+  return store => next => action => {
+
+    // skip non-related actions
+    if(filterActions(action)) return next(action)
+
+    const { actionCreater, major } = option
+
+    store.cancelation = false
+
+    const _offlineCompare = action => {
+      action.type += '_NONEED'
+      return action
+    }
 
 
-  console.log('== this is offline middleware ==')
-  // console.log('middle : ',action)
+    // comparing logic
+    if(offlineHistory.has(action.type) && !_isPromise(action.payload)) {
+      console.log('--------has!!!!')
+      const type = action.type
+      let payload = action.payload.data
+      payload = JSON.stringify(payload)
+      let historyData = offlineHistory.get(type).data
+      historyData = JSON.stringify(historyData)
 
-  // isPromise?
-  function _isPromise(promise) {
-     if(!promise) return false;
-     return promise.then && promise.catch;
+      const check = historyData === payload
+      console.log('--------checking!!!! ', check, typeof check)
+
+      if(check) {
+        action = _offlineCompare(action)
+        offlineHistory.delete(type)
+        action.offline = null
+      }
+      // console.log(action)
+      return next(action)
+    }
+
+
+
+    if (_isPromise(action.payload) ) {
+      // if promise, dispatch local action
+      console.log(action)
+      store.dispatch({
+        ...action,
+        payload: { data: action.offline.data }
+      })
+      console.log('--------history making!!')
+      if(!action.type.includes('_NONEED')) {
+        console.log('--------setted')
+        offlineHistory.set(action.type, { data: action.offline.data })
+      }
+    }
+
+
+    //
+    // if (_isPromise(action.payload) && major && actionCreater) {
+    //   // success / failure handling
+    //   store.dispatch({
+    //     type: action.type + '_SUCCESS',
+    //     payload: null
+    //   })
+    // }
+
+    return next(action)
   }
-  console.log(action)
-  if (_isPromise(action.payload)) {
-    // if promise, dispatch local action
-    console.log('local')
-    store.dispatch({
-      ...action,
-      payload: action.offline.data
-    })
-  }
-
-  if(!actionCreater) {
-    // without redux-actions like custom action creators
-
-    // axios call
-
-  }
-
-  if (_isPromise(action.payload) && major && actionCreater) {
-    // success / failure handling
-    store.dispatch({
-      type: action.type + '_SUCCESS',
-      payload: null
-    })
-  }
-
-  return next(action)
 }
 
 

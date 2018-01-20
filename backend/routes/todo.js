@@ -69,6 +69,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const io = res.locals.io
   const newId = uuid()
+  console.log(req.body)
   // new Todo
   const newTodo = {
     id: newId,
@@ -87,10 +88,11 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const io = res.locals.io
   const todoId = req.params.id
+  console.log(req.body)
   // toggle updating
   findByIdAndUpdate(todoId)
-    .then(id => {
-      io.emit('toggleTodo', { id })
+    .then(data => {
+      setTimeout(() => io.emit(req.body.type, { data }), 2000)
       return res.json({ status: 'sucess' })
     })
 })
@@ -98,6 +100,7 @@ router.put('/:id', (req, res) => {
 router.delete('/delete/:id', (req, res) => {
   const io = res.locals.io
   const todoId = req.params.id
+  console.log(req.body)
   // delete
   deleteOneById(todoId)
     .then(id => {

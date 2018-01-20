@@ -7,12 +7,16 @@ const createOffFirstAction = (
 ) =>
   data => {
     const typeString = type
+    const body = {
+      type: typeString,
+      data
+    }
 
-    const payload = payloadCreator(data)
+    const payload = payloadCreator(data, body)
 
     return tagger({
         type: typeString,
-        payload
+        payload: payload
       }, data)
   }
 

@@ -68,7 +68,7 @@ const Todo = handleActions({
     })),
   [TODO_TOGGLE]: (state, action) => console.log('reducer : ', action) ||
     pipeMutations([
-        updateToggle(action.payload.id),
+        updateToggle(action.payload.data),
       ], state),
   [TODO_ADD]: (state, action) =>
     pipeMutations([
@@ -89,8 +89,8 @@ const Todo = handleActions({
   }),
   ...pender({
     type: TODO_TOGGLE,
-    onPending: (state, action) => console.log('pending : ',action) || state,
-    onSuccess: (state, action) => console.log('success : ',action) || state
+    onPending: (state, action) => state,
+    onSuccess: (state, action) => state
   }),
 }, initialState)
 

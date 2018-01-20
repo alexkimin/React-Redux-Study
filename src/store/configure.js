@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import penderMiddleware from 'redux-pender'
-import { socketMiddleware } from './middlewares/socket'
+import socketMiddleware from './middlewares/socket/'
 import offlineMiddleware from './middlewares/offline/'
 import modules from './modules'
 
@@ -16,11 +16,11 @@ const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk,
-      socketMiddleware('/'),
       offlineMiddleware({
         actionCreater: true,
         major: false
       }),
+      socketMiddleware('/'),
       penderMiddleware(),
     ),
     devtools({

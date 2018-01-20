@@ -5,18 +5,18 @@ function _isPromise(promise) {
 
 const _asyncTagger = (action, data) => {
   // if local status
-  if (_isPromise(action.payload)) {
-    action.offline = { tag: 'OFFLINE', data }
-    return action
-  }
   if (!_isPromise(action.payload)) {
-    action.offline = { tag: 'LOCAL', data }
+    action.offline = { tag: 'LOCAL', data: data }
     return action
   }
 
   // if success status
-  if (action.payload.status.toString()[0] === '2') {
-    action.offline = { tag: 'SUCCESS', data: action.payload.data }
+  // if (action.payload.status.toString()[0] === '2') {
+  //   action.offline = { tag: 'SUCCESS', data: action.payload.data }
+  //   return action
+  // }
+  if (_isPromise(action.payload)) {
+    action.offline = { tag: 'OFFLINE', data: data }
     return action
   }
 

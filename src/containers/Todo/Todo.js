@@ -26,13 +26,13 @@ import {
 const Todo = (props) => {
 
   // Socket.io eventListening
-  const socket = props.socket
-  socket.off()
-  socket.on('addTodo', todo => props.submitNewTodo({ todo }))
-  socket.on('toggleTodo', id => console.log('socket recieved') || props.toggleTheTodo(id))
-  socket.on('deleteTodo', id => props.deleteTheTodo(id))
-  socket.on('clearTodo', todos => props.clearCompleted({ todos }))
-  socket.on('conUser', num => props.updateConcurrentUser({ num }))
+  // const socket = props.socket
+  // socket.off()
+  // socket.on('addTodo', todo => props.submitNewTodo({ todo }))
+  // socket.on('toggleTodo', id => console.log('socket recieved') || props.toggleTheTodo(id))
+  // socket.on('deleteTodo', id => props.deleteTheTodo(id))
+  // socket.on('clearTodo', todos => props.clearCompleted({ todos }))
+  // socket.on('conUser', num => props.updateConcurrentUser({ num }))
 
   return (
     <TodoTemplate>
