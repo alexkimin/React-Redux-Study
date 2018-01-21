@@ -2,6 +2,7 @@ import express from 'express'
 import uuid from 'uuid/v4'
 
 const router = express.Router()
+let _socket = null
 
 /* ================================
   fake database
@@ -60,64 +61,93 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
   RESTful routes below
 */
 
-router.get('/', (req, res) => {
-  delay(700)
+const withSocket = io => {
+
+  // hackey concurrentUser tracking for fun.
+  io.on('connect', (socket) => {
+    console.log('connected', socket.id)
+    // add id to io object
+
+    io.emit('conUser', io.eio.clientsCount)
+
+    socket.on('disconnect', () => {
+      io.emit('conUser', io.eio.clientsCount)
+    })
+  })
+
+
+  router.get('/', (req, res) => {
+    delay(300)
     .then(() => findAll())
     .then(data => res.json({ todos: data }))
-})
+  })
 
-router.post('/', (req, res) => {
-  const io = res.locals.io
-  const newId = uuid()
-  console.log(req.body)
-  // new Todo
-  const newTodo = {
-    id: newId,
-    text: req.body.text,
-    isCompleted: false,
-    prioritized: false,
-    willUnmount: false
-  }
-  // save
-  DB.set(newId, newTodo)
-  // send the new one back to front
-  io.emit('addTodo', newTodo)
-  return res.json({ status: 'sucess' })
-})
+  router.post('/', (req, res) => {
+    const newId = uuid()
+    console.log(req.body)
+    // new Todo
+    const newTodo = {
+      id: newId,
+      text: req.body.data.content,
+      isCompleted: false,
+      prioritized: false,
+      willUnmount: false
+    }
+    // save
+    DB.set(newId, newTodo)
+    // send the new one back to front
+    io.emit(req.body.type, {
+      data: newTodo,
+      actionID: req.body.data.actionID
+     })
+    return res.json({ status: 'sucess' })
+  })
 
-router.put('/:id', (req, res) => {
-  const io = res.locals.io
-  const todoId = req.params.id
-  console.log(req.body)
-  // toggle updating
-  findByIdAndUpdate(todoId)
-    .then(data => {
-      setTimeout(() => io.emit(req.body.type, { data }), 2000)
-      return res.json({ status: 'sucess' })
-    })
-})
+  router.put('/:id', (req, res) => {
+    const todoId = req.params.id
+    console.log(req.body)
+    // toggle updating
+    findByIdAndUpdate(todoId)
+      .then(data => {
+        io.emit(req.body.type, {
+          data,
+          actionID: req.body.data.actionID
+         })
+        return res.json({})
+      })
+  })
 
-router.delete('/delete/:id', (req, res) => {
-  const io = res.locals.io
-  const todoId = req.params.id
-  console.log(req.body)
-  // delete
-  deleteOneById(todoId)
+  router.delete('/delete/:id', (req, res) => {
+    const todoId = req.params.id
+    // delete
+    deleteOneById(todoId)
     .then(id => {
-      io.emit('deleteTodo', { id })
+      io.emit(req.body.type, {
+        data: id,
+        actionID: req.body.data.actionID
+       })
       return res.json({ status: 'sucess' })
     })
-})
-router.delete('/clear', (req, res) => {
-  const io = res.locals.io
-  // clear completed
-  findAll()
+  })
+  router.delete('/clear', (req, res) => {
+    // clear completed
+    console.log(req.body)
+    findAll()
     .then(todos => {
       // delete completed todo
       todos.forEach(todo => todo.isCompleted && DB.delete(todo.id))
-      io.emit('clearTodo', [...DB.values()])
+      // io.emit('clearTodo', [...DB.values()])
+      io.emit(req.body.type, {
+        data: [...DB.values()],
+        actionID: req.body.data.actionID
+       })
       return res.json({ status: 'sucess' })
     })
-})
+  })
 
-export default router
+  return router
+}
+
+
+
+export default withSocket

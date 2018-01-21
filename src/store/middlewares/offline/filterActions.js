@@ -1,8 +1,5 @@
-// isPromise?
-function _isPromise(promise) {
-  if(!promise) return false;
-  return promise.then && promise.catch;
-}
+import { isPromise } from './helper'
+
 
 const _nonRelatedActions = action => {
   // If the action doesn't have payload
@@ -10,7 +7,7 @@ const _nonRelatedActions = action => {
   // If the action is not done by user
   const automaticAction = action.type.includes('@@')
   // If the action is promise
-  const promiseCheck = _isPromise(action.payload)
+  const promiseCheck = isPromise(action.payload)
   // return boolean
   return emptyAction || automaticAction //|| promiseCheck
 }

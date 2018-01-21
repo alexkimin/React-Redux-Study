@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 // APIs
 import { addTodoAPI } from 'store/api/todoAPI'
 // Actions
-import { inputTodo } from 'store/modules/Todo'
+import { inputTodo, addTodo } from 'store/modules/Todo'
 // Selectors
 import { getInputValue } from 'store/selectors'
 // Components
@@ -21,7 +21,7 @@ const submitTodo = props => e => {
   e.preventDefault()
   if (props.inputValue) {
     props.updateInputVal({ input: '' })
-    addTodoAPI({ text: props.inputValue })
+    props.addTheTodo(props.inputValue)
   }
 }
 
@@ -61,5 +61,6 @@ export default connect(
   }),
   (dispatch) => ({
     updateInputVal: bindActionCreators(inputTodo, dispatch),
+    addTheTodo: bindActionCreators(addTodo, dispatch),
   })
 )(TodoAddForm)

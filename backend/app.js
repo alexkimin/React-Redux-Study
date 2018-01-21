@@ -27,28 +27,16 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../build')))
 
 // custom middleware
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   // socket setting with local scope
-  res.locals.io = io
-  next();
+  // res.locals.io = io
+  next()
 });
 
-// hackey concurrentUser tracking for fun.
-let concurrent = 0
-io.on('connect', (socket) => {
-  console.log('connected', socket.id)
-  // add id to io object
-  io.id = socket.id
-  concurrent++
-  io.emit('conUser', concurrent)
 
-  socket.on('disconnect', () => {
-    concurrent--
-    io.emit('conUser', concurrent)
-  })
-})
+
 // router register
-app.use('/todo', todo);
+app.use('/todo', todo(io))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

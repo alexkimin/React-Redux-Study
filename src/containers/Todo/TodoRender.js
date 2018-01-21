@@ -5,11 +5,10 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 // APIs
 import {
-  toggleTodoAPI,
   deleteTodoAPI,
 } from 'store/api/todoAPI'
 // Actions
-import { updateTodo, toggleTodoServer } from 'store/modules/Todo'
+import { updateTodo, toggleTodo, deleteTodo } from 'store/modules/Todo'
 // Selectors
 import { getFiltered, getIsFetching } from 'store/selectors'
 // Components
@@ -31,7 +30,7 @@ const rendering = (props, list) => {
         toggleFn={ () => props.toggleTheTodo(todo.id) }
         deleteFn={ () => {
           // deleteTodoAnimation({ id: todo.id })
-                           deleteTodoAPI(todo.id, 1500)
+                           props.deleteTheTodo(todo.id)
              }
         }
         enterDelay={ 0 }
@@ -79,6 +78,7 @@ export default withRouter(connect(
   }),
   (dispatch) => ({
     updateTheTodo: bindActionCreators(updateTodo, dispatch),
-    toggleTheTodo: bindActionCreators(toggleTodoServer, dispatch),
+    toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
+    deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
   })
 )(TodoRender))

@@ -21,14 +21,13 @@ export const TODO_FETCH = 'todo/TODO_FETCH'
 /* Actions Creater */
 // Sync actions
 export const inputTodo = createAction(TODO_INPUT)
-export const addTodo = createAction(TODO_ADD)
-export const toggleTodo = createOffFirstAction(TODO_TOGGLE)
-export const deleteTodo = createAction(TODO_DELETE)
-export const clearTodo = createAction(TODO_CLEAR)
 export const updateTodo = createAction(TODO_UPDATE)
 // Async actions
 export const fetchTodo = createPenderAction(TODO_FETCH, api.fetchTodoAPI)
-export const toggleTodoServer = createOffFirstAction(TODO_TOGGLE, api.toggleTodoAPI)
+export const addTodo = createOffFirstAction(TODO_ADD, api.addTodoAPI)
+export const toggleTodo = createOffFirstAction(TODO_TOGGLE, api.toggleTodoAPI)
+export const deleteTodo = createOffFirstAction(TODO_DELETE, api.deleteTodoAPI)
+export const clearTodo = createOffFirstAction(TODO_CLEAR, api.clearTodoAPI)
 
 
 const initialState = Map({
@@ -66,21 +65,21 @@ const Todo = handleActions({
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
-  [TODO_TOGGLE]: (state, action) => console.log('reducer : ', action) ||
+  [TODO_TOGGLE]: (state, action) =>
     pipeMutations([
         updateToggle(action.payload.data),
       ], state),
   [TODO_ADD]: (state, action) =>
     pipeMutations([
-        addNew(action.payload.todo),
+        addNew(action.payload.data),
       ], state),
   [TODO_DELETE]: (state, action) =>
     pipeMutations([
-        deleteOne(action.payload.id),
+        deleteOne(action.payload.data),
       ], state),
-  [TODO_CLEAR]: (state, action) =>
+  [TODO_CLEAR]: (state, action) => console.log('reducer', action) ||
     pipeMutations([
-        clearSome(action.payload.todos),
+        clearSome(action.payload.data),
       ], state),
   ...pender({
     type: TODO_FETCH,

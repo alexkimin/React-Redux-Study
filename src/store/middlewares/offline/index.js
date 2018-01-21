@@ -1,83 +1,88 @@
 import filterActions from './filterActions'
-import { pipe } from './helper'
+import { pipe, isPromise } from './helper'
+import compare from './compare'
+import uuid from 'uuid/v4'
 
-// isPromise?
-function _isPromise(promise) {
-   if(!promise) return false;
-   return promise.then && promise.catch;
+// helper tagging function when current dispatching is no need to
+// reach originally targeted reducer due to same data.
+const _offlineNoNeedTagger = action => {
+  action.type += '_NONEED'
+  action.offline = null
+  return action
 }
 
-function compare() {
 
-}
 
-const offlineMiddleware = option => {
+
+/* Main Code */
+const _offlineMiddleware = option => {
+
+  // Store offline dispatching history to compare
+  // pre-data in local with post-delivered data from server
   const offlineHistory = new Map()
+  const offlineHistoryQueue = []
+  const responseQueue = []
+
+  const userId = uuid()
+  const _newDispatch = dispatch => action => {
+    const _action = {...action, userId }
+    return dispatch(_action)
+  }
+  let dispatchUpdate = false
+
+  const comparing = compare(offlineHistory)
+
+  // actual middleware part
   return store => next => action => {
 
-    // skip non-related actions
-    if(filterActions(action)) return next(action)
+    //register userID to Store
+    if(!store.userId) store.userId = userId
 
+    if(!dispatchUpdate) {
+      store.dispatch = _newDispatch(store.dispatch)
+      dispatchUpdate = true;
+    }
+
+
+
+
+    // skipping non-related actions with this middleware
+    if(filterActions(action)) return next(action)
+    console.log(action)
+    console.log(store)
+
+    // checking another action creation library
+    // and will use this middleware as major promise-middleware
     const { actionCreater, major } = option
 
-    store.cancelation = false
-
-    const _offlineCompare = action => {
-      action.type += '_NONEED'
-      return action
-    }
-
-
-    // comparing logic
-    if(offlineHistory.has(action.type) && !_isPromise(action.payload)) {
-      console.log('--------has!!!!')
-      const type = action.type
-      let payload = action.payload.data
-      payload = JSON.stringify(payload)
-      let historyData = offlineHistory.get(type).data
-      historyData = JSON.stringify(historyData)
-
-      const check = historyData === payload
-      console.log('--------checking!!!! ', check, typeof check)
-
-      if(check) {
-        action = _offlineCompare(action)
-        offlineHistory.delete(type)
-        action.offline = null
+    // Comparing logic
+    // In case that action type is in history
+    // payload is not promise
+    if(offlineHistory.has(action.type) && !isPromise(action.payload)) {
+        if(comparing(action)) {
+        offlineHistory.delete(action.type)
+        return next(_offlineNoNeedTagger(action))
       }
-      // console.log(action)
-      return next(action)
+      console.log('diff')
     }
 
-
-
-    if (_isPromise(action.payload) ) {
+    if (isPromise(action.payload) ) {
       // if promise, dispatch local action
-      console.log(action)
       store.dispatch({
         ...action,
         payload: { data: action.offline.data }
       })
-      console.log('--------history making!!')
+      console.log('clicked')
+
       if(!action.type.includes('_NONEED')) {
-        console.log('--------setted')
         offlineHistory.set(action.type, { data: action.offline.data })
       }
     }
-
-
-    //
-    // if (_isPromise(action.payload) && major && actionCreater) {
-    //   // success / failure handling
-    //   store.dispatch({
-    //     type: action.type + '_SUCCESS',
-    //     payload: null
-    //   })
-    // }
 
     return next(action)
   }
 }
 
+const offlineMiddleware = option => _offlineMiddleware(option)
 
 export default offlineMiddleware

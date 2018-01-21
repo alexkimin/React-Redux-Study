@@ -3,24 +3,27 @@ import thunk from 'redux-thunk'
 import penderMiddleware from 'redux-pender'
 import socketMiddleware from './middlewares/socket/'
 import offlineMiddleware from './middlewares/offline/'
-import modules from './modules'
+import modules, { actionTypes } from './modules'
 
 const isDev = process.env.NODE_ENV === 'development';
 
 const devtools = isDev && window.devToolsExtension
   ? window.devToolsExtension
   : () => fn => fn;
-
+  // offlineMiddleware({
+  //   actionCreater: true,
+  //   major: false
+  // }),
 
 const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk,
-      offlineMiddleware({
-        actionCreater: true,
-        major: false
+
+      socketMiddleware({
+        actionTypes,
+        path: '/'
       }),
-      socketMiddleware('/'),
       penderMiddleware(),
     ),
     devtools({

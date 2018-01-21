@@ -2,24 +2,54 @@
 import io from 'socket.io-client'
 import filterActions from './filterActions'
 
-
-const socketMiddleware = path => {
+const socketMiddleware = ({ actionTypes , path='/' }) => store => {
 
   const socketEvents = new Map()
-  socketEvents.set('socket', io(path))
+  const socket = io(path)
+  store.socket = {
+    session: null,
+    socketEvents
+  }
 
-  return store => next => action => {
+  // register socket event listners
+  Object.keys(actionTypes).forEach(key => {
+    const actionConstant = actionTypes[key]
+    socketEvents.set(actionConstant, true)
 
+    socket.on(actionConstant, (data) => console.log('-------socket success!') || store.dispatch({
+      type: actionConstant,
+      payload: data,
+      meta: {
+        socket: {
+          fromServer: true
+        }
+      }
+    }))
+    socket.on(`${actionConstant}_FAILURE`, (data) => console.log('-------socket failure!') || store.dispatch({
+      type: actionConstant,
+      payload: data,
+      meta: {
+        socket: {
+          fromServer: true
+        }
+      }
+    }))
+  })
+
+  return next => action => {
     if(filterActions(action)) return next(action)
 
-    if(!socketEvents.has(action.type)) {
-      socketEvents.set(action.type, true)
-      const socket = socketEvents.get('socket')
-      socket.on(action.type, (data) => console.log('-------socket') || store.dispatch({
-        type: action.type,
-        payload: data
-      }))
+    if(socket.id) store.socket.session = socket.id
+
+    if(!action.meta) action.meta = {}
+    if (!action.meta.socket) action.meta.socket = {}
+
+    if(!action.meta.socket.sender && socket.id && !action.meta.socket.fromServer) {
+      action.meta.socket.sender = socket.id
     }
+
+    console.log(action)
+
     next(action);
   }
 }

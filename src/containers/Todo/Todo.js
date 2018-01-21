@@ -5,12 +5,7 @@ import { bindActionCreators } from 'redux'
 // APIs
 import { clearTodoAPI } from 'store/api/todoAPI'
 // Actions
-import {
-  addTodo,
-  toggleTodo,
-  deleteTodo,
-  clearTodo
-} from 'store/modules/Todo'
+import { clearTodo } from 'store/modules/Todo'
 import { concurrentUser } from 'store/modules/User'
 // Components
 import {
@@ -43,7 +38,7 @@ const Todo = (props) => {
       {/* Todos list */}
       <TodoRender reverse />
       {/* Footer */}
-      <TodoFooter onClick={ clearTodoAPI } />
+      <TodoFooter onClick={ () => props.clearCompleted() } />
     </TodoTemplate>
   )
 }
@@ -65,9 +60,6 @@ export default connect(
 
   }),
   (dispatch) => ({
-    submitNewTodo: bindActionCreators(addTodo, dispatch),
-    toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
-    deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
     clearCompleted: bindActionCreators(clearTodo, dispatch),
     updateConcurrentUser: bindActionCreators(concurrentUser, dispatch),
   })
