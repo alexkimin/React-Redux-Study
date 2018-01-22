@@ -8,12 +8,8 @@ import Root from './Root'
 // Redux Store
 import store from 'store'
 // CSS
-import { reset, theme, utils } from 'styles'
-// Socket.io
-import io from 'socket.io-client'
+import { reset, theme } from 'styles'
 
-// const socket = io('/')
-const socket = null
 
 const render = Component => ReactDOM.render(
   (
@@ -21,7 +17,7 @@ const render = Component => ReactDOM.render(
       <Component
         store={ store }
         theme={ theme }
-        socket={ socket }
+        reset
       />
     </HotContainer>
   ),
