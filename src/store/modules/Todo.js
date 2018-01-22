@@ -4,6 +4,7 @@ import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
 import { pipeMutations } from 'libs'
 import createOffFirstAction from '../middlewares/offline/offFirstAction'
+import createSocketAction from '../middlewares/socket/createSocketAction'
 import { createPenderAction } from 'redux-pender'
 
 
@@ -26,8 +27,8 @@ export const updateTodo = createAction(TODO_UPDATE)
 export const fetchTodo = createPenderAction(TODO_FETCH, api.fetchTodoAPI)
 export const addTodo = createOffFirstAction(TODO_ADD, api.addTodoAPI)
 export const toggleTodo = createOffFirstAction(TODO_TOGGLE, api.toggleTodoAPI)
-export const deleteTodo = createOffFirstAction(TODO_DELETE, api.deleteTodoAPI)
-export const clearTodo = createOffFirstAction(TODO_CLEAR, api.clearTodoAPI)
+export const deleteTodo = createSocketAction(TODO_DELETE, api.deleteTodoAPI)
+export const clearTodo = createSocketAction(TODO_CLEAR, api.clearTodoAPI)
 
 
 const initialState = Map({

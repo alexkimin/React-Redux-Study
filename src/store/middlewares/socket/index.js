@@ -1,6 +1,5 @@
 // Socket.io
 import io from 'socket.io-client'
-import filterActions from './filterActions'
 
 const socketMiddleware = ({ actionTypes , path='/' }) => store => {
 
@@ -37,18 +36,17 @@ const socketMiddleware = ({ actionTypes , path='/' }) => store => {
   })
 
   return next => action => {
-    if(filterActions(action)) return next(action)
 
-    if(socket.id) store.socket.session = socket.id
+    // if(socket.id) store.socket.session = socket.id
+    //
+    // if(!action.meta) action.meta = {}
+    // if (!action.meta.socket) action.meta.socket = {}
+    //
+    // if(!action.meta.socket.sender && socket.id && !action.meta.socket.fromServer) {
+    //   action.meta.socket.sender = socket.id
+    // }
 
-    if(!action.meta) action.meta = {}
-    if (!action.meta.socket) action.meta.socket = {}
-
-    if(!action.meta.socket.sender && socket.id && !action.meta.socket.fromServer) {
-      action.meta.socket.sender = socket.id
-    }
-
-    console.log(action)
+    // console.log(action)
 
     next(action);
   }

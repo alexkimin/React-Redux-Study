@@ -1,21 +1,15 @@
-import tagger from './tagger'
-import uuid from 'uuid/v4'
 
 // it should be work before action creation
-const createOffFirstAction = (
+const createSocketAction = (
   type,
   payloadCreator = payload => payload,
   meta={}
 ) =>
   data => {
     const typeString = type
-    
-    const actionID = uuid()
-    meta.actionID = actionID
 
     const taggedData = {
-      content: data,
-      actionID
+      content: data
     }
 
     const body = {
@@ -25,11 +19,11 @@ const createOffFirstAction = (
 
     const payload = payloadCreator(taggedData, body)
 
-    return tagger({
+    return {
         type: typeString,
         payload: payload,
         meta
-      }, data)
+      }
   }
 
-export default createOffFirstAction
+export default createSocketAction
