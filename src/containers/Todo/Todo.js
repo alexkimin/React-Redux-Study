@@ -42,7 +42,7 @@ Todo.propTypes = {
   updateConcurrentUser: PropTypes.func,
 }
 
-// Selector Pattern with reselector
+// Selector Pattern with reselect
 // mapStateToProps are selectors that calculated when store is changed
 // the problem is even the state is same, will be calculated again
 // with reselect package, we can memoize selectors to enhance performance.

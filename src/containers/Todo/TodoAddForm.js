@@ -54,7 +54,7 @@ TodoAddForm.propTypes = {
   updateInputVal: PropTypes.func,
 }
 
-// Selector Pattern with reselector
+// Selector Pattern with reselect
 export default connect(
   (state, props) => ({
     inputValue: getInputValue(state, props)

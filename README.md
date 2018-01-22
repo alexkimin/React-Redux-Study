@@ -19,6 +19,7 @@ It is a real-time Todo App.
       memo.js         - memoizing event handler functions.
   /store
     /api              - axios to backend.
+    /middleware       - redux middlewares
     /modules          - duck pattern (action creators, reducers).
     /selectors        - selector pattern for mapStateToProps.
     configure.js      - redux store configuration.
@@ -27,12 +28,7 @@ It is a real-time Todo App.
     utils.js          - styling helper functions.
 ...
 ```
-**Avoiding known anti-patterns.**
-  - Using big component.
-  - Unnecessary mapStateToProps.
-  - Passing useless props into child.
-  - Using dynamically generated event handler functions as props.
-  - Using anonymous function as selectors of redux state.
+
 
 **[Duck Pattern](https://github.com/erikras/ducks-modular-redux) for redux**
   - Actions, reducers -> 1 module file with  [redux-actions](https://github.com/reduxactions/redux-actions)
@@ -41,12 +37,17 @@ It is a real-time Todo App.
   - maybe has a problem with code splitting? -> need to check.
   - will refactor this after being familiar with Webpack.
 
-**More funcitonal Approach??**
-  - maybe will try [recompose](https://github.com/acdlite/recompose) soon.
+**Practice for writing middleware of redux**
+  - custom socket redux-middleware will handle actions and socket.io events.
+  - (soon) custom offline-first middleware will provide offline-first functionality.
 
 **Backend**
   - Node with express, no database currently.
   - Websocket implemented by [Socket.io](https://socket.io/)
+
+## History
+  - Todo app without socket : [branch](https://github.com/AlexMin314/React-Redux-Study/tree/no.socket.ver)
+  - Todo app with socket, but events are linked to component directly : [branch](https://github.com/AlexMin314/React-Redux-Study/tree/socket.hacky)
 
 ## What I've learned from this practice.
 
@@ -62,21 +63,24 @@ It is a real-time Todo App.
 **Async Action**
   - [redux-thunk](https://github.com/gaearon/redux-thunk) -> Saga? if I have more time...
 
-**Selector Pattern**
-  - [reselect](https://github.com/reactjs/reselect) : good for performance optimization and functional reusability
+**Optimization**
+  - **Selector Pattern** : [reselect](https://github.com/reactjs/reselect) is good for performance optimization and functional reusability
+  - **Code splitting, Async chunk**
+    - option1. via [AsyncComponent](https://gist.github.com/acdlite/a68433004f9d6b4cbc83b5cc3990c194)
+    - option2. [react-loadable](https://github.com/thejameskyle/react-loadable)
 
-**Performance Optimization**
+**Avoiding known anti-patterns.**
+  - Using big component.
+  - Unnecessary mapStateToProps.
+  - Passing useless props into child.
+  - Using dynamically generated event handler functions as props.
+  - Using anonymous function as selectors of redux state.
   - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension to check performance enhancement in ms.
-    - I realized that if I follow general rules, then the performance will follow.
-    - Mind re-rendering, especially due to redux-store updating
-    - Don't connect unnecessary states to props, split it into a smaller component.
-    - Splitting components and logic functions.
 
 **Promise action handling**
   - [From] [redux-promise-middleware](https://github.com/pburtchaell/redux-promise-middleware)
   - [To] [redux-pender](https://github.com/velopert/redux-pender)
     - Appending PENDING, SUCCESS, FAILURE to action type automatically.
-    - pender reducer itself is useful for aboved status.
 
 **Immutable data handling**
   - [immutable.js](https://facebook.github.io/immutable-js/)
