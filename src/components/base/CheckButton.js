@@ -11,8 +11,8 @@ const CircleBorder = styled.div`
       position: relative;
       vertical-align: top;
       border-radius: 50%;
-      width: ${ props.size }em;
-      height: ${ props.size }em;
+      width: ${ props.size }rem;
+      height: ${ props.size }rem;
 
       &:hover {
         border: 1px solid ${ props.theme.color.secondary };
@@ -36,14 +36,14 @@ const CircleBorder = styled.div`
 const CheckMark = styled.div`
   ${props =>`
       opacity: 1;
-      height: ${ `${props.size / 2}em` };
-      width: ${ `${props.size / 4}em` };
+      height: ${ `${props.size / 2}rem` };
+      width: ${ `${props.size / 4}rem` };
       border-right: 3px solid ${ props.theme.color.secondary };
       border-top: 3px solid ${ props.theme.color.secondary };
       content: '';
       position: absolute;
-      left: ${ `${props.size / 6 + props.size / 12}em` };
-      top: ${ `${props.size / 2}em` };
+      left: ${ `${props.size / 6 + props.size / 12}rem` };
+      top: ${ `${props.size / 2}rem` };
       transform-origin: left top;
       transform: scaleX(-1) rotate(135deg);
       animation: ${ checkmark } 300ms ease;

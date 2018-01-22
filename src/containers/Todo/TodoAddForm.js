@@ -11,30 +11,24 @@ import { getInputValue } from 'store/selectors'
 // Components
 import { Form, Input, Button } from 'components'
 // helpers
-import { memo } from 'libs'
+import { sequence } from 'libs'
 
-// Momoize event handlers
-// let memoizeForm = new Map()
-// const memoizer = memo(memoizeForm)
+const _submitTodo = props => e =>
+  e.preventDefault() ||
+  props.inputValue &&
+  props.updateInputVal({ input: '' }) ||
+  props.addTheTodo(props.inputValue)
 
-const submitTodo = props => e => {
-  e.preventDefault()
-  if (props.inputValue) {
-    props.updateInputVal({ input: '' })
-    props.addTheTodo(props.inputValue)
-  }
-}
-
-const inputValueUpdater = props => e =>
+const _inputValueUpdater = props => e =>
   props.updateInputVal({ input: e.target.value })
 
 
 const TodoAddForm = props => {
   return (
-    <Form onSubmit={ submitTodo(props) }>
+    <Form onSubmit={ _submitTodo(props) }>
       <Input
         value={ props.inputValue }
-        onChange={ inputValueUpdater(props) }
+        onChange={ _inputValueUpdater(props) }
         placeholder='Add a todo'
       />
       <Button

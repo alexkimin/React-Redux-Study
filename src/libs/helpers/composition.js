@@ -12,5 +12,3 @@ export const pipe = (...fns) => data =>
 
 export const pipeMutations = (fns, state) =>
   state.withMutations(s => fns.reduce(_applyFn, s))
-
-export const curry = props => fn => fn(props)

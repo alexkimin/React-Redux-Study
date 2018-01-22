@@ -6,11 +6,12 @@ import { NavLink } from 'react-router-dom'
 import { utils, theme } from 'styles'
 
 const StyledDiv = styled.div`
-  color: ${ props => props.theme.color.disabled} ;
+  color: ${ props => props.theme.color.disabled };
   margin: 0 10px;
   padding: 0 8px;
 `
 
+// style object for NavLink
 const activeStyle = {
   opacity: 1,
   fontWeight: '900',
@@ -21,6 +22,7 @@ const activeStyle = {
 }
 
 const NavItem = ({ to, children, exact }) => {
+  // is no 'to', then return plain div.
   return to ? (
     <StyledDiv>
       <NavLink to={ to } activeStyle={ activeStyle } exact={ exact }>

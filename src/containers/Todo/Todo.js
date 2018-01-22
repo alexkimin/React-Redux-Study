@@ -18,8 +18,9 @@ import {
   TodoAddForm,
   TodoFooter } from 'containers'
 
-const Todo = (props) => {
+const _clearCompleted = props => () => props.clearCompleted()
 
+const Todo = props => {
   return (
     <TodoTemplate>
       {/* Todo Add Form */}
@@ -29,15 +30,13 @@ const Todo = (props) => {
       {/* Todos list */}
       <TodoRender reverse />
       {/* Footer */}
-      <TodoFooter onClick={ () => props.clearCompleted() } />
+      <TodoFooter onClick={ _clearCompleted } />
     </TodoTemplate>
   )
 }
 
 Todo.propTypes = {
-  submitNewTodo: PropTypes.func,
-  deleteTheTodo: PropTypes.func,
-  toggleTheTodo: PropTypes.func,
+
   clearCompleted: PropTypes.func,
   updateConcurrentUser: PropTypes.func,
 }

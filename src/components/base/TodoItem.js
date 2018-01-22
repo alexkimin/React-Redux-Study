@@ -10,17 +10,16 @@ import { utils } from 'styles'
 const TodoBody = styled.li`
   ${ props => utils.flexBox(props) }
   padding-right: 30px;
-  border-bottom: 1px solid ${props => props.theme.color.border};
-  transition: background ${props => props.theme.transition};
+  border-bottom: 1px solid ${props => props.theme.color.border };
+  transition: background ${props => props.theme.transition };
   opacity: 0;
   width: 100%;
 
   animation: ${props => props.willUnmount ? fadeout : fadein } 500ms ease-in-out;
   animation-fill-mode: forwards;
-  animation-delay: ${ props => props.idx * 150}ms;
 
   &:hover {
-    background: ${props => props.theme.color.border};
+    background: ${ props => props.theme.color.border };
   }
 `
 const Texts = styled.span`

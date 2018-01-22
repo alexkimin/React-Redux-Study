@@ -33,7 +33,6 @@ const socketMiddleware = ({ actionTypes , path='/' }) => store => {
   return next => action => {
 
 
-
     next(action)
   }
 }

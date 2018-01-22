@@ -25,7 +25,7 @@ export const inputTodo = createAction(TODO_INPUT)
 export const updateTodo = createAction(TODO_UPDATE)
 // Async actions
 export const fetchTodo = createPenderAction(TODO_FETCH, api.fetchTodoAPI)
-export const addTodo = createOffFirstAction(TODO_ADD, api.addTodoAPI)
+export const addTodo = createSocketAction(TODO_ADD, api.addTodoAPI)
 export const toggleTodo = createOffFirstAction(TODO_TOGGLE, api.toggleTodoAPI)
 export const deleteTodo = createSocketAction(TODO_DELETE, api.deleteTodoAPI)
 export const clearTodo = createSocketAction(TODO_CLEAR, api.clearTodoAPI)
@@ -65,7 +65,7 @@ const Todo = handleActions({
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
-  [TODO_TOGGLE]: (state, action) => // console.log('reducer', action) ||
+  [TODO_TOGGLE]: (state, action) =>
     pipeMutations([
         updateToggle(action.payload.data),
       ], state),
@@ -77,7 +77,7 @@ const Todo = handleActions({
     pipeMutations([
         deleteOne(action.payload.data),
       ], state),
-  [TODO_CLEAR]: (state, action) => // console.log('reducer', action) ||
+  [TODO_CLEAR]: (state, action) => 
     pipeMutations([
         clearSome(action.payload.data),
       ], state),

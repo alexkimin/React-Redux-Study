@@ -21,8 +21,10 @@ const _offlineMiddleware = ({ ignoreTypes }) => store => {
       offlineHistory.set(action.meta.offline.actionID, action.meta.offline.data)
       // [TEST] fire setTimeout dispatch
       /*
+        과연 과거 데이터를 어떻게 저장할까?
+        state는 리듀서에서 바뀌니, 미들웨어에서 state는 아직 바뀌지 않았으니
+        store.getState()를 통해서 state를 얻고 어딘가 저장을 해야할듯
         오프라인 리듀서가 필요한듯 하다.
-        
       */
       // setTimeout(() => store.dispatch({
       //   type: 'OFFLINE_FAILURE_CHECK',

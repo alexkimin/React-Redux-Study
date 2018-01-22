@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   ${props => utils.flexBox(props)}
   background: white;
   box-shadow: ${props => props.theme.shadow};
-  padding: 1.5em;
+  padding: 1.5rem;
 `
 
 const TodoTemplate = ({ children }) => {
