@@ -2,26 +2,30 @@
 // it should be work before action creation
 const createSocketAction = (
   type,
-  payloadCreator = payload => payload,
+  payloadCreator = (payload, body) => payload,
   meta={}
 ) =>
-  data => {
+  data =>
+  {
+    // Action type constant
     const typeString = type
-
-    const taggedData = {
+    // to unify format
+    const formattedData = {
       content: data
     }
-
-    const body = {
+    // to unify format of http request body
+    const requestBody = {
       type: typeString,
-      data: taggedData
+      data: formattedData
     }
 
-    const payload = payloadCreator(taggedData, body)
+    // if there is custom payloadCreator function, apply
+    const newPayload = payloadCreator(formattedData, requestBody)
 
+    // return action object
     return {
         type: typeString,
-        payload: payload,
+        payload: newPayload,
         meta
       }
   }

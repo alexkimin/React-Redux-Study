@@ -50,7 +50,7 @@ const findByIdAndUpdate = id => {
     const theTodo = DB.get(id)
     theTodo.isCompleted = !theTodo.isCompleted
     DB.set(id, theTodo)
-    return resolve(id)
+    return resolve(DB.get(id))
   })
 }
 
@@ -103,16 +103,20 @@ const withSocket = io => {
     return res.json({ status: 'sucess' })
   })
 
+  let counter = 1
   router.put('/:id', (req, res) => {
     const todoId = req.params.id
-    console.log(req.body)
+    console.log(counter++, req.body.data.content)
     // toggle updating
-    findByIdAndUpdate(todoId)
-      .then(data => {
+    delay(3000)
+      .then(() => {
+        DB.set(todoId, req.body.data.content)
+        const newTodo = DB.get(todoId)
+
         io.emit(req.body.type, {
-          data,
+          data: req.body.data.content,
           actionID: req.body.data.actionID
-         })
+        })
         return res.json({})
       })
   })

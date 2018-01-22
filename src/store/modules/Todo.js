@@ -41,10 +41,9 @@ const initialState = Map({
 // use withMutations when you want to group several changes on an object.
 // Belowed cases were for practicing, so over used.
 const setInput = value => state => state.set('input', value)
-const updateToggle = id => state => state.update('todos', todos =>
+const updateToggle = theTodo => state => state.update('todos', todos =>
   todos.map(todo => {
-    if (todo.id === id ) todo.isCompleted = !todo.isCompleted
-    return todo
+    return todo.id === theTodo.id ? theTodo : todo
   })
 )
 const addNew = todo => state => state.update('todos', todos =>
@@ -66,7 +65,7 @@ const Todo = handleActions({
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
-  [TODO_TOGGLE]: (state, action) =>
+  [TODO_TOGGLE]: (state, action) => // console.log('reducer', action) ||
     pipeMutations([
         updateToggle(action.payload.data),
       ], state),
@@ -78,7 +77,7 @@ const Todo = handleActions({
     pipeMutations([
         deleteOne(action.payload.data),
       ], state),
-  [TODO_CLEAR]: (state, action) => console.log('reducer', action) ||
+  [TODO_CLEAR]: (state, action) => // console.log('reducer', action) ||
     pipeMutations([
         clearSome(action.payload.data),
       ], state),

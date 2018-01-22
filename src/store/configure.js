@@ -10,16 +10,15 @@ const isDev = process.env.NODE_ENV === 'development';
 const devtools = isDev && window.devToolsExtension
   ? window.devToolsExtension
   : () => fn => fn;
-  // offlineMiddleware({
-  //   actionCreater: true,
-  //   major: false
-  // }),
+
 
 const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk,
-
+      offlineMiddleware({
+        ignoreTypes: ['_PENDING', '_SUCESSS']
+      }),
       socketMiddleware({
         actionTypes,
         path: '/'

@@ -16,7 +16,7 @@ const initialState = Map({
 
 /* reducers with redux-pender */
 const User = handleActions({
-  [USER_CONCUR]: (state, action) => console.log(action) ||
+  [USER_CONCUR]: (state, action) => //console.log(action) ||
     state.set('conUser', action.payload.data),
 }, initialState)
 

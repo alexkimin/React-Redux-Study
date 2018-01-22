@@ -5,13 +5,13 @@ import uuid from 'uuid/v4'
 const createOffFirstAction = (
   type,
   payloadCreator = payload => payload,
-  meta={}
+  meta={ offline:{} }
 ) =>
   data => {
     const typeString = type
-    
+
     const actionID = uuid()
-    meta.actionID = actionID
+    meta.offline.actionID = actionID
 
     const taggedData = {
       content: data,

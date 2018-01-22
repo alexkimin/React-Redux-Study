@@ -27,7 +27,12 @@ const rendering = (props, list) => {
     (<TodoItem
         key={ todo.id }
         idx={ i }
-        toggleFn={ () => props.toggleTheTodo(todo.id) }
+        toggleFn={ () => {
+            const thetodo = {...todo}
+            thetodo.isCompleted = !thetodo.isCompleted
+            props.toggleTheTodo(thetodo)
+          }
+        }
         deleteFn={ () => {
           // deleteTodoAnimation({ id: todo.id })
                            props.deleteTheTodo(todo.id)
@@ -48,7 +53,7 @@ const rendering = (props, list) => {
 const TodoRender = props => {
   const { todos, reverse, isFetching } = props
   const todosList = reverse ? todos.reverse() : todos
-  console.log('todo rendering')
+  console.log('todo render')
   return (
     <TodoList flex={ 10 }>
       {/* 130ms -> 70ms */}

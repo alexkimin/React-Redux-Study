@@ -1,83 +1,76 @@
-import filterActions from './filterActions'
 import { pipe, isPromise } from './helper'
 import compare from './compare'
 import uuid from 'uuid/v4'
 
-// helper tagging function when current dispatching is no need to
-// reach originally targeted reducer due to same data.
-const _offlineNoNeedTagger = action => {
-  action.type += '_NONEED'
-  action.offline = null
-  return action
-}
-
-
-
 
 /* Main Code */
-const _offlineMiddleware = option => {
+const _offlineMiddleware = ({ ignoreTypes }) => store => {
 
-  // Store offline dispatching history to compare
-  // pre-data in local with post-delivered data from server
+  const _ignoreTypes = ['@@']
+  const ignore = [..._ignoreTypes, ...ignoreTypes]
+
+  // this DS can be a queue
   const offlineHistory = new Map()
-  const offlineHistoryQueue = []
-  const responseQueue = []
-
-  const userId = uuid()
-  const _newDispatch = dispatch => action => {
-    const _action = {...action, userId }
-    return dispatch(_action)
-  }
-  let dispatchUpdate = false
-
-  const comparing = compare(offlineHistory)
 
   // actual middleware part
-  return store => next => action => {
+  return next => action => {
 
-    //register userID to Store
-    if(!store.userId) store.userId = userId
+    // if the payload is promise, and actionID,
+    if (isPromise(action.payload) && action.meta.offline) {
+      // console.log('OFFLINE!!')
+      //  Save the info as history
+      offlineHistory.set(action.meta.offline.actionID, action.meta.offline.data)
+      // [TEST] fire setTimeout dispatch
+      // setTimeout(() => store.dispatch({
+      //   type: 'OFFLINE_FAILURE_CHECK',
+      //   payload: {
+      //     actionID: action.meta.offline.actionID
+      //   }
+      // }), 3000)
 
-    if(!dispatchUpdate) {
-      store.dispatch = _newDispatch(store.dispatch)
-      dispatchUpdate = true;
-    }
-
-
-
-
-    // skipping non-related actions with this middleware
-    if(filterActions(action)) return next(action)
-    console.log(action)
-    console.log(store)
-
-    // checking another action creation library
-    // and will use this middleware as major promise-middleware
-    const { actionCreater, major } = option
-
-    // Comparing logic
-    // In case that action type is in history
-    // payload is not promise
-    if(offlineHistory.has(action.type) && !isPromise(action.payload)) {
-        if(comparing(action)) {
-        offlineHistory.delete(action.type)
-        return next(_offlineNoNeedTagger(action))
-      }
-      console.log('diff')
-    }
-
-    if (isPromise(action.payload) ) {
-      // if promise, dispatch local action
+      // fire local dispatch to render first
       store.dispatch({
-        ...action,
-        payload: { data: action.offline.data }
+        type: action.type,
+        payload: { data: action.meta.offline.data },
+        meta: {
+          offline: {
+            actionID: action.meta.offline.actionID,
+            status: 'LOCAL'
+          }
+        }
       })
-      console.log('clicked')
 
-      if(!action.type.includes('_NONEED')) {
-        offlineHistory.set(action.type, { data: action.offline.data })
-      }
+
     }
+
+    // when response back(which has actionID in respond)
+    if (!isPromise(action.payload) && action.payload && action.payload.actionID) {
+
+      if(!offlineHistory.has(action.payload.actionID)) return next(action)
+      // console.log('=============================================')
+      // console.log('WELCOME BACK', action)
+
+      // compare history
+      const prev = offlineHistory.get(action.payload.actionID)
+      const current = action.payload.data
+
+      const checker = compare(prev, current)
+      // console.log('COMPARE : ', checker)
+
+      // if the history matched -> overwrite action type as okay
+      // if (checker) {
+      //   action.type += '_NONEED'
+      //   console.log('----Matched!!')
+      // }
+
+      // delete prev queue
+      offlineHistory.delete(action.payload.actionID)
+
+    }
+
+
+    // if the history not matched for 3 sec, revert the local dispatch.
+    // if (action.type.includes())
 
     return next(action)
   }
