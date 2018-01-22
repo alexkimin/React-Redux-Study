@@ -4,7 +4,6 @@ import express from 'express'
 import logger from 'morgan'
 import debug from 'debug'
 import path from 'path'
-// import cors from 'cors'
 import http from 'http'
 import Socket from 'socket.io'
 
@@ -14,7 +13,6 @@ import todo from './routes/todo'
 export const app = express()
 export const server = http.Server(app)
 const io = Socket(server)
-// app.use(cors())
 
 // app.use(logger('dev'))
 app.use(bodyParser.json())

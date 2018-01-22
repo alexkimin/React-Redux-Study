@@ -21,7 +21,8 @@ const _offlineMiddleware = ({ ignoreTypes }) => store => {
       offlineHistory.set(action.meta.offline.actionID, action.meta.offline.data)
       // [TEST] fire setTimeout dispatch
       /*
-        오프라인 리듀서가 필요한듯 하다. 
+        오프라인 리듀서가 필요한듯 하다.
+        
       */
       // setTimeout(() => store.dispatch({
       //   type: 'OFFLINE_FAILURE_CHECK',

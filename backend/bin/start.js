@@ -13,23 +13,10 @@ const debug = require('debug')('backend:server')
 
 
 /**
- * Normalize a port into a number, string, or false.
- */
-
-const normalizePort = function(val) {
-  const port = parseInt(val, 10)
-  // named pipe
-  if (isNaN(port)) return val
-  // port number
-  if (port >= 0) return port
-  return false
-}
-
-/**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3001')
+const port = process.env.PORT || '3001'
 app.set('port', port)
 
 /**

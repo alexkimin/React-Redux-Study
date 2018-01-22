@@ -8,7 +8,6 @@ const StyledDiv =  styled.div`
   ${utils.media.mobile`flex: 0.3;`}
   ${props => props.horizon && utils.media.medium`flex: 3;`}
   ${props => props.horizon && utils.media.large`flex: 6;`}
-  ${props => props.vertical && utils.media.mobile`flex: 2.5;`}
 `
 const SpaceSide = props => (<StyledDiv { ...props } />)
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 // Components
-import { SEO, AppTemplate, TitleHeader, AsyncComponent } from 'components'
+import { SEO, AppTemplate, TitleHeader } from 'components'
 // Containers
-// import { NoMatch } from 'containers'
+import { NoMatch } from 'containers'
 // Async Loading
 import Loadable from 'react-loadable'
 
@@ -12,9 +12,6 @@ const LoadableTodo = Loadable({
   loader: () => import('../Todo/Todo'),
   loading: Loading,
 })
-
-// const AsyncTodo = AsyncComponent(() => import('../Todo/Todo'))
-const AsyncNoMatch = AsyncComponent(() => import('../NoMatch/NoMatch'))
 
 const App = ({ socket }) => {
   return (
@@ -33,7 +30,7 @@ const App = ({ socket }) => {
         <Route exact path='/' component={ LoadableTodo } />
         <Route exact path='/todo/:id' component={ LoadableTodo } />
         <Route exact path='/filter/:filter' component={ LoadableTodo } />
-        <Route path='' component={ AsyncNoMatch }/>
+        <Route path='' component={ NoMatch }/>
       </Switch>
     </AppTemplate>
   )
