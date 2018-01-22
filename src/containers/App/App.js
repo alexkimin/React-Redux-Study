@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import { SEO, AppTemplate, TitleHeader, AsyncComponent } from 'components'
 // Containers
 // import { NoMatch } from 'containers'
-Async Loading
+// Async Loading
 import Loadable from 'react-loadable'
 
 const Loading = () => <div>Loading...</div>;

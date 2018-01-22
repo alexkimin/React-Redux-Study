@@ -66,6 +66,7 @@ It is a real-time Todo App.
 **Optimization**
   - **Selector Pattern** : [reselect](https://github.com/reactjs/reselect) is good for performance optimization and functional reusability
   - **Code splitting, Async chunk**
+    - Currently not working in build, need to check create-react-app.
     - option1. via [AsyncComponent](https://gist.github.com/acdlite/a68433004f9d6b4cbc83b5cc3990c194)
     - option2. [react-loadable](https://github.com/thejameskyle/react-loadable)
 

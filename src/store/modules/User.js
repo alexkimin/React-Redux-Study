@@ -16,8 +16,8 @@ const initialState = Map({
 
 /* reducers with redux-pender */
 const User = handleActions({
-  [USER_CONCUR]: (state, action) =>
-    state.set('conUser', action.payload.num),
+  [USER_CONCUR]: (state, action) => console.log(action) ||
+    state.set('conUser', action.payload.data),
 }, initialState)
 
 export default User

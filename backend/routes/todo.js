@@ -68,10 +68,10 @@ const withSocket = io => {
     console.log('connected', socket.id)
     // add id to io object
 
-    io.emit('conUser', io.eio.clientsCount)
+    io.emit('user/USER_CONCUR', { data: io.eio.clientsCount })
 
     socket.on('disconnect', () => {
-      io.emit('conUser', io.eio.clientsCount)
+      io.emit('user/USER_CONCUR', { data: io.eio.clientsCount })
     })
   })
 
