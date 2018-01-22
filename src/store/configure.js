@@ -16,9 +16,9 @@ const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk,
-      offlineMiddleware({
-        ignoreTypes: ['_PENDING', '_SUCESSS']
-      }),
+      // offlineMiddleware({
+      //   ignoreTypes: ['_PENDING', '_SUCESSS']
+      // }),
       socketMiddleware({
         actionTypes,
         path: '/'

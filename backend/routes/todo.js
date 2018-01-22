@@ -103,12 +103,10 @@ const withSocket = io => {
     return res.json({ status: 'sucess' })
   })
 
-  let counter = 1
   router.put('/:id', (req, res) => {
     const todoId = req.params.id
-    console.log(counter++, req.body.data.content)
     // toggle updating
-    delay(3000)
+    delay(30)
       .then(() => {
         DB.set(todoId, req.body.data.content)
         const newTodo = DB.get(todoId)
