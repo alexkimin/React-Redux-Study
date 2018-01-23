@@ -117,5 +117,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "why-did-you-update": "^0.1.0"
   }
 }

@@ -18,7 +18,7 @@ import {
   TodoAddForm,
   TodoFooter } from 'containers'
 
-const _clearCompleted = props => () => props.clearCompleted()
+const _clearCompleted = props => () => console.log('click!') ||  props.clearCompleted()
 
 const Todo = props => {
   return (
@@ -30,7 +30,7 @@ const Todo = props => {
       {/* Todos list */}
       <TodoRender reverse />
       {/* Footer */}
-      <TodoFooter onClick={ _clearCompleted } />
+      <TodoFooter onClick={ _clearCompleted(props) } />
     </TodoTemplate>
   )
 }

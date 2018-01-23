@@ -10,6 +10,10 @@ import store from 'store'
 // CSS
 import { reset, theme } from 'styles'
 
+if (process.env.NODE_ENV !== 'production') {
+  const { whyDidYouUpdate } = require('why-did-you-update')
+  whyDidYouUpdate(React)
+}
 
 const render = Component => ReactDOM.render(
   (
