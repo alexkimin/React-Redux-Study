@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { penderReducer } from 'redux-pender'
+import offlineReducer from '../middlewares/offline/offlineReducer'
 import * as actions from './Todo'
 
 // imports all file except index.js
@@ -27,7 +28,8 @@ req.keys().forEach((key) => {
 })
 
 // add pender reducer
-modules['pender'] = penderReducer;
+modules['pender'] = penderReducer
+modules['offline'] = offlineReducer
 
 
-export default combineReducers(modules);
+export default combineReducers(modules)

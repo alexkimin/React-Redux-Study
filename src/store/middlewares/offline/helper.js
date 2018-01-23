@@ -9,6 +9,6 @@ export const pipe = (...fns) => data =>
 export const curry = props => fn => fn(props)
 
 export const isPromise = (promise) => {
-   if(!promise) return false;
-   return promise.then && promise.catch;
+   if(!promise) return false
+   return promise.then && promise.catch
 }

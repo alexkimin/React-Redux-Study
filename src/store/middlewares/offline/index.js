@@ -1,6 +1,8 @@
 import { pipe, isPromise } from './helper'
 import compare from './compare'
 import uuid from 'uuid/v4'
+import { toJS } from 'immutable'
+import * as type from './offlineReducer'
 
 
 /* Main Code */
@@ -15,21 +17,28 @@ const _offlineMiddleware = ({ ignoreTypes }) => store => {
   // actual middleware part
   return next => action => {
 
+    let state
+
     // if the payload is promise, and actionID,
     if (isPromise(action.payload) && action.meta.offline) {
-      //  Save the info as history
+      //  Save the updated info as history to MAP
       offlineHistory.set(action.meta.offline.actionID, action.meta.offline.data)
+
+      // Save prev history info to offline getState
+      state = store.getState()
+      const prevData = state.Todo.get('todos')
+        .filter(todo => todo.id ==  action.meta.offline.data.id).toJS()[0]
+      store.dispatch({
+        type: type.offlineHistorySave,
+        payload: { data: prevData, actionID: action.meta.offline.actionID}
+       })
+
       // [TEST] fire setTimeout dispatch
-      /*
-        과연 과거 데이터를 어떻게 저장할까?
-        state는 리듀서에서 바뀌니, 미들웨어에서 state는 아직 바뀌지 않았으니
-        store.getState()를 통해서 state를 얻고 어딘가 저장을 해야할듯
-        오프라인 리듀서가 필요한듯 하다.
-      */
       // setTimeout(() => store.dispatch({
       //   type: 'OFFLINE_FAILURE_CHECK',
       //   payload: {
-      //     historyID: action.meta.offline.actionID
+      //     type: action.type,
+      //     data: action.meta.offline.actionID
       //   }
       // }), 3000)
 
@@ -49,11 +58,15 @@ const _offlineMiddleware = ({ ignoreTypes }) => store => {
     }
 
     // when response back(which has actionID in respond)
-    if (!isPromise(action.payload) && action.payload && action.payload.actionID) {
-
+    if (!isPromise(action.payload) &&
+      action.payload &&
+      action.payload.actionID &&
+      !action.type.includes('_FAILURE_CHECK') &&
+      !action.type.includes(type.offlineHistorySave)
+    ) {
       if(!offlineHistory.has(action.payload.actionID)) {
         // Temporal code
-        offlineHistory.clear()
+        // offlineHistory.clear()
         return next(action)
       }
 
@@ -76,11 +89,22 @@ const _offlineMiddleware = ({ ignoreTypes }) => store => {
 
 
     // if the history not matched for 3 sec, revert the local dispatch.
-    if (action.type.includes('_FAILURE_CHECK')) {
-      const prevData = offlineHistory.get(action.payload.historyID)
-      // store.dispatch()
-      console.log(prevData)
-    }
+    // if (action.type.includes('_FAILURE_CHECK')) {
+    //   const prevData = offlineHistory.get(action.payload.data)
+    //
+    //   if (prevData) {
+    //     offlineHistory.delete(action.payload.data)
+    //     state = store.getState()
+    //     console.log(state)
+    //     const offlineState = state.offline.get('history')
+    //     const thePrevData = offlineState.get(action.payload.data)
+    //     store.dispatch({
+    //       type: action.payload.type,
+    //       payload: thePrevData
+    //     })
+    //   }
+    //   // store.dispatch()
+    // }
 
     return next(action)
   }
