@@ -7,13 +7,13 @@ import { NoMatch } from 'containers'
 // Async Loading
 import Loadable from 'react-loadable'
 
-const Loading = () => <div>Loading...</div>;
+const Loading = () => <div>Loading...</div>
 const LoadableTodo = Loadable({
   loader: () => import('../Todo/Todo'),
   loading: Loading,
 })
 
-const App = ({ socket }) => {
+const App = props => {
   return (
     <AppTemplate>
       {/* meta tag configure */}

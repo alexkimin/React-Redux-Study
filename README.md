@@ -73,9 +73,9 @@ It is a real-time Todo App.
 **Avoiding known anti-patterns.**
   - Using big component.
   - Unnecessary mapStateToProps.
-  - Passing useless props into child.
-  - Using dynamically generated event handler functions as props.
-  - Using anonymous function as selectors of redux state.
+  - (Minor) Passing useless props into child.
+  - (Minor) Using anonymous function as selectors of redux state.
+  - (Minor) Using dynamically generated event handler functions as props.
   - I used [react-perf-devtool](https://github.com/nitin42/react-perf-devtool/blob/master/README.md) extension to check performance enhancement in ms.
 
 **Promise action handling**

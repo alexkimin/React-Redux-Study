@@ -4,12 +4,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
-const Root = ({ store, theme, socket }) => {
+const Root = props => {
   return (
-    <Provider store={ store }>
-      <ThemeProvider theme={ theme }>
+    <Provider store={ props.store }>
+      <ThemeProvider theme={ props.theme }>
         <BrowserRouter>
-          <App socket={ socket }/>
+          <App />
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
