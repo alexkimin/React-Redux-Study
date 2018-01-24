@@ -3,7 +3,6 @@ import * as api from '../api/todoAPI'
 import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
 import { pipeMutations } from 'libs'
-import createOffFirstAction from '../middlewares/offline/offFirstAction'
 import createSocketAction from '../middlewares/socket/createSocketAction'
 import { createPenderAction } from 'redux-pender'
 
@@ -24,9 +23,9 @@ export const TODO_FETCH = 'todo/TODO_FETCH'
 export const inputTodo = createAction(TODO_INPUT)
 export const updateTodo = createAction(TODO_UPDATE)
 // Async actions
-export const fetchTodo = createPenderAction(TODO_FETCH, api.fetchTodoAPI)
+export const fetchTodo = createAction(TODO_FETCH, api.fetchTodoAPI)
 export const addTodo = createSocketAction(TODO_ADD, api.addTodoAPI)
-export const toggleTodo = createOffFirstAction(TODO_TOGGLE, api.toggleTodoAPI)
+export const toggleTodo = createSocketAction(TODO_TOGGLE, api.toggleTodoAPI)
 export const deleteTodo = createSocketAction(TODO_DELETE, api.deleteTodoAPI)
 export const clearTodo = createSocketAction(TODO_CLEAR, api.clearTodoAPI)
 
@@ -77,7 +76,7 @@ const Todo = handleActions({
     pipeMutations([
         deleteOne(action.payload.data),
       ], state),
-  [TODO_CLEAR]: (state, action) => 
+  [TODO_CLEAR]: (state, action) =>
     pipeMutations([
         clearSome(action.payload.data),
       ], state),

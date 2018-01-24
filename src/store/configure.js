@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import penderMiddleware from 'redux-pender'
 import socketMiddleware from './middlewares/socket/'
-import offlineMiddleware from './middlewares/offline/'
 import modules, { actionTypes } from './modules'
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -16,9 +15,6 @@ const configureStore = preloadedState => {
   const enhancers = [
     applyMiddleware(
       thunk,
-      offlineMiddleware({
-        ignoreTypes: ['_PENDING', '_SUCESSS']
-      }),
       socketMiddleware({
         actionTypes,
         path: '/'
