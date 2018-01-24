@@ -77,7 +77,7 @@ const withSocket = io => {
 
 
   router.get('/', (req, res) => {
-    delay(300)
+    delay(10)
     .then(() => findAll())
     .then(data => res.json({ todos: data }))
   })
@@ -106,7 +106,7 @@ const withSocket = io => {
   router.put('/:id', (req, res) => {
     const todoId = req.params.id
     // toggle updating
-    delay(2000)
+    delay(10)
       .then(() => {
         DB.set(todoId, req.body.data.content)
         const newTodo = DB.get(todoId)
