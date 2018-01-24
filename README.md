@@ -16,7 +16,6 @@ It is a real-time Todo App.
   /libs
     /helpers
       composition.js  - pipe and compose
-      memo.js         - memoizing event handler functions.
   /store
     /api              - axios to backend.
     /middleware       - redux middlewares
@@ -34,12 +33,12 @@ It is a real-time Todo App.
   - Actions, reducers -> 1 module file with  [redux-actions](https://github.com/reduxactions/redux-actions)
 
 **[Atomic React](https://arc.js.org/) like index.js export/import (automatic absolute path)**
-  - maybe has a problem with code splitting? -> need to check.
-  - will refactor this after being familiar with Webpack.
+  - maybe has a problem with code splitting?
+    - confirm the problem that build is not generating chunk properly with this approach.
+    - better approach will be babel-transform
 
-**Practice for writing middleware of redux**
+**middleware**
   - custom socket redux-middleware will handle actions and socket.io events.
-  - (soon) custom offline-first middleware will provide offline-first functionality.
 
 **Backend**
   - Node with express, no database currently.
