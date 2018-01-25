@@ -18,7 +18,7 @@ import {
   TodoAddForm,
   TodoFooter } from 'containers'
 
-const _clearCompleted = props => () => console.log('click!') ||  props.clearCompleted()
+const _clearCompleted = props => () => props.clearCompleted()
 
 const Todo = props => {
   return (
@@ -45,12 +45,13 @@ Todo.propTypes = {
 // mapStateToProps are selectors that calculated when store is changed
 // the problem is even the state is same, will be calculated again
 // with reselect package, we can memoize selectors to enhance performance.
-export default connect(
-  (state, props) => ({
+const s = (state, props) => ({
 
-  }),
-  (dispatch) => ({
-    clearCompleted: bindActionCreators(clearTodo, dispatch),
-    updateConcurrentUser: bindActionCreators(concurrentUser, dispatch),
-  })
-)(Todo)
+})
+
+const d = dispatch => ({
+  clearCompleted: bindActionCreators(clearTodo, dispatch),
+  updateConcurrentUser: bindActionCreators(concurrentUser, dispatch),
+})
+
+export default connect(s, d)(Todo)

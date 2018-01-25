@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions'
 import * as api from '../api/todoAPI'
 import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
-import { pipeMutations } from 'libs'
+import { pipeMutations as _pipe } from 'libs'
 import createSocketAction from '../middlewares/socket/createSocketAction'
 import { createPenderAction } from 'redux-pender'
 
@@ -56,30 +56,30 @@ const clearSome = todos => state => state.set('todos', List(todos))
 /* reducers with redux-pender */
 const Todo = handleActions({
   [TODO_INPUT]: (state, action) =>
-    pipeMutations([
+    _pipe(
       setInput(action.payload.input),
-    ], state),
+    )(state),
   [TODO_UPDATE]: (state, action) =>
     state.update('todos', todos => todos.map(todo => {
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
   [TODO_TOGGLE]: (state, action) =>
-    pipeMutations([
-        updateToggle(action.payload.data),
-      ], state),
+    _pipe(
+      updateToggle(action.payload.data),
+    )(state),
   [TODO_ADD]: (state, action) =>
-    pipeMutations([
-        addNew(action.payload.data),
-      ], state),
+    _pipe(
+      addNew(action.payload.data),
+    )(state),
   [TODO_DELETE]: (state, action) =>
-    pipeMutations([
-        deleteOne(action.payload.data),
-      ], state),
+    _pipe(
+      deleteOne(action.payload.data),
+    )(state),
   [TODO_CLEAR]: (state, action) =>
-    pipeMutations([
-        clearSome(action.payload.data),
-      ], state),
+    _pipe(
+      clearSome(action.payload.data),
+    )(state),
   ...pender({
     type: TODO_FETCH,
     onSuccess: (state, action) =>

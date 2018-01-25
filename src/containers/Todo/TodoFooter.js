@@ -34,11 +34,11 @@ TodoFooter.propTypes = {
 }
 
 // Selector Pattern with reselect
-export default connect(
-  (state, props) => ({
-    conUsers: getConcurrent(state, props),
-  }),
-  (dispatch) => ({
+const s = (state, props) => ({
+  conUsers: getConcurrent(state, props),
+})
 
-  })
-)(TodoFooter)
+const d = dispatch => ({
+
+})
+export default connect(s, d)(TodoFooter)

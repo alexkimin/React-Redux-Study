@@ -76,14 +76,15 @@ TodoRender.propTypes = {
 
 // withRouter HOC is for accessing to parmas of the closest router.
 // Selector Pattern with reselector
-export default withRouter(connect(
-  (state, props) => ({
-    todos: getFiltered(state, props),
-    isFetching: getIsFetching(state, props),
-  }),
-  (dispatch) => ({
-    updateTheTodo: bindActionCreators(updateTodo, dispatch),
-    toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
-    deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
-  })
-)(TodoRender))
+const s = (state, props) => ({
+  todos: getFiltered(state, props),
+  isFetching: getIsFetching(state, props),
+})
+
+const d = dispatch => ({
+  updateTheTodo: bindActionCreators(updateTodo, dispatch),
+  toggleTheTodo: bindActionCreators(toggleTodo, dispatch),
+  deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
+})
+
+export default withRouter(connect(s, d)(TodoRender))

@@ -1,6 +1,6 @@
 
 // it should be work before action creation
-const createSocketAction = (
+const _createSocketAction = (
   type,
   payloadCreator = (payload, body) => payload,
   meta={}
@@ -30,4 +30,10 @@ const createSocketAction = (
       }
   }
 
-export default createSocketAction
+const createSocketAction = () => {
+  const middleware = _createSocketAction
+  middleware.toString = () => console.log('hello there')
+  return _createSocketAction
+}
+
+export default createSocketAction()

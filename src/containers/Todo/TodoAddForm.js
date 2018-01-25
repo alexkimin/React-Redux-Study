@@ -10,8 +10,7 @@ import { inputTodo, addTodo } from 'store/modules/Todo'
 import { getInputValue } from 'store/selectors'
 // Components
 import { Form, Input, Button } from 'components'
-// helpers
-import { sequence } from 'libs'
+
 
 const _submitTodo = props => e =>
   e.preventDefault() ||
@@ -49,12 +48,13 @@ TodoAddForm.propTypes = {
 }
 
 // Selector Pattern with reselect
-export default connect(
-  (state, props) => ({
-    inputValue: getInputValue(state, props)
-  }),
-  (dispatch) => ({
-    updateInputVal: bindActionCreators(inputTodo, dispatch),
-    addTheTodo: bindActionCreators(addTodo, dispatch),
-  })
-)(TodoAddForm)
+const s = (state, props) => ({
+  inputValue: getInputValue(state, props)
+})
+
+const d = dispatch => ({
+  updateInputVal: bindActionCreators(inputTodo, dispatch),
+  addTheTodo: bindActionCreators(addTodo, dispatch),
+})
+
+export default connect(s, d)(TodoAddForm)
