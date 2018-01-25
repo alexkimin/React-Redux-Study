@@ -6,9 +6,10 @@ import debug from 'debug'
 import path from 'path'
 import http from 'http'
 import Socket from 'socket.io'
-
-
 import todo from './routes/todo'
+// import httpProxy from 'express-http-proxy'
+
+// const serviceProxy = httpProxy('https://')
 
 export const app = express()
 export const server = http.Server(app)
@@ -24,7 +25,24 @@ app.use(cookieParser())
 
 app.use(express.static(path.join(__dirname, '../build')))
 
-// custom middleware
+/*
+// Authentication
+app.use((req, res, next) => {
+
+  // passport
+  // keyservice -> micro service?
+  // sessionstore - redis?
+
+  next()
+})
+// Proxy request
+app.get('', (req, res, next) => {
+  // proxy to micro service
+  serviceProxy(req, res, next)
+})
+*/
+
+
 app.use((req, res, next) => {
   // socket setting with local scope
   // res.locals.io = io
