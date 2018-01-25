@@ -56,30 +56,30 @@ const clearSome = todos => state => state.set('todos', List(todos))
 /* reducers with redux-pender */
 const Todo = handleActions({
   [TODO_INPUT]: (state, action) =>
-    _pipe(
-      setInput(action.payload.input),
-    )(state),
+    _pipe([
+      setInput(action.payload.input)
+    ], state),
   [TODO_UPDATE]: (state, action) =>
     state.update('todos', todos => todos.map(todo => {
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
   [TODO_TOGGLE]: (state, action) =>
-    _pipe(
-      updateToggle(action.payload.data),
-    )(state),
+    _pipe([
+      updateToggle(action.payload.data)
+    ], state),
   [TODO_ADD]: (state, action) =>
-    _pipe(
-      addNew(action.payload.data),
-    )(state),
+    _pipe([
+      addNew(action.payload.data)
+    ], state),
   [TODO_DELETE]: (state, action) =>
-    _pipe(
+    _pipe([
       deleteOne(action.payload.data),
-    )(state),
+    ], state),
   [TODO_CLEAR]: (state, action) =>
-    _pipe(
+    _pipe([
       clearSome(action.payload.data),
-    )(state),
+    ], state),
   ...pender({
     type: TODO_FETCH,
     onSuccess: (state, action) =>

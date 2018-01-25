@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
+import { Map, toJS } from 'immutable'
 // APIs
 import {
   deleteTodoAPI,
@@ -20,9 +21,11 @@ import { TodoItem, Spinner, TodoList } from 'components'
 // const memoizer = memo(memoizeRender)
 
 const _toggleTheTodo = props => todo => () => {
-    const thetodo = {...todo}
-    thetodo.isCompleted = !thetodo.isCompleted
-    props.toggleTheTodo(thetodo)
+    const theTodo = {...todo}
+    theTodo.isCompleted = !theTodo.isCompleted
+    // const theTodo = Map(todo)
+    // theTodo.update('isCompleted', todo => !todo.isCompleted )
+    props.toggleTheTodo(theTodo)
   }
 
 const _deleteTheTodo = props => todo => () =>
