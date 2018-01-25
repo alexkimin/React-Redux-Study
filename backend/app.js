@@ -26,10 +26,11 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../build')))
 
 /*
+HTTP2.0?
 // Authentication
 app.use((req, res, next) => {
 
-  // passport
+  // passport / JWT?
   // keyservice -> micro service?
   // sessionstore - redis?
 
