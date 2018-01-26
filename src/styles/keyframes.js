@@ -102,12 +102,16 @@ export const fadein = keyframes`
 export const fadeout = keyframes`
   from {
     opacity: 1.0;
+    transform: scale(1,1);
+    background: white;
   }
 
   to {
-    opacity: 0.01;
-    width: 0px;
+    opacity: 0;
+    transform: scale(0,0);
     color: white;
+    margin: 0;
+    padding: 0;
   }
 `
 

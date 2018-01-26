@@ -60,7 +60,7 @@ const Todo = handleActions({
       setInput(action.payload.input)
     ], state),
   [TODO_UPDATE]: (state, action) =>
-    state.update('todos', todos => todos.map(todo => {
+    state.update('todos', todos => console.log(action) || todos.map(todo => {
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),

@@ -28,8 +28,10 @@ const _toggleTheTodo = props => todo => () => {
     props.toggleTheTodo(theTodo)
   }
 
-const _deleteTheTodo = props => todo => () =>
-  props.deleteTheTodo(todo.id)
+const _deleteTheTodo = props => todo => () => {
+  props.updateTheTodo({id: todo.id})
+  setTimeout(() => props.deleteTheTodo(todo.id), 500)
+}
 
 const _rendering = (props, list) => {
   return list.map((todo, i) =>
@@ -39,6 +41,7 @@ const _rendering = (props, list) => {
         toggleFn={ _toggleTheTodo(props)(todo) }
         deleteFn={ _deleteTheTodo(props)(todo) }
         enterDelay={ 0 }
+        willUnmount={ todo.willUnmount }
         {...todo}
     />)
   )

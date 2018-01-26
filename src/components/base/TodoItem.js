@@ -38,6 +38,7 @@ const TodoItem = ({
   updateFn,
   isCompleted,
   enterDelay,
+  ...rest
 }) => {
   return (
     <TodoBody
@@ -47,6 +48,7 @@ const TodoItem = ({
       row
       padded
       enterDelay={ enterDelay }
+      {...rest}
     >
       <CheckButton
         onClick={ toggleFn }
