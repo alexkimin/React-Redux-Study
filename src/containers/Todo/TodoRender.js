@@ -30,7 +30,7 @@ const _toggleTheTodo = props => todo => () => {
 
 const _deleteTheTodo = props => todo => () => {
   props.updateTheTodo({id: todo.id})
-  setTimeout(() => props.deleteTheTodo(todo.id), 1111100)
+  setTimeout(() => props.deleteTheTodo(todo.id), 100)
 }
 
 const _rendering = (props, list) => {
