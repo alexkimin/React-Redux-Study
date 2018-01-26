@@ -29,6 +29,7 @@ const StyledInput = styled.input`
     + div {
       color: ${ props => props.theme.color.secondary };
       transform: translate(0, -20px);
+      opacity: 1;
 
       > span {
         animation: ${ blink } 1.2s infinite;
