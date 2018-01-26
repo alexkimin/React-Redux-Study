@@ -47,6 +47,7 @@ const Placeholder = styled.div`
   top: 15px;
   transform: translate(0, 0);
   transition: ${ utils.transitMap(['color', 'transform']) };
+  opacity: ${ props => props.value ? 0 : 1 };
 `
 
 const Blinker = styled.span`
@@ -69,7 +70,7 @@ const Input = ({
         onChange={ onChange }
         value={ value }
       />
-    <Placeholder>
+    <Placeholder value={ value }>
       { placeholder } <Blinker>__</Blinker>
     </Placeholder>
     </Wrapper>
