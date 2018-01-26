@@ -109,9 +109,11 @@ export const fadeout = keyframes`
   to {
     opacity: 0;
     transform: scale(0,0);
+    height: 0;
     color: white;
     margin: 0;
     padding: 0;
+    display: none;
   }
 `
 
