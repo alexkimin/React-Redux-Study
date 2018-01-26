@@ -10,7 +10,7 @@ import { concurrentUser } from 'store/modules/User'
 // Components
 import {
   NavFilterBar,
-  TodoTemplate,
+  TodoTemplate
 } from 'components'
 // Containers
 import {

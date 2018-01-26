@@ -13,7 +13,7 @@ import { updateTodo, toggleTodo, deleteTodo } from 'store/modules/Todo'
 // Selectors
 import { getFiltered, getIsFetching } from 'store/selectors'
 // Components
-import { TodoItem, Spinner, TodoList } from 'components'
+import { TodoItem, Spinner, TodoList, EnsureHome } from 'components'
 // helpers
 // import { memo } from 'libs'
 // Momoize event handlers
@@ -90,4 +90,5 @@ const d = dispatch => ({
   deleteTheTodo: bindActionCreators(deleteTodo, dispatch),
 })
 
-export default withRouter(connect(s, d)(TodoRender))
+// ensure reroute to Home when user do refresh.
+export default withRouter(connect(s, d)(EnsureHome(TodoRender)))
