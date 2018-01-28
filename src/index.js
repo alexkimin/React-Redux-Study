@@ -15,6 +15,10 @@ if (process.env.NODE_ENV !== 'production') {
   whyDidYouUpdate(React)
 }
 
+
+// AppContainer(HotContainer) itself will know NODE_ENV
+// so no need condition checking of NODE_ENV
+// !module.hot || 'produnction' => AppContainer.prod
 const render = Component => ReactDOM.render(
   (
     <HotContainer>

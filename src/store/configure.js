@@ -34,6 +34,7 @@ const configureStore = preloadedState => {
   )
 
   if(module.hot) {
+    // for code splitting
     module.hot.accept('./modules', () => store.replaceReducer(modules))
   }
 
