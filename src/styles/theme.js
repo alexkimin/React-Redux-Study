@@ -29,7 +29,7 @@ export const theme = {
     xxlarge: '2rem',
   },
   space:{
-    padded: '1em'
+    padded: '1rem'
   },
   transition: '300ms ease-in-out',
   shadow: `

@@ -8,6 +8,10 @@ import { theme } from 'styles'
   400px ÷ 16px = 25rem
 
   em vs root-em(rem)
+
+  Pixels are ignorant, don’t use them.
+  Use REMs for sizes and spacing.
+  Use EMs for media queries.
 */
 // can use this like ${media.phone`width: 100%`}
 const { screenSizes } = theme
@@ -31,7 +35,7 @@ export default {
   },
   media: Object.keys(screenSizes).reduce((acc, label) => {
     acc[label] = (...args) => css`
-      @media (${screenSizes[label].type}: ${screenSizes[label].size}rem) {
+      @media (${screenSizes[label].type}: ${screenSizes[label].size}em) {
         ${css(...args)}
       }
     `

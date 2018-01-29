@@ -33,6 +33,7 @@ const render = Component => ReactDOM.render(
 )
 render(Root)
 
+// Webpack Hot Module Replacement API
 if(module.hot) {
   module.hot.accept('./Root', () => render(Root))
 }
