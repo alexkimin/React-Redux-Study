@@ -12,6 +12,7 @@ It is a real-time Todo App.
   /components
     /base             - normal components.
     /templates        - layout components for containers.
+    /hoc              - HOC
   /containers         - components connected with redux store, foldering based on router components.
   /libs
     /helpers
