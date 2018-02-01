@@ -28,7 +28,7 @@ const App = props => {
       {/*routes*/}
       <Switch>
         <Route exact path='/' component={ LoadableTodo } />
-        <Route exact path='/todo/:id' component={ LoadableTodo } />
+        {/* <Route exact path='/todo/:id' component={ LoadableTodo } /> */}
         <Route exact path='/filter/:filter' component={ LoadableTodo } />
         <Route path='' component={ NoMatch }/>
       </Switch>

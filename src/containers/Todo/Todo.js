@@ -29,6 +29,11 @@ const Todo = props => {
       <NavFilterBar />
       {/* Todos list */}
       <TodoRender reverse />
+      {/* 
+      inner route example
+      <Route exact path={`${props.match.url}`} render={() => <TotalList />} />
+      <Route exact path={`${props.match.url}/:todoID`} render={() => <OneTodo />} />
+      */}
       {/* Footer */}
       <TodoFooter onClick={ _clearCompleted(props) } />
     </TodoTemplate>
