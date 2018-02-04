@@ -51,8 +51,8 @@ const _scrollTo = node => node && node.scrollIntoView()
 const FakeNode = fn => (<div key='fake' ref={ fn } />)
 
 /*
- After splitted this component from Todo.js
- performance enhanced due to preventing unnecessary rerendering
+ After split this component from Todo.js
+ performance enhanced due to preventing unnecessary re-rendering
  via store update. (230ms -> 130ms)
 */
 const TodoRender = props => {

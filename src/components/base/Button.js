@@ -22,6 +22,7 @@ const StyledButton = styled.button`
     `
   }
 `
+
 const Button = ({
   type,
   name,

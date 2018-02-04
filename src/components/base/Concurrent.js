@@ -19,7 +19,7 @@ const StyledSpan = styled.span`
 const Concurrent = ({ users }) => {
   return (
     <StyledDiv row>
-      <i className="fas fa-user"></i>
+      <i className="fas fa-user"/>
       <StyledSpan>{ users }</StyledSpan>
     </StyledDiv>
   )

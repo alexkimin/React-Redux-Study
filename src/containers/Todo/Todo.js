@@ -8,15 +8,9 @@ import { clearTodoAPI } from 'store/api/todoAPI'
 import { clearTodo } from 'store/modules/Todo'
 import { concurrentUser } from 'store/modules/User'
 // Components
-import {
-  NavFilterBar,
-  TodoTemplate
-} from 'components'
+import { NavFilterBar, TodoTemplate } from 'components'
 // Containers
-import {
-  TodoRender,
-  TodoAddForm,
-  TodoFooter } from 'containers'
+import { TodoRender, TodoAddForm, TodoFooter } from 'containers'
 
 const _clearCompleted = props => () => props.clearCompleted()
 
@@ -30,9 +24,9 @@ const Todo = props => {
       {/* Todos list */}
       <TodoRender reverse />
       {/* 
-      inner route example
-      <Route exact path={`${props.match.url}`} render={() => <TotalList />} />
-      <Route exact path={`${props.match.url}/:todoID`} render={() => <OneTodo />} />
+        inner route example
+        <Route exact path={`${props.match.url}`} render={() => <TotalList />} />
+        <Route exact path={`${props.match.url}/:todoID`} render={() => <OneTodo />} />
       */}
       {/* Footer */}
       <TodoFooter onClick={ _clearCompleted(props) } />
@@ -41,17 +35,13 @@ const Todo = props => {
 }
 
 Todo.propTypes = {
-
   clearCompleted: PropTypes.func,
   updateConcurrentUser: PropTypes.func,
 }
 
 // Selector Pattern with reselect
-// mapStateToProps are selectors that calculated when store is changed
-// the problem is even the state is same, will be calculated again
-// with reselect package, we can memoize selectors to enhance performance.
 const s = (state, props) => ({
-
+  // spilt into child container
 })
 
 const d = dispatch => ({

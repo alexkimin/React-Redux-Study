@@ -18,7 +18,7 @@ const StyledDiv = styled.div`
 const DeleteButton = ({ onClick }) => {
   return (
     <StyledDiv onClick={ onClick }>
-      <i className="fas fa-lg fa-trash-alt"></i>
+      <i className="fas fa-lg fa-trash-alt"/>
     </StyledDiv>
   )
 }

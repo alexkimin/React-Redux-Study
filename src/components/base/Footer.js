@@ -14,13 +14,13 @@ const StyledA = styled.a`
     color: ${ props => props.theme.color.primary }
   }
 
-  ${props => utils.media.mobile`
+  ${utils.media.mobile`
       font-size: 0.65rem;
-    `}
+   `}
 `
 
 const StyledSpan = styled.span`
-  ${props => utils.media.mobile`
+  ${utils.media.mobile`
       display: none;
     `}
 `
@@ -30,7 +30,7 @@ const Footer = ({ text }) => {
     <StyledFooter>
       <StyledSpan>{ text }</StyledSpan>
       <StyledA href='https://github.com/AlexMin314/React-Redux-Study/tree/master'>
-        Alex Min <i className="fab fa-lg fa-github"></i>
+        Alex Min <i className="fab fa-lg fa-github"/>
       </StyledA>
     </StyledFooter>
   )

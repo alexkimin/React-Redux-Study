@@ -69,7 +69,7 @@ const CheckButton = ({
 }
 
 CheckButton.defaultProps = {
-  size: 2,
+  size: 2
 }
 
 CheckButton.propTypes = {

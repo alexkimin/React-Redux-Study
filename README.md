@@ -5,6 +5,20 @@ This toy project was for exploring interesting paradigms and modules to understa
 It is a real-time Todo App.
 [App Link](https://todopaloit.herokuapp.com/)
 
+**There were a few conditions to make this practice as fun.**
+  - Assuming this app is really big project. Tying several types of project structure and compare.
+  - No use className for styling, no use CSS frameworks.
+    - theme and utils with styled-component
+  - Stateless functional component only, no class, no lifecycle hooks.
+  - Making own helper functions and middlewares.
+    - If this app were real product, definitely will search and use outer library to be agile and reliable code.
+    - no function chaining -> pipe or composing
+  - Trying several refactoring
+    - e.g. make my app with pure concepts -> adopt interesting libraries and compare.
+  - Securing immutability, Trying different data structures in ES6.
+
+
+
 ## Structure
 ```
 ...
@@ -17,9 +31,11 @@ It is a real-time Todo App.
   /libs
     /helpers
       composition.js  - pipe and compose
+      memo.js         - memoize helper(replaced to reselect)  
   /store
     /api              - axios to backend.
-    /middleware       - redux middlewares
+    /middleware       - redux middlewares.
+      /socket         - socket.io middleware.
     /modules          - duck pattern (action creators, reducers).
     /selectors        - selector pattern for mapStateToProps.
     configure.js      - redux store configuration.
@@ -35,8 +51,9 @@ It is a real-time Todo App.
 
 **[Atomic React](https://arc.js.org/) like index.js export/import (automatic absolute path)**
   - maybe has a problem with code splitting?
-    - confirm the problem that build is not generating chunk properly with this approach.
+    - confirmed the problem that build is not generating chunk properly with this approach.
     - better approach will be babel-transform
+        - Can I write bable plugin by myself?
 
 **middleware**
   - custom socket redux-middleware will handle actions and socket.io events.
@@ -45,9 +62,6 @@ It is a real-time Todo App.
   - Node with express, no database currently.
   - Websocket implemented by [Socket.io](https://socket.io/)
 
-## History
-  - Todo app without socket : [branch](https://github.com/AlexMin314/React-Redux-Study/tree/no.socket.ver)
-  - Todo app with socket, but events are linked to component directly : [branch](https://github.com/AlexMin314/React-Redux-Study/tree/socket.hacky)
 
 ## What I've learned from this practice.
 
@@ -64,9 +78,9 @@ It is a real-time Todo App.
   - [redux-thunk](https://github.com/gaearon/redux-thunk) -> Saga? if I have more time...
 
 **Optimization**
-  - **Selector Pattern** : [reselect](https://github.com/reactjs/reselect) is good for performance optimization and functional reusability
+  - **Selector Pattern** : [reselect](https://github.com/reactjs/reselect) 
   - **Code splitting, Async chunk**
-    - Currently not working in build, need to check create-react-app.
+    - Currently not working in build due to atomic-react.
     - option1. via [AsyncComponent](https://gist.github.com/acdlite/a68433004f9d6b4cbc83b5cc3990c194)
     - option2. [react-loadable](https://github.com/thejameskyle/react-loadable)
 
@@ -95,9 +109,10 @@ It is a real-time Todo App.
 
 **Type Checking**
   - [prop-types](https://www.npmjs.com/package/prop-types)
+  -  I've played with TypeScript so far, strong strict typing was good also.
 
 **UI Dev Env**
-  - stylebook: not yet.
+  - stylebook: not tried yet.
 
 **Meta Tag handling (SEO)**
   - [react-helmet](https://github.com/nfl/react-helmet)
