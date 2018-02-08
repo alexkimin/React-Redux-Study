@@ -25,7 +25,8 @@ const todo2 = {
   isCompleted: true,
   prioritized: true,
   willUnmount: false
-}const id3 = uuid()
+}
+const id3 = uuid()
 const todo3 = {
   id: id3,
   text: 'webscoket connected via redux middleware',
