@@ -13,7 +13,7 @@ const DB = new Map()
 const id1 = uuid()
 const todo1 = {
   id: id1,
-  text: 'Welcome to Todo toy project with functional programming',
+  text: 'Welcome to Todo toy project with functional programming - no classes',
   isCompleted: false,
   prioritized: false,
   willUnmount: false
@@ -25,10 +25,18 @@ const todo2 = {
   isCompleted: true,
   prioritized: true,
   willUnmount: false
+}const id3 = uuid()
+const todo3 = {
+  id: id3,
+  text: 'webscoket connected via redux middleware',
+  isCompleted: true,
+  prioritized: true,
+  willUnmount: false
 }
 
 DB.set(id1, todo1)
 DB.set(id2, todo2)
+DB.set(id3, todo3)
 
 /* ================================
   Mongoose like helpers
