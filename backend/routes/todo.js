@@ -21,7 +21,7 @@ const todo1 = {
 const id2 = uuid()
 const todo2 = {
   id: id2,
-  text: 'Todos comes from fake database',
+  text: 'Todos comes from nodejs-express backend',
   isCompleted: true,
   prioritized: true,
   willUnmount: false
