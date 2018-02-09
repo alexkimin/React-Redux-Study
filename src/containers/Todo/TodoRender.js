@@ -66,7 +66,7 @@ const TodoRender = props => {
     <TodoList flex={ 10 }>
       {/* 130ms -> 70ms */}
       { isFetching
-        ? (<Spinner />)
+        ? (<Spinner text={'Please wait until Heroku server on...'}/>)
         : reverse
           ? _rendering(props, todosList)
           : [..._rendering(props, todosList), FakeNode(_scrollTo)]

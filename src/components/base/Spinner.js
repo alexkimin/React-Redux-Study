@@ -22,12 +22,13 @@ const SpinnerItem = styled.span`
   margin: 20px;
 `
 
-const Spinner = ({ fetching }) => {
+const Spinner = ({ fetching, text }) => {
   return (
     <div>
       { fetching && (
-        <SpinnerWrapper center row>
+        <SpinnerWrapper center>
           <SpinnerItem />
+          <div style={{marginTop: '30px'}}>{ text }</div>
         </SpinnerWrapper>
       ) }
     </div>
@@ -40,6 +41,7 @@ Spinner.defaultProps = {
 
 Spinner.propTypes = {
   fetching: PropTypes.bool,
+  text: PropTypes.string,
 }
 
 export default Spinner
