@@ -2,9 +2,8 @@ import { createAction, handleActions } from 'redux-actions'
 import * as api from '../api/todoAPI'
 import { pender } from 'redux-pender'
 import { Map, List } from 'immutable'
-import { pipeMutations as _pipe } from 'libs'
+import { _pipe, _do, _doMutation } from '../../libs/helpers/composition'
 import createSocketAction from '../middlewares/socket/createSocketAction'
-import { createPenderAction } from 'redux-pender'
 
 
 /* Action Types */
@@ -37,8 +36,6 @@ const initialState = Map({
 })
 
 // Mutations
-// use withMutations when you want to group several changes on an object.
-// Belowed cases were for practicing, so over used.
 const setInput = value => state => state.set('input', value)
 const updateToggle = theTodo => state => state.update('todos', todos =>
   todos.map(todo => {
@@ -55,40 +52,35 @@ const clearSome = todos => state => state.set('todos', List(todos))
 
 /* reducers with redux-pender */
 const Todo = handleActions({
-  [TODO_INPUT]: (state, action) =>
-    _pipe([
+  [TODO_INPUT]: (state, action) => // _do without withMutation()
+    _do(state,
       setInput(action.payload.input)
-    ], state),
-  [TODO_UPDATE]: (state, action) =>
+    ),
+  [TODO_UPDATE]: (state, action) => // before refactor
     state.update('todos', todos => todos.map(todo => {
       todo.willUnmount = todo.id === action.payload.id
       return todo
     })),
-  [TODO_TOGGLE]: (state, action) =>
-    _pipe([
+  [TODO_TOGGLE]: (state, action) => // _doMutation
+    _doMutation(state,
       updateToggle(action.payload.data)
-    ], state),
+    ),
   [TODO_ADD]: (state, action) =>
-    _pipe([
+    _doMutation(state,
       addNew(action.payload.data)
-    ], state),
+    ),
   [TODO_DELETE]: (state, action) =>
-    _pipe([
+    _doMutation(state,
       deleteOne(action.payload.data),
-    ], state),
+    ),
   [TODO_CLEAR]: (state, action) =>
-    _pipe([
+    _doMutation(state,
       clearSome(action.payload.data),
-    ], state),
+    ),
   ...pender({
     type: TODO_FETCH,
     onSuccess: (state, action) =>
       state.set('todos', List(action.payload.data.todos)),
-  }),
-  ...pender({
-    type: TODO_TOGGLE,
-    onPending: (state, action) => state,
-    onSuccess: (state, action) => state
   }),
 }, initialState)
 

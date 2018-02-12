@@ -142,7 +142,6 @@ const withSocket = io => {
   })
   router.delete('/clear', (req, res) => {
     // clear completed
-    console.log(req.body)
     findAll()
     .then(todos => {
       // delete completed todo
