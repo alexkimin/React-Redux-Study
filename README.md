@@ -6,7 +6,7 @@ It is a real-time Todo App.
 [App Link](https://todopaloit.herokuapp.com/)
 
 **There were a few conditions to make this practice as fun.**
-  - Assuming this app is really big project. Tying several types of project structure and compare.
+  - Assuming this app is really big project. Trying several types of project structure and compare.
   - No use className for styling, no use CSS frameworks.
     - theme and utils with styled-component
   - Stateless functional component only, no class, no lifecycle hooks.
@@ -30,7 +30,7 @@ It is a real-time Todo App.
   /containers         - components connected with redux store, foldering based on router components.
   /libs
     /helpers
-      composition.js  - pipe and compose
+      composition.js  - custom functional helpers
       memo.js         - memoize helper(replaced to reselect)  
   /store
     /api              - axios to backend.

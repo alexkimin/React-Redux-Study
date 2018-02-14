@@ -5,8 +5,7 @@ const _createSocketAction = (
   payloadCreator = (payload, body) => payload,
   meta={}
 ) =>
-  data =>
-  {
+  data => {
     // Action type constant
     const typeString = type
     // to unify format
@@ -24,16 +23,10 @@ const _createSocketAction = (
 
     // return action object
     return {
-        type: typeString,
-        payload: newPayload,
-        meta
-      }
+      type: typeString,
+      payload: newPayload,
+      meta
+    }
   }
-
-const createSocketAction = () => {
-  const middleware = _createSocketAction
-  middleware.toString = () => console.log('hello there')
-  return _createSocketAction
-}
 
 export default createSocketAction()
