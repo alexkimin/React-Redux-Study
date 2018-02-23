@@ -42,7 +42,7 @@ const updateToggle = theTodo => state => state.update('todos', todos =>
     return todo.id === theTodo.id ? theTodo : todo
   })
 )
-const addNew = todo => state => state.update('todos', todos =>
+const addNew = todo => state => console.log('new') ||state.update('todos', todos =>
   todos.push(todo)
 )
 const deleteOne = id => state => state.update('todos', todos =>

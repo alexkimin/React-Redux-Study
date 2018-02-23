@@ -1,16 +1,40 @@
 // custom helpers for practice
 
-export const _curry = fn => (...args) => {
-  const [a, ...rest] = [...args]
-  if (rest.length === 1) return fn(a, ...rest)
-  return b => fn(a, b)
-}
+// export const _curry = fn => (...args) => {
+//   const [a, ...rest] = [...args]
+//   if (rest.length === 1) return fn(a, ...rest)
+//   return b => fn(a, b)
+// }
 
-export const _curryr = fn => (...args) => {
-  const [a, ...rest] = [...args]
-  if (rest.length === 1) return fn(...rest, a)
-  return b => fn(b, a)
-}
+export const _curry = (
+  f,
+  arr = []
+) =>
+  (...args) =>
+    (a =>
+        a.length === f.length
+          ? f(...a)
+          : _curry(f, a)
+    )([...arr, ...args])
+
+// export const _curryr = fn => (...args) => {
+//   const [a, ...rest] = [...args]
+//   if (rest.length === 1) return fn(...rest, a)
+//   return b => fn(b, a)
+// }
+
+export const _curryr = (
+  f,
+  arr = []
+) =>
+  (...args) =>
+    (a =>
+        a.length === f.length
+          ? f(...a)
+          : _curryr(f, a)
+    )([...args, ...arr])
+
+
 // wrapping할 경우 b는 cb가 되므로, a를 받는 _do 파이핑을 가능케 함.
 
 export const _isObject = obj => typeof obj === 'object' && !!obj

@@ -29,4 +29,10 @@ const _createSocketAction = (
     }
   }
 
+const createSocketAction = () => {
+  const middleware = _createSocketAction
+  middleware.toString = () => console.log('hello there')
+  return _createSocketAction
+}
+
 export default createSocketAction()

@@ -13,9 +13,9 @@ import { Form, Input, Button } from 'components'
 
 
 const _submitTodo = props => e =>
-  e.preventDefault() ||
+  !e.preventDefault() &&
   props.inputValue &&
-  props.updateInputVal({ input: '' }) ||
+  !props.updateInputVal({ input: '' }) &&
   props.addTheTodo(props.inputValue)
 
 const _inputValueUpdater = props => e =>
